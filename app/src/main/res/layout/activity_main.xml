@@ -4,15 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    >
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:scaleX="4"
+        android:scaleY="4"
+        android:text="@string/home"
+        android:textStyle="bold"/>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/TabFragment"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:name="com.example.myapplication.TabFragment"
+        tools:layout="@layout/tab_fragment" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
