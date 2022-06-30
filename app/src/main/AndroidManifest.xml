@@ -22,6 +22,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".GalleryMainActivity" />
+        <activity android:name=".ClickedItemActivity" />
         <activity android:name=".ContactActivity" />
     </application>
 </manifest>
