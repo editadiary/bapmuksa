@@ -4,11 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1205" />
+        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/drawable/ic_delete.xml" value="0.193" />
         <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/drawable/ic_house.xml" value="0.2525" />
         <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/drawable/linear_layout_divider.xml" value="0.1205" />
         <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/activity_contact.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/recycler_item.xml" value="0.264" />
         <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/tab_fragment.xml" value="0.23489583333333333" />
+        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/top_fragment.xml" value="0.18489583333333334" />
       </map>
     </option>
   </component>
