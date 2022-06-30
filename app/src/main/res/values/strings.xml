@@ -6,4 +6,8 @@
     <string name="button">Button</string>
     <string name="home">Home</string>
     <string name="tohome">ToHome</string>
+    <string name="temp">temp</string>
+    <string name="AddContact">AddIcon</string>
+    <string name="temp_name">temp_name</string>
+    <string name="temp_phone">temp_phone</string>
 </resources>
