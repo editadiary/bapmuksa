@@ -1,9 +1,11 @@
 <resources>
     <string name="app_name">My Application</string>
+
     <string name="phone">Phone</string>
     <string name="gallery">Gallery</string>
     <string name="idk">IDK</string>
     <string name="button">Button</string>
     <string name="home">Home</string>
     <string name="tohome">ToHome</string>
+
 </resources>
