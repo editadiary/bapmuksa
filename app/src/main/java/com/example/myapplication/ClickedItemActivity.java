@@ -28,7 +28,8 @@ public class ClickedItemActivity extends AppCompatActivity {
         TrashBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "아이템이 삭제되었습니다", Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(getApplicationContext(), "아이템이 삭제되었습니다", Toast.LENGTH_LONG).show();
                 finish();
             }
         });
