@@ -13,6 +13,9 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class GalleryMainActivity extends AppCompatActivity {
 
@@ -47,6 +50,7 @@ public class GalleryMainActivity extends AppCompatActivity {
                 startActivity(new Intent(GalleryMainActivity.this, ClickedItemActivity.class).putExtra("name", selectedName).putExtra("image", selectedImage));
             }
         });
+
     }
 
     public class CustomAdapter extends BaseAdapter {
