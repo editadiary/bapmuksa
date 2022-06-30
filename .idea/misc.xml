@@ -3,15 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/layout/activity_clicked_item.xml" value="0.1875" />
-        <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/layout/activity_gallery_main.xml" value="0.22708333333333333" />
-        <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/layout/activity_main.xml" value="0.22" />
-        <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/layout/row_items.xml" value="0.1875" />
-        <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/layout/tab_fragment.xml" value="0.22708333333333333" />
+        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1205" />
+        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/drawable/ic_house.xml" value="0.2525" />
+        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/drawable/linear_layout_divider.xml" value="0.1205" />
+        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/activity_contact.xml" value="0.24947916666666667" />
+        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/tab_fragment.xml" value="0.23489583333333333" />
       </map>
     </option>
   </component>
-  <component name="ExternalStorageConfigurationManager" enabled="true" />
+
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
