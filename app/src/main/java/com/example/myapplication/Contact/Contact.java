@@ -33,9 +33,4 @@ public class Contact {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-
-    @SuppressLint("Range")
-    public static Contact fromCursor(Cursor cursor) {
-        return new Contact(cursor.getString(cursor.getColumnIndex("name")), cursor.getString(cursor.getColumnIndex("phone")));
-    }
 }
