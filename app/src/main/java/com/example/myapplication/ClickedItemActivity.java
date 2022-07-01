@@ -1,7 +1,9 @@
 package com.example.myapplication;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
@@ -24,15 +26,6 @@ public class ClickedItemActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clicked_item);
 
-        TrashBtn = findViewById(R.id.ic_delete);
-        TrashBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "아이템이 삭제되었습니다", Toast.LENGTH_SHORT).show();
-                finish();
-            }
-        });
-
         imageView = findViewById(R.id.imageView);
         textView = findViewById(R.id.tvName);
 
@@ -46,9 +39,35 @@ public class ClickedItemActivity extends AppCompatActivity {
             imageView.setImageResource(selectedImage);
         }
 
+        TrashBtn = findViewById(R.id.ic_delete);
+        TrashBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(ClickedItemActivity.this);
+                builder.setCancelable(true);
+                builder.setTitle("Gallery");
+                builder.setMessage("사진을 삭제할까요?");
+                builder.setPositiveButton("Confirm",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Toast.makeText(getApplicationContext(), "아이템이 삭제되었습니다", Toast.LENGTH_LONG).show();
+                                finish();
+                            }
+                        });
+                builder.setNegativeButton(R.string.cancle, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
 
 
-        //set value
+            }
+        });
 
     }
 }
