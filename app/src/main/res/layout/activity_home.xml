@@ -12,7 +12,7 @@
         android:id="@+id/top_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:name="com.example.myapplication.HomeFragment"
+        android:name="com.example.myapplication.TopFragment"
         tools:layout="@layout/top_fragment"
         app:layout_constraintTop_toTopOf="parent"
         />

@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ClickedItemActivity extends AppCompatActivity {
-
     ImageView imageView;
     TextView textView;
 
