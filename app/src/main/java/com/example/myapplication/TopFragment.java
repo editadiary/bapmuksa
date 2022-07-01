@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import static com.example.myapplication.Common.stack_page;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -36,16 +38,18 @@ public class TopFragment extends Fragment implements View.OnClickListener {
         if(id == R.id.ic_house) {
             Intent intent;
 
-            if(Common.btn == 0) return;
-            Common.btn = 0;
+            if(stack_page.peek() == 0) return;
+            stack_page.pop(); stack_page.push(0);
 
             if(activity == null) return;
-
             intent = new Intent(activity, HomeActivity.class);
             startActivity(intent);
         }
 
         else if(id == R.id.ic_left_arrow) {
+            if(stack_page.size() == 0) System.exit(0);
+
+            stack_page.pop();
             activity.finish();
         }
     }

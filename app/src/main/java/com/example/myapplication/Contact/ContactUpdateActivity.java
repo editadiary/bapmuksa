@@ -1,7 +1,7 @@
 package com.example.myapplication.Contact;
 
+import static com.example.myapplication.Common.mAdapter;
 import static com.example.myapplication.Common.mContactList;
-import static com.example.myapplication.Contact.ContactActivity.RVSetList;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -59,16 +59,18 @@ public class ContactUpdateActivity extends AppCompatActivity implements View.OnC
 
     @Override
     public void onClick(View v) {
-        Common.btn = 5;
         int position = Integer.parseInt(pos);
+
         String name = editName.getText().toString();
         String phone = editPhone1.getText().toString() + "-" + editPhone2.getText().toString() + "-" + editPhone3.getText().toString();
+
         Contact contact = mContactList.get(position);
         contact.setName(name);
         contact.setPhone(phone);
 
         mContactList.set(position, contact);
-        RVSetList(mContactList);
+        mAdapter.notifyDataSetChanged();
+        Common.stack_page.pop();
 
         Intent intent = new Intent(getApplicationContext(), ContactDetailActivity.class);
         intent.putExtra("name", name)
