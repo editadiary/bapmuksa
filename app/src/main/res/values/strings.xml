@@ -10,5 +10,6 @@
     <string name="AddContact">AddIcon</string>
     <string name="temp_name">temp_name</string>
     <string name="temp_phone">temp_phone</string>
+    <string name="dash">-</string>
     <string name="cancle">Cancle</string>
 </resources>

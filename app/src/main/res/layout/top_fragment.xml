@@ -12,10 +12,22 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="16dp"
         android:contentDescription="@string/tohome"
-        android:onClick="onClick"
+        android:onClick="toHome"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_house" />
+
+    <ImageView
+        android:id="@+id/ic_left_arrow"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="20dp"
+        android:onClick="toPrev"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:srcCompat="@drawable/ic_left_arrow"
+        />
 
     <!-- Home 구분선 -->
     <View

@@ -1,5 +1,6 @@
 package com.example.myapplication.Contact;
 
+import android.content.Intent;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,13 +15,19 @@ import com.example.myapplication.R;
 import java.util.ArrayList;
 
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactViewHolder> {
-    private ArrayList<Contact> mList;
+    private static ArrayList<Contact> mList;
+    private RecyclerViewClickListener listener;
 
-    public ContactAdapter(ArrayList<Contact> list) {
-        this.mList = list;
+    public ContactAdapter(ArrayList<Contact> list, RecyclerViewClickListener listener) {
+        mList = list;
+        this.listener = listener;
     }
 
-    public static class ContactViewHolder extends RecyclerView.ViewHolder {
+    public interface RecyclerViewClickListener {
+        void onClick(View v, int position);
+    }
+
+    public class ContactViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         protected TextView name;
         protected TextView phone;
 
@@ -28,9 +35,17 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
             super(view);
             this.name = view.findViewById(R.id.contact_item_name);
             this.phone = view.findViewById(R.id.contact_item_phone);
+
+            view.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            listener.onClick(v, getAdapterPosition());
         }
     }
 
+    @NonNull
     @Override
     public ContactViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext())
@@ -45,7 +60,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
         holder.phone.setText(mList.get(position).getPhone());
 
         holder.name.setGravity(Gravity.CENTER);
-        holder.phone.setGravity(Gravity.LEFT);
+        holder.phone.setGravity(Gravity.START);
     }
 
     @Override

@@ -14,30 +14,9 @@
         app:layout_constraintTop_toTopOf="parent"
         />
 
-    <ImageView
-        android:id="@+id/ic_left_arrow"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:scaleX="2"
-        android:scaleY="2"
-        android:layout_marginTop="25dp"
-        android:layout_marginRight="70dp"
-        android:onClick="toPrev"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="@id/ic_check"
-        app:srcCompat="@drawable/ic_left_arrow"
-        />
 
-    <ImageView
-        android:id="@+id/ic_check"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="10dp"
-        android:onClick="addClick"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:srcCompat="@drawable/ic_check"
-        />
+
+
 
 
     <LinearLayout
@@ -117,7 +96,7 @@
                 app:layout_constraintRight_toRightOf="parent"/>
 
             <TextView
-                android:id="@+id/hipoon1"
+                android:id="@+id/dash1"
                 android:layout_width="10dp"
                 android:layout_height="wrap_content"
                 android:text="-"
@@ -139,7 +118,7 @@
                 app:layout_constraintRight_toRightOf="parent"/>
 
             <TextView
-                android:id="@+id/hipoon2"
+                android:id="@+id/dash2"
                 android:layout_width="10dp"
                 android:layout_height="wrap_content"
                 android:text="-"
@@ -161,6 +140,18 @@
                 app:layout_constraintRight_toRightOf="parent"/>
         </LinearLayout>
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/ic_check"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginEnd="30dp"
+        android:onClick="addClick"
+        app:layout_constraintBottom_toTopOf="@id/TabFragment"
+        app:layout_constraintRight_toRightOf="parent"
+        app:srcCompat="@drawable/ic_check"
+        />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/TabFragment"
