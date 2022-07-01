@@ -24,9 +24,11 @@
         <activity android:name=".HomeActivity" />
         <activity android:name=".Contact.ContactActivity" />
         <activity android:name=".Contact.ContactCreateActivity" />
+
         <activity android:name=".Contact.ContactDetailActivity" />
         <activity android:name=".Contact.ContactUpdateActivity" />
         <activity android:name=".GalleryMainActivity" />
         <activity android:name=".ClickedItemActivity" />
     </application>
+
 </manifest>

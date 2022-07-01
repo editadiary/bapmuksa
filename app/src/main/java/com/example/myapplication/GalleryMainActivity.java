@@ -1,10 +1,13 @@
 package com.example.myapplication;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,14 +24,7 @@ public class GalleryMainActivity extends AppCompatActivity {
 
     GridView gridView;
 
-    String[] names = {"image1", "image2", "image3", "image4", "image5", "image6", "image7",
-            "image8", "image9", "image10", "image11", "image12", "image13", "image14",
-            "image15", "image16"};
-    int[] images = {R.drawable.image1, R.drawable.image2, R.drawable.image3, R.drawable.image4,
-            R.drawable.image5, R.drawable.image6, R.drawable.image7, R.drawable.image8,
-            R.drawable.image9, R.drawable.image10, R.drawable.image11, R.drawable.image12,
-            R.drawable.image13, R.drawable.image14, R.drawable.image15, R.drawable.image16};
-
+    ArrayList<ImageFile> items;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,17 +33,67 @@ public class GalleryMainActivity extends AppCompatActivity {
 
         gridView = findViewById(R.id.gridView);
 
-        GalleryMainActivity.CustomAdapter customAdapter = new GalleryMainActivity.CustomAdapter(names, images, this);
+        items = new ArrayList<>();
+        items.add(new ImageFile("image1", R.drawable.image1));
+        items.add(new ImageFile("image2", R.drawable.image2));
+        items.add(new ImageFile("image3", R.drawable.image3));
+        items.add(new ImageFile("image4", R.drawable.image4));
+        items.add(new ImageFile("image5", R.drawable.image5));
+        items.add(new ImageFile("image6", R.drawable.image6));
+        items.add(new ImageFile("image7", R.drawable.image7));
+        items.add(new ImageFile("image8", R.drawable.image8));
+        items.add(new ImageFile("image9", R.drawable.image9));
+        items.add(new ImageFile("image10", R.drawable.image10));
+        items.add(new ImageFile("image11", R.drawable.image11));
+        items.add(new ImageFile("image12", R.drawable.image12));
+        items.add(new ImageFile("image13", R.drawable.image13));
+        items.add(new ImageFile("image14", R.drawable.image14));
+        items.add(new ImageFile("image15", R.drawable.image15));
+        items.add(new ImageFile("image16", R.drawable.image16));
+
+
+        GalleryMainActivity.CustomAdapter customAdapter = new GalleryMainActivity.CustomAdapter(items, this);
 
         gridView.setAdapter(customAdapter);
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String selectedName = names[i];
-                int selectedImage = images[i];
+
+                String selectedName = items.get(i).name;
+                int selectedImage = items.get(i).image;
 
                 startActivity(new Intent(GalleryMainActivity.this, ClickedItemActivity.class).putExtra("name", selectedName).putExtra("image", selectedImage));
+            }
+        });
+
+        gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(GalleryMainActivity.this);
+                builder.setCancelable(true);
+                builder.setTitle("Gallery");
+                builder.setMessage("Delete "+items.get(i).name+"?");
+                builder.setPositiveButton("Confirm",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int j) {
+                                items.remove(i);
+                                customAdapter.notifyDataSetChanged();
+                                Toast.makeText(getApplicationContext(), "아이템이 삭제되었습니다", Toast.LENGTH_LONG).show();
+                            }
+                        });
+                builder.setNegativeButton(R.string.cancle, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        customAdapter.notifyDataSetChanged();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
+                return true;
             }
         });
 
@@ -55,31 +101,30 @@ public class GalleryMainActivity extends AppCompatActivity {
 
     public class CustomAdapter extends BaseAdapter {
 
-        private String[] imageNames;
-        private int[] imagesPhoto;
-        private Context context;
+        ArrayList<ImageFile> items;
+        Context context;
+
         private LayoutInflater layoutInflater;
 
-        public CustomAdapter(String[] imageNames, int[] imagesPhoto, Context context) {
-            this.imageNames = imageNames;
-            this.imagesPhoto = imagesPhoto;
+        public CustomAdapter(ArrayList<ImageFile> items, Context context) {
+            this.items = items;
             this.context = context;
             this.layoutInflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
         }
 
         @Override
         public int getCount() {
-            return imagesPhoto.length;
+            return items.size();
         }
 
         @Override
         public Object getItem(int i) {
-            return null;
+            return items.get(i);
         }
 
         @Override
         public long getItemId(int i) {
-            return 0;
+            return i;
         }
 
         @Override
@@ -92,10 +137,22 @@ public class GalleryMainActivity extends AppCompatActivity {
             TextView tvName = view.findViewById(R.id.tvName);
             ImageView imageView = view.findViewById(R.id.imageView);
 
-            tvName.setText(imageNames[i]);
-            imageView.setImageResource(imagesPhoto[i]);
+            tvName.setText(items.get(i).name);
+            imageView.setImageResource(items.get(i).image);
 
             return view;
         }
     }
+
+    public class ImageFile {
+        String name;
+        int image;
+
+        ImageFile(String name, int image){
+            this.name = name;
+            this.image = image;
+        }
+    }
 }
+
+
