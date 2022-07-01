@@ -82,13 +82,11 @@ public class GalleryMainActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialogInterface, int j) {
                                 items.remove(i);
                                 customAdapter.notifyDataSetChanged();
-                                Log.d("t", "pos");
                             }
                         });
                 builder.setNegativeButton(R.string.cancle, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Log.d("t","neg");
                     }
                 });
                 AlertDialog dialog = builder.create();
