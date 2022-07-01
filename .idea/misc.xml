@@ -3,7 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/drawable/all_border_line.xml" value="0.1" />
+
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/drawable/ic_delete.xml" value="0.1" />
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/drawable/ic_house.xml" value="0.1" />
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
@@ -18,6 +18,7 @@
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/layout/recycler_item.xml" value="0.1" />
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/layout/row_items.xml" value="0.1875" />
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/layout/tab_fragment.xml" value="0.22708333333333333" />
+
       </map>
     </option>
   </component>
