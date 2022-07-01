@@ -48,6 +48,7 @@ public class ClickedItemActivity extends AppCompatActivity {
                 builder.setCancelable(true);
                 builder.setTitle("Gallery");
                 builder.setMessage("Delete "+items.get(i).name+"?");
+
                 builder.setPositiveButton("Confirm",
                         new DialogInterface.OnClickListener() {
                             @Override
