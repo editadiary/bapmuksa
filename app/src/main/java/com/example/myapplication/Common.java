@@ -16,6 +16,8 @@ import java.util.ArrayList;
 public class Common {
     public static ArrayList<Contact> mContactList;
     public static int id_num = 12;
+
+    // btn: 0: Home, 1: Contact, 2: Gallery, 3:IDK, 4: Contact Create, 5: Contact Detail, 6: Contact Update
     public static int btn = 0;
 
     public static String getJsonString(Context context, String fileName) {

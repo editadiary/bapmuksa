@@ -30,14 +30,10 @@ public class ContactCreateActivity extends AppCompatActivity {
         edit_phone3 = findViewById(R.id.create_phone_edit3);
     }
 
-    public void toPrev(View view) {
-        Common.btn = 1;
-        finish();
-    }
 
     public void addClick(View view) {
         String name = edit_name.getText().toString();
-        String phone = edit_phone1.getText().toString() + edit_phone2.getText().toString() + edit_phone3.getText().toString();
+        String phone = edit_phone1.getText().toString() + "-" + edit_phone2.getText().toString() + "-" + edit_phone3.getText().toString();
 
         finish();
         AddContact(name, phone);

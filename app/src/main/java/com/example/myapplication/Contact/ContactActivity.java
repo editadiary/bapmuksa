@@ -18,14 +18,15 @@ import java.util.ArrayList;
 
 public class ContactActivity extends AppCompatActivity {
     public static final String CONTACT_JSON_FILE_NAME = "contact.json";
-    private static ContactAdapter mAdapter;
     private static RecyclerView mRecyclerView;
+    private static ContactAdapter.RecyclerViewClickListener listener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact);
 
+        setOnClickListener();
         mRecyclerView = findViewById(R.id.contact_rv);
 
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
@@ -38,12 +39,24 @@ public class ContactActivity extends AppCompatActivity {
     }
 
     public static void RVSetList(ArrayList<Contact> list) {
-        mAdapter = new ContactAdapter(list);
+        ContactAdapter mAdapter = new ContactAdapter(list, listener);
         if(mRecyclerView.getAdapter() == null) {
             mRecyclerView.setAdapter(mAdapter);
         } else{
             mRecyclerView.swapAdapter(mAdapter, false);
         }
+    }
+
+    private void setOnClickListener() {
+        listener = (v, position) -> {
+            Common.btn = 5;
+            Intent intent = new Intent(getApplicationContext(), ContactDetailActivity.class);
+            intent.putExtra("name", mContactList.get(position).getName())
+                    .putExtra("phone", mContactList.get(position).getPhone())
+                            .putExtra("pos", Integer.toString(position));
+
+            startActivity(intent);
+        };
     }
 
     public void addClick(View view) {
