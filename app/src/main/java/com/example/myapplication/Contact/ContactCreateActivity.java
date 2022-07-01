@@ -1,7 +1,8 @@
 package com.example.myapplication.Contact;
 
+import static com.example.myapplication.Common.mAdapter;
 import static com.example.myapplication.Common.mContactList;
-import static com.example.myapplication.Contact.ContactActivity.RVSetList;
+import static com.example.myapplication.Common.stack_page;
 
 import android.os.Bundle;
 import android.view.View;
@@ -35,15 +36,14 @@ public class ContactCreateActivity extends AppCompatActivity {
         String name = edit_name.getText().toString();
         String phone = edit_phone1.getText().toString() + "-" + edit_phone2.getText().toString() + "-" + edit_phone3.getText().toString();
 
-        finish();
         AddContact(name, phone);
+        stack_page.push(1);
+        finish();
     }
 
     private void AddContact(String name, String phone) {
         Contact new_contact = new Contact(name, phone);
-
         mContactList.add(new_contact);
-        RVSetList(mContactList);
-        Common.btn = 1;
+        mAdapter.notifyDataSetChanged();
     }
 }

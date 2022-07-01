@@ -46,6 +46,18 @@ public class ClickedItemActivity extends AppCompatActivity {
             imageView.setImageResource(selectedImage);
         }
 
+<<<<<<< Updated upstream
+=======
+        TrashBtn = findViewById(R.id.ic_delete);
+        TrashBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(ClickedItemActivity.this);
+                builder.setCancelable(true);
+                builder.setTitle("Gallery");
+                builder.setMessage("Delete?");
+>>>>>>> Stashed changes
 
 
         //set value

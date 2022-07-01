@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.content.Context;
 
 import com.example.myapplication.Contact.Contact;
+import com.example.myapplication.Contact.ContactAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -12,13 +13,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Deque;
+import java.util.Stack;
 
 public class Common {
+    public static final String CONTACT_JSON_FILE_NAME = "contact.json";
+    public static Stack<Integer> stack_page;
     public static ArrayList<Contact> mContactList;
+    public static ContactAdapter mAdapter;
+    public static int currentTab = 0;
     public static int id_num = 12;
 
     // btn: 0: Home, 1: Contact, 2: Gallery, 3:IDK, 4: Contact Create, 5: Contact Detail, 6: Contact Update
-    public static int btn = 0;
 
     public static String getJsonString(Context context, String fileName) {
         String str = "";

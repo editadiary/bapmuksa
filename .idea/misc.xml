@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+<<<<<<< Updated upstream
 <<<<<<< HEAD
         <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1205" />
         <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/drawable/all_border_line.xml" value="0.235" />
@@ -26,6 +27,8 @@
         <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/top_fragment.xml" value="0.18489583333333334" />
 =======
 
+=======
+>>>>>>> Stashed changes
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/drawable/ic_delete.xml" value="0.1" />
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/layout/activity_clicked_item.xml" value="0.1" />
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/layout/activity_contact.xml" value="0.16" />
@@ -34,7 +37,15 @@
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/layout/recycler_item.xml" value="0.1" />
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/layout/row_items.xml" value="0.1875" />
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/layout/tab_fragment.xml" value="0.22708333333333333" />
+<<<<<<< Updated upstream
 >>>>>>> 082c8be2ed21017f40a9fefe221074ad35181842
+=======
+        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/drawable/ic_person_square.xml" value="0.198" />
+        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/drawable/ic_picture.xml" value="0.193" />
+        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/drawable/ic_plus.xml" value="0.198" />
+        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/tab_fragment.xml" value="0.1585144927536232" />
+        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/top_fragment.xml" value="0.1585144927536232" />
+>>>>>>> Stashed changes
       </map>
     </option>
   </component>

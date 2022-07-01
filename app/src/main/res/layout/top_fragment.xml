@@ -7,9 +7,9 @@
     <!-- house icon -->
     <ImageView
         android:id="@+id/ic_house"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="10dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="16dp"
         android:contentDescription="@string/tohome"
         android:onClick="toHome"

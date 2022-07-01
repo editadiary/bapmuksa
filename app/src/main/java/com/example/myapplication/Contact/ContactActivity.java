@@ -1,6 +1,8 @@
 package com.example.myapplication.Contact;
 
 import static com.example.myapplication.Common.mContactList;
+import static com.example.myapplication.Common.mAdapter;
+import static com.example.myapplication.Common.stack_page;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,7 +19,6 @@ import com.example.myapplication.R;
 import java.util.ArrayList;
 
 public class ContactActivity extends AppCompatActivity {
-    public static final String CONTACT_JSON_FILE_NAME = "contact.json";
     private static RecyclerView mRecyclerView;
     private static ContactAdapter.RecyclerViewClickListener listener;
 
@@ -32,24 +33,18 @@ public class ContactActivity extends AppCompatActivity {
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
 
-        RVSetList(mContactList);
+        mAdapter = new ContactAdapter(mContactList, listener);
+        mRecyclerView.setAdapter(mAdapter);
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mRecyclerView.getContext(), mLinearLayoutManager.getOrientation());
         mRecyclerView.addItemDecoration(dividerItemDecoration);
     }
 
-    public static void RVSetList(ArrayList<Contact> list) {
-        ContactAdapter mAdapter = new ContactAdapter(list, listener);
-        if(mRecyclerView.getAdapter() == null) {
-            mRecyclerView.setAdapter(mAdapter);
-        } else{
-            mRecyclerView.swapAdapter(mAdapter, false);
-        }
-    }
-
     private void setOnClickListener() {
         listener = (v, position) -> {
-            Common.btn = 5;
+            if(stack_page.peek() == 5) return;
+
+            stack_page.push(5);
             Intent intent = new Intent(getApplicationContext(), ContactDetailActivity.class);
             intent.putExtra("name", mContactList.get(position).getName())
                     .putExtra("phone", mContactList.get(position).getPhone())
@@ -60,7 +55,9 @@ public class ContactActivity extends AppCompatActivity {
     }
 
     public void addClick(View view) {
-        Common.btn = 4;
+        if(stack_page.peek() == 4) return;
+
+        stack_page.push(4);
         Intent intent = new Intent(getApplicationContext(), ContactCreateActivity.class);
         startActivity(intent);
     }

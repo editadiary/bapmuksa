@@ -1,11 +1,14 @@
 package com.example.myapplication;
 
+import static com.example.myapplication.Common.stack_page;
+import static com.example.myapplication.Common.currentTab;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -13,16 +16,20 @@ import androidx.fragment.app.FragmentActivity;
 import com.example.myapplication.Contact.ContactActivity;
 
 public class TabFragment extends Fragment implements View.OnClickListener {
-    private Button PhoneBtn, GalleryBtn;
+    private ImageView ContactBtn, GalleryBtn;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab_fragment, container, false);
-        PhoneBtn = view.findViewById(R.id.phone_button);
-        PhoneBtn.setOnClickListener(this);
+        ContactBtn = view.findViewById(R.id.ic_person_square);
+        ContactBtn.setOnClickListener(this);
+        if(currentTab == 1) ContactBtn.setBackgroundResource(R.color.color3);
+        else ContactBtn.setBackgroundResource(R.color.white);
 
-        GalleryBtn = view.findViewById(R.id.gallery_button);
+        GalleryBtn = view.findViewById(R.id.ic_picture);
         GalleryBtn.setOnClickListener(this);
+        if(currentTab == 2) GalleryBtn.setBackgroundResource(R.color.color3);
+        else GalleryBtn.setBackgroundResource(R.color.white);
 
         return view;
     }
@@ -34,14 +41,14 @@ public class TabFragment extends Fragment implements View.OnClickListener {
         FragmentActivity activity = getActivity();
         if(activity == null) return;
 
-        if(id == R.id.phone_button && Common.btn != 1) {
-            Common.btn = 1; flag = false;
-            PhoneBtn.setBackgroundResource(R.color.purple_500);
+        if(id == R.id.ic_person_square && stack_page.peek() != 1) {
+            currentTab = 1;
+            stack_page.push(1); flag = false;
             intent = new Intent(activity, ContactActivity.class);
         }
-        else if (id == R.id.gallery_button && Common.btn != 2) {
-            Common.btn = 2; flag = false;
-            GalleryBtn.setBackgroundResource(R.color.purple_500);
+        else if (id == R.id.ic_picture && stack_page.peek() != 2) {
+            currentTab = 2;
+            stack_page.push(2); flag = false;
             intent = new Intent(activity, GalleryMainActivity.class);
         }
 
