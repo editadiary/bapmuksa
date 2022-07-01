@@ -12,7 +12,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
-
         tools:targetApi="31">
         <activity
             android:name=".MainActivity"
@@ -22,8 +21,10 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
-        <activity android:name=".ContactActivity" />
-        <activity android:name=".GalleryMainActivity"/>
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".Contact.ContactActivity" />
+        <activity android:name=".GalleryMainActivity" />
+        <activity android:name=".ClickedItemActivity" />
     </application>
+
 </manifest>
