@@ -47,7 +47,7 @@ public class ClickedItemActivity extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(ClickedItemActivity.this);
                 builder.setCancelable(true);
                 builder.setTitle("Gallery");
-                builder.setMessage("사진을 삭제할까요?");
+                builder.setMessage("Delete "+items.get(i).name+"?");
                 builder.setPositiveButton("Confirm",
                         new DialogInterface.OnClickListener() {
                             @Override

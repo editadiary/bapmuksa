@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,23 +71,24 @@ public class GalleryMainActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
 
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(GalleryMainActivity.this);
                 builder.setCancelable(true);
                 builder.setTitle("Gallery");
-                builder.setMessage("사진을 삭제할까요?");
+                builder.setMessage("Delete "+items.get(i).name+"?");
                 builder.setPositiveButton("Confirm",
                         new DialogInterface.OnClickListener() {
                             @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
+                            public void onClick(DialogInterface dialogInterface, int j) {
                                 items.remove(i);
                                 customAdapter.notifyDataSetChanged();
-                                Toast.makeText(getApplicationContext(), "아이템이 삭제되었습니다", Toast.LENGTH_LONG).show();
+                                Log.d("t", "pos");
                             }
                         });
                 builder.setNegativeButton(R.string.cancle, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        customAdapter.notifyDataSetChanged();
+                        Log.d("t","neg");
                     }
                 });
                 AlertDialog dialog = builder.create();
