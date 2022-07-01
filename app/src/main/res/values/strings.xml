@@ -11,9 +11,6 @@
     <string name="temp_name">temp_name</string>
     <string name="temp_phone">temp_phone</string>
     <string name="dash">-</string>
-<<<<<<< Updated upstream
-=======
     <string name="cancle">Cancle</string>
     <string name="toContact" />
->>>>>>> Stashed changes
 </resources>

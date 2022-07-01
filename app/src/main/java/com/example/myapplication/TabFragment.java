@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
 import com.example.myapplication.Contact.ContactActivity;
+import com.example.myapplication.Gallery.GalleryMainActivity;
 
 public class TabFragment extends Fragment implements View.OnClickListener {
     private ImageView ContactBtn, GalleryBtn;

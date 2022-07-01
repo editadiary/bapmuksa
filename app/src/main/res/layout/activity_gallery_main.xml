@@ -6,13 +6,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
 
-    tools:context=".GalleryMainActivity">
+    tools:context=".Gallery.GalleryMainActivity">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/top_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:name="com.example.myapplication.HomeFragment"
+        android:name="com.example.myapplication.TopFragment"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout="@layout/top_fragment" />
 
