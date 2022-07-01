@@ -1,18 +1,21 @@
-package com.example.myapplication;
+package com.example.myapplication.Gallery;
+
+import static com.example.myapplication.Common.mGalleryList;
+import static com.example.myapplication.Common.galleryAdapter;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.myapplication.R;
 
 public class ClickedItemActivity extends AppCompatActivity {
 
@@ -20,6 +23,8 @@ public class ClickedItemActivity extends AppCompatActivity {
 
     ImageView imageView;
     TextView textView;
+
+    int idx;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +35,11 @@ public class ClickedItemActivity extends AppCompatActivity {
         textView = findViewById(R.id.tvName);
 
         Intent intent = getIntent();
-
         if(intent.getExtras() != null){
             String selectedName = intent.getStringExtra("name");
             int selectedImage = intent.getIntExtra("image", 0);
+            int index = intent.getIntExtra("index", 0);
+            idx = index;
 
             textView.setText(selectedName);
             imageView.setImageResource(selectedImage);
@@ -47,12 +53,13 @@ public class ClickedItemActivity extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(ClickedItemActivity.this);
                 builder.setCancelable(true);
                 builder.setTitle("Gallery");
-                builder.setMessage("Delete "+items.get(i).name+"?");
+                builder.setMessage("Delete "+mGalleryList.get(idx).getName()+"?");
 
                 builder.setPositiveButton("Confirm",
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
+                                galleryAdapter.deleteItem(idx);
                                 Toast.makeText(getApplicationContext(), "아이템이 삭제되었습니다", Toast.LENGTH_LONG).show();
                                 finish();
                             }

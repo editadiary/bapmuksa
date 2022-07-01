@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
 
-    tools:context=".GalleryMainActivity">
+    tools:context=".Gallery.GalleryMainActivity">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/top_fragment"
