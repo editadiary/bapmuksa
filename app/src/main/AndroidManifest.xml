@@ -21,8 +21,14 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".Contact.ContactActivity" />
         <activity android:name=".GalleryMainActivity" />
         <activity android:name=".ClickedItemActivity" />
-        <activity android:name=".ContactActivity" />
+
+
     </application>
+
+    <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
+    <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
 </manifest>
