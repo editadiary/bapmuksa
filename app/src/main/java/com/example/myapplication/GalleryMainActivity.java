@@ -71,7 +71,6 @@ public class GalleryMainActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-
                 AlertDialog.Builder builder = new AlertDialog.Builder(GalleryMainActivity.this);
                 builder.setCancelable(true);
                 builder.setTitle("Gallery");
@@ -82,6 +81,7 @@ public class GalleryMainActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialogInterface, int j) {
                                 items.remove(i);
                                 customAdapter.notifyDataSetChanged();
+                                Toast.makeText(getApplicationContext(), "아이템이 삭제되었습니다", Toast.LENGTH_LONG).show();
                             }
                         });
                 builder.setNegativeButton(R.string.cancle, new DialogInterface.OnClickListener() {
