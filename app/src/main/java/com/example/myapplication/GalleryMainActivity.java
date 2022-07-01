@@ -1,8 +1,10 @@
 package com.example.myapplication;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -22,15 +24,6 @@ public class GalleryMainActivity extends AppCompatActivity {
     GridView gridView;
 
     ArrayList<ImageFile> items;
-
-//    String[] names = {"image1", "image2", "image3", "image4", "image5", "image6", "image7",
-//            "image8", "image9", "image10", "image11", "image12", "image13", "image14",
-//            "image15", "image16"};
-//    int[] images = {R.drawable.image1, R.drawable.image2, R.drawable.image3, R.drawable.image4,
-//            R.drawable.image5, R.drawable.image6, R.drawable.image7, R.drawable.image8,
-//            R.drawable.image9, R.drawable.image10, R.drawable.image11, R.drawable.image12,
-//            R.drawable.image13, R.drawable.image14, R.drawable.image15, R.drawable.image16};
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +51,6 @@ public class GalleryMainActivity extends AppCompatActivity {
         items.add(new ImageFile("image16", R.drawable.image16));
 
 
-//        GalleryMainActivity.CustomAdapter customAdapter = new GalleryMainActivity.CustomAdapter(names, images, this);
         GalleryMainActivity.CustomAdapter customAdapter = new GalleryMainActivity.CustomAdapter(items, this);
 
         gridView.setAdapter(customAdapter);
@@ -66,8 +58,6 @@ public class GalleryMainActivity extends AppCompatActivity {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                String selectedName = names[i];
-//                int selectedImage = images[i];
 
                 String selectedName = items.get(i).name;
                 int selectedImage = items.get(i).image;
@@ -79,10 +69,30 @@ public class GalleryMainActivity extends AppCompatActivity {
         gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                items.remove(i);
-                customAdapter.notifyDataSetChanged();
-                Toast.makeText(getApplicationContext(), "아이템이 삭제되었습니다", Toast.LENGTH_LONG).show();
-                return false;
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(GalleryMainActivity.this);
+                builder.setCancelable(true);
+                builder.setTitle("Gallery");
+                builder.setMessage("사진을 삭제할까요?");
+                builder.setPositiveButton("Confirm",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                items.remove(i);
+                                customAdapter.notifyDataSetChanged();
+                                Toast.makeText(getApplicationContext(), "아이템이 삭제되었습니다", Toast.LENGTH_LONG).show();
+                            }
+                        });
+                builder.setNegativeButton(R.string.cancle, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        customAdapter.notifyDataSetChanged();
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
+                return true;
             }
         });
 
@@ -93,20 +103,9 @@ public class GalleryMainActivity extends AppCompatActivity {
         ArrayList<ImageFile> items;
         Context context;
 
-//        private String[] imageNames;
-//        private int[] imagesPhoto;
-//        private Context context;
         private LayoutInflater layoutInflater;
 
-//        public CustomAdapter(String[] imageNames, int[] imagesPhoto, Context context) {
-//            this.imageNames = imageNames;
-//            this.imagesPhoto = imagesPhoto;
-//            this.context = context;
-//            this.layoutInflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
-//        }
         public CustomAdapter(ArrayList<ImageFile> items, Context context) {
-//            this.imageNames = imageNames;
-//            this.imagesPhoto = imagesPhoto;
             this.items = items;
             this.context = context;
             this.layoutInflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
@@ -115,19 +114,16 @@ public class GalleryMainActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             return items.size();
-//            return imagesPhoto.length;
         }
 
         @Override
         public Object getItem(int i) {
             return items.get(i);
-//            return null;
         }
 
         @Override
         public long getItemId(int i) {
             return i;
-//            return 0;
         }
 
         @Override
@@ -142,9 +138,6 @@ public class GalleryMainActivity extends AppCompatActivity {
 
             tvName.setText(items.get(i).name);
             imageView.setImageResource(items.get(i).image);
-
-//            tvName.setText(imageNames[i]);
-//            imageView.setImageResource(imagesPhoto[i]);
 
             return view;
         }
