@@ -71,10 +71,7 @@ public class GalleryMainActivity extends AppCompatActivity {
                 return true;
             }
         });
-
     }
-
-
 }
 
 

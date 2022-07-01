@@ -1,7 +1,6 @@
 package com.example.myapplication;
 
 import static com.example.myapplication.Common.*;
-import static com.example.myapplication.Contact.ContactActivity.CONTACT_JSON_FILE_NAME;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,12 +9,17 @@ import android.util.Log;
 
 import com.example.myapplication.Gallery.GalleryAdapter;
 
+import java.util.ArrayDeque;
+import java.util.Stack;
+
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        stack_page = new Stack<Integer>();
+        stack_page.push(0);
         getContacts();
         initGallery();
     }
