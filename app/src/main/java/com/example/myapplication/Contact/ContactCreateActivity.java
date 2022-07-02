@@ -14,6 +14,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.myapplication.Common;
 import com.example.myapplication.R;
 
+import java.util.Collection;
+import java.util.Collections;
+
 public class ContactCreateActivity extends AppCompatActivity {
     private EditText edit_name;
     private EditText edit_phone1;
@@ -44,6 +47,7 @@ public class ContactCreateActivity extends AppCompatActivity {
     private void AddContact(String name, String phone) {
         Contact new_contact = new Contact(name, phone);
         mContactList.add(new_contact);
+        Collections.sort(mContactList);
         mAdapter.notifyDataSetChanged();
     }
 }

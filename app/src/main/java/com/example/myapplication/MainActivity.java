@@ -10,6 +10,7 @@ import android.util.Log;
 import com.example.myapplication.Gallery.GalleryAdapter;
 
 import java.util.ArrayDeque;
+import java.util.Collections;
 import java.util.Stack;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     private void getContacts() {
         String contact_JSON_str = getJsonString(this, CONTACT_JSON_FILE_NAME);
         mContactList = parseContact(contact_JSON_str);
+
+        Collections.sort(mContactList);
     }
 
     private void initGallery() {
