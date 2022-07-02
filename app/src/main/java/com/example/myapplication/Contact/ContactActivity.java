@@ -4,10 +4,22 @@ import static com.example.myapplication.Common.mContactList;
 import static com.example.myapplication.Common.mAdapter;
 import static com.example.myapplication.Common.stack_page;
 
+import android.Manifest;
+import android.content.ContentProviderOperation;
+import android.content.ContentResolver;
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -27,8 +39,8 @@ public class ContactActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact);
 
-        setOnClickListener();
         mRecyclerView = findViewById(R.id.contact_rv);
+        setOnClickListener();
 
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
@@ -58,7 +70,7 @@ public class ContactActivity extends AppCompatActivity {
         if(stack_page.peek() == 4) return;
 
         stack_page.push(4);
-        Intent intent = new Intent(getApplicationContext(), ContactCreateActivity.class);
+        Intent intent = new Intent(this, ContactCreateActivity.class);
         startActivity(intent);
     }
 

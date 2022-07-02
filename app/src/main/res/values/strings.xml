@@ -13,4 +13,5 @@
     <string name="dash">-</string>
     <string name="cancle">Cancle</string>
     <string name="toContact" />
+    <string name="tag">Tag</string>
 </resources>

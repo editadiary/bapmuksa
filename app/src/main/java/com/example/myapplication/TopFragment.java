@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import static com.example.myapplication.Common.stack_page;
+import static com.example.myapplication.Common.currentTab;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -39,7 +40,7 @@ public class TopFragment extends Fragment implements View.OnClickListener {
             Intent intent;
 
             if(stack_page.peek() == 0) return;
-            stack_page.pop(); stack_page.push(0);
+            stack_page.push(0); currentTab = 0;
 
             if(activity == null) return;
             intent = new Intent(activity, HomeActivity.class);
