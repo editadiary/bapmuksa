@@ -24,13 +24,13 @@ public class TabFragment extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.tab_fragment, container, false);
         ContactBtn = view.findViewById(R.id.ic_person_square);
         ContactBtn.setOnClickListener(this);
-        if(currentTab == 1) ContactBtn.setBackgroundResource(R.color.color1);
-        else ContactBtn.setBackgroundResource(R.color.white);
+        if(currentTab == 1) ContactBtn.setBackgroundResource(R.color.white);
+        else ContactBtn.setBackgroundResource(R.color.transparent);
 
-        GalleryBtn = view.findViewById(R.id.ic_picture);
+        GalleryBtn = view.findViewById(R.id.ic_gallery);
         GalleryBtn.setOnClickListener(this);
-        if(currentTab == 2) GalleryBtn.setBackgroundResource(R.color.color1);
-        else GalleryBtn.setBackgroundResource(R.color.white);
+        if(currentTab == 2) GalleryBtn.setBackgroundResource(R.color.white);
+        else GalleryBtn.setBackgroundResource(R.color.transparent);
 
         return view;
     }
@@ -47,7 +47,7 @@ public class TabFragment extends Fragment implements View.OnClickListener {
             stack_page.push(1); flag = false;
             intent = new Intent(activity, ContactActivity.class);
         }
-        else if (id == R.id.ic_picture && stack_page.peek() != 2) {
+        else if (id == R.id.ic_gallery && stack_page.peek() != 2) {
             currentTab = 2;
             stack_page.push(2); flag = false;
             intent = new Intent(activity, GalleryMainActivity.class);

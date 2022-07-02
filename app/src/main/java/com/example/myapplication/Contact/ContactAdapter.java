@@ -1,6 +1,5 @@
 package com.example.myapplication.Contact;
 
-import android.content.Intent;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,7 +40,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
 
         @Override
         public void onClick(View v) {
-            listener.onClick(v, getAdapterPosition());
+            listener.onClick(v, getAbsoluteAdapterPosition());
         }
     }
 

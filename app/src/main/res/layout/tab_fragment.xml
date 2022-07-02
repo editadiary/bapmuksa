@@ -6,16 +6,6 @@
     android:fontFamily="@font/binggrae"
     >
 
-    <View
-        android:id="@+id/tab_top_line"
-        android:layout_width="0dp"
-        android:layout_height="1.5dp"
-        android:background="@color/black"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/tab_fragment_layout"
-        />
-
 
     <LinearLayout
         android:id="@+id/tab_fragment_layout"
@@ -23,6 +13,7 @@
         android:layout_height="50dp"
         android:layout_marginBottom="0dp"
         android:orientation="horizontal"
+        android:background="@color/color4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
@@ -33,27 +24,24 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:contentDescription="@string/toContact"
-            android:onClick="onClick"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tab_top_line"
-            app:layout_constraintRight_toRightOf="@id/tab_line1"
             app:srcCompat="@drawable/ic_person_square" />
 
-        <View
-            android:id="@+id/tab_line1"
-            android:layout_width="1.5dp"
+        <ImageView
+            android:id="@+id/ic_heart"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:background="@color/black"
-            app:layout_constraintTop_toBottomOf="@+id/tab_top_line"
+            android:layout_weight="1"
+            android:contentDescription="@string/toContact"
+            android:paddingTop="8dp"
+            android:paddingBottom="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toLeftOf="@+id/gallery_button"
-            />
+            app:srcCompat="@drawable/ic_heart" />
 
         <ImageView
-            android:id="@+id/ic_picture"
+            android:id="@+id/ic_gallery"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -62,33 +50,8 @@
             android:paddingTop="8dp"
             android:paddingBottom="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tab_top_line"
-            app:layout_constraintRight_toRightOf="@id/tab_line2"
-            app:srcCompat="@drawable/ic_picture" />
+            app:srcCompat="@drawable/ic_gallery" />
 
-        <View
-            android:id="@+id/tab_line2"
-            android:layout_width="1.5dp"
-            android:layout_height="match_parent"
-            android:background="@color/black"
-            app:layout_constraintTop_toBottomOf="@+id/tab_top_line"
-            app:layout_constraintBottom_toTopOf="parent"
-            app:layout_constraintRight_toLeftOf="@+id/IDK_button"
-            />
 
-        <Button
-            android:id="@+id/IDK_button"
-            android:fontFamily="@font/binggrae"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="2dp"
-            android:layout_weight="1"
-            android:background="@color/transparent"
-            android:scaleX="1"
-            android:scaleY="1"
-            android:text="@string/idk"
-            android:textColor="@color/black"
-            app:layout_constraintLeft_toRightOf="@id/tab_line2" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
