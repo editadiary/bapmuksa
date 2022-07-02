@@ -24,12 +24,12 @@ public class TabFragment extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.tab_fragment, container, false);
         ContactBtn = view.findViewById(R.id.ic_person_square);
         ContactBtn.setOnClickListener(this);
-        if(currentTab == 1) ContactBtn.setBackgroundResource(R.color.color3);
+        if(currentTab == 1) ContactBtn.setBackgroundResource(R.color.color1);
         else ContactBtn.setBackgroundResource(R.color.white);
 
         GalleryBtn = view.findViewById(R.id.ic_picture);
         GalleryBtn.setOnClickListener(this);
-        if(currentTab == 2) GalleryBtn.setBackgroundResource(R.color.color3);
+        if(currentTab == 2) GalleryBtn.setBackgroundResource(R.color.color1);
         else GalleryBtn.setBackgroundResource(R.color.white);
 
         return view;

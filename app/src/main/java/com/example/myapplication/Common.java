@@ -76,22 +76,22 @@ public class Common {
 
     public static ArrayList<ImageFile> initGallery() {
         ArrayList<ImageFile> items = new ArrayList<>();
-        items.add(new ImageFile("image1", R.drawable.image1));
-        items.add(new ImageFile("image2", R.drawable.image2));
-        items.add(new ImageFile("image3", R.drawable.image3));
-        items.add(new ImageFile("image4", R.drawable.image4));
-        items.add(new ImageFile("image5", R.drawable.image5));
-        items.add(new ImageFile("image6", R.drawable.image6));
-        items.add(new ImageFile("image7", R.drawable.image7));
-        items.add(new ImageFile("image8", R.drawable.image8));
-        items.add(new ImageFile("image9", R.drawable.image9));
-        items.add(new ImageFile("image10", R.drawable.image10));
-        items.add(new ImageFile("image11", R.drawable.image11));
-        items.add(new ImageFile("image12", R.drawable.image12));
-        items.add(new ImageFile("image13", R.drawable.image13));
-        items.add(new ImageFile("image14", R.drawable.image14));
-        items.add(new ImageFile("image15", R.drawable.image15));
-        items.add(new ImageFile("image16", R.drawable.image16));
+        items.add(new ImageFile("칵테일", R.drawable.image1, 4));
+        items.add(new ImageFile("휘낭시에", R.drawable.image2, 4));
+        items.add(new ImageFile("특등심까스", R.drawable.image3, 2));
+        items.add(new ImageFile("냉모밀", R.drawable.image4, 2));
+        items.add(new ImageFile("감자탕", R.drawable.image5, 0));
+        items.add(new ImageFile("감바스", R.drawable.image6, 3));
+        items.add(new ImageFile("고르곤졸라", R.drawable.image7, 3));
+        items.add(new ImageFile("샐러드", R.drawable.image8, 3));
+        items.add(new ImageFile("대한곱창", R.drawable.image9, 0));
+        items.add(new ImageFile("김치말이국수", R.drawable.image10, 0));
+        items.add(new ImageFile("라면", R.drawable.image11, 0));
+        items.add(new ImageFile("홍대카페", R.drawable.image12, 4));
+        items.add(new ImageFile("야끼소바", R.drawable.image13, 2));
+        items.add(new ImageFile("계란후라이", R.drawable.image14, 0));
+        items.add(new ImageFile("고등어구이", R.drawable.image15, 0));
+        items.add(new ImageFile("파전", R.drawable.image16, 0));
 
         return items;
 

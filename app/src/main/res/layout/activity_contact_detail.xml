@@ -2,6 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fontFamily="@font/binggrae"
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -13,8 +15,6 @@
         tools:layout="@layout/top_fragment"
         app:layout_constraintTop_toTopOf="parent"
         />
-
-
 
     <LinearLayout
         android:id="@+id/detail_layout"
@@ -37,6 +37,8 @@
 
             <TextView
                 android:id="@+id/detail_name_text"
+                android:fontFamily="@font/binggrae"
+
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="2"
@@ -49,6 +51,8 @@
 
             <TextView
                 android:id="@+id/detail_name"
+                android:fontFamily="@font/binggrae"
+
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="3"
@@ -76,6 +80,8 @@
 
             <TextView
                 android:id="@+id/detail_phone_text"
+                android:fontFamily="@font/binggrae"
+
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="2"
@@ -88,6 +94,8 @@
 
             <TextView
                 android:id="@+id/detail_phone"
+                android:fontFamily="@font/binggrae"
+
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="3"
@@ -137,9 +145,6 @@
             />
 
     </LinearLayout>
-
-
-
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/TabFragment"
