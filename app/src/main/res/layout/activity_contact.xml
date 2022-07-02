@@ -13,10 +13,10 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:layout="@layout/top_fragment" />
 
-
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/contact_rv"
+        android:fontFamily="@font/binggrae"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="vertical"
@@ -41,7 +41,6 @@
         app:srcCompat="@drawable/ic_plus"
         />
 
-
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/TabFragment"
         android:name="com.example.myapplication.TabFragment"
@@ -49,7 +48,6 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout="@layout/tab_fragment" />
-
 
     <!--
     <ImageView

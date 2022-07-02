@@ -2,10 +2,12 @@ package com.example.myapplication.Gallery;
 
 import static com.example.myapplication.Common.mGalleryList;
 import static com.example.myapplication.Common.galleryAdapter;
+import static com.example.myapplication.Common.stack_page;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,29 +21,40 @@ import com.example.myapplication.R;
 
 public class ClickedItemActivity extends AppCompatActivity {
 
+    public static Activity clickedItemActivity;
+
     ImageButton TrashBtn;
+    ImageButton EditBtn;
 
     ImageView imageView;
-    TextView textView;
+    TextView textViewName;
+    TextView textViewTag;
 
-    int idx;
+    String selectedName = "";
+    int selectedImage = -1;
+    int idx = -1;
+    String tagName = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        clickedItemActivity = ClickedItemActivity.this;
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clicked_item);
 
         imageView = findViewById(R.id.imageView);
-        textView = findViewById(R.id.tvName);
+        textViewName = findViewById(R.id.tvName);
+        textViewTag = findViewById(R.id.tvTag);
 
         Intent intent = getIntent();
         if(intent.getExtras() != null){
-            String selectedName = intent.getStringExtra("name");
-            int selectedImage = intent.getIntExtra("image", 0);
-            int index = intent.getIntExtra("index", 0);
-            idx = index;
+            idx = intent.getIntExtra("index", 0);
+            selectedName = mGalleryList.get(idx).getName();
+            selectedImage= mGalleryList.get(idx).getImage();
+            tagName = mGalleryList.get(idx).getTagName();
 
-            textView.setText(selectedName);
+            textViewName.setText(selectedName);
+            textViewTag.setText(tagName);
             imageView.setImageResource(selectedImage);
         }
 
@@ -66,13 +79,19 @@ public class ClickedItemActivity extends AppCompatActivity {
                         });
                 builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                    }
+                    public void onClick(DialogInterface dialogInterface, int i) {}
                 });
                 AlertDialog dialog = builder.create();
                 dialog.show();
+            }
+        });
 
+        EditBtn = findViewById(R.id.ic_edit);
+        EditBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ClickedItemActivity.this,
+                        ClickedItemEditActivity.class).putExtra("index", idx));
 
             }
         });

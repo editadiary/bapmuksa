@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
+
 import com.example.myapplication.R;
 
 import java.util.ArrayList;
@@ -47,11 +49,35 @@ public class GalleryAdapter extends BaseAdapter {
             view = layoutInflater.inflate(R.layout.row_items, viewGroup, false);
         }
 
+        CardView cardView = view.findViewById(R.id.cardView);
+
         TextView tvName = view.findViewById(R.id.tvName);
         ImageView imageView = view.findViewById(R.id.imageView);
 
         tvName.setText(items.get(i).getName());
         imageView.setImageResource(items.get(i).getImage());
+        int tag = items.get(i).getTag();
+        switch (tag) {
+            case 0:
+                cardView.setBackgroundResource(R.color.korean);
+                break;
+            case 1:
+                cardView.setBackgroundResource(R.color.chinese);
+                break;
+            case 2:
+                cardView.setBackgroundResource(R.color.japanese);
+                break;
+            case 3:
+                cardView.setBackgroundResource(R.color.italian);
+                break;
+            case 4:
+                cardView.setBackgroundResource(R.color.dessert);
+                break;
+            default:
+                cardView.setBackgroundResource(R.color.etc);
+                break;
+
+        }
 
         return view;
     }

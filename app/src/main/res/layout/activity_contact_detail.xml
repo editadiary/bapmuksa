@@ -2,6 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fontFamily="@font/binggrae"
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -42,16 +44,19 @@
                 app:civ_border_overlay="true"
                 app:civ_border_width="3dp"
                 app:civ_border_color="#000000"
+                android:fontFamily="@font/binggrae"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 />
-
             <LinearLayout
                 android:id="@+id/detail_name_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="35dp"
+            <TextView
+                android:id="@+id/detail_name"
+                android:fontFamily="@font/binggrae"
                 app:layout_constraintTop_toTopOf="parent"
 
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -224,6 +229,7 @@
                 android:id="@+id/lastMeetingFrom"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
+                android:fontFamily="@font/binggrae"
                 android:gravity="center"
                 android:text = "마지막으로 만난 날로부터"
                 android:textSize="24sp"
@@ -236,6 +242,7 @@
                 android:layout_height="60dp"
                 android:gravity="center_horizontal"
                 android:text = "D-100"
+                android:fontFamily="@font/binggrae"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintTop_toTopOf="@id/lastMeetingFrom"
@@ -278,9 +285,6 @@
             />
 
     </LinearLayout>
-
-
-
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/TabFragment"
