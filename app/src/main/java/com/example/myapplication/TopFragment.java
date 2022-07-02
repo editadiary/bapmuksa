@@ -23,7 +23,7 @@ public class TopFragment extends Fragment implements View.OnClickListener {
 
         View view = inflater.inflate(R.layout.top_fragment, container, false);
 
-        HomeBtn = view.findViewById(R.id.ic_house);
+        HomeBtn = view.findViewById(R.id.ic_home);
         // PrevBtn = view.findViewById(R.id.ic_left_arrow);
 
         HomeBtn.setOnClickListener(this);
@@ -36,7 +36,7 @@ public class TopFragment extends Fragment implements View.OnClickListener {
         int id = v.getId();
         FragmentActivity activity = getActivity();
 
-        if(id == R.id.ic_house) {
+        if(id == R.id.ic_home) {
             Intent intent;
 
             if(stack_page.peek() == 0) return;
