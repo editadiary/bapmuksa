@@ -24,8 +24,7 @@ public class ContactDetailActivity extends AppCompatActivity implements View.OnC
     String pos = "-1";
     String name = "이름이 없습니다.";
     String phone = "전화번호가 없습니다.";
-    ImageView editBtn;
-    ImageView deleteBtn;
+    ImageView editBtn, deleteBtn;
     ActivityResultLauncher<Intent> activityResultLauncher;
     Bundle extras;
 

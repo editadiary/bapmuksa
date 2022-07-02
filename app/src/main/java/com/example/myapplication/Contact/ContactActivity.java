@@ -4,10 +4,23 @@ import static com.example.myapplication.Common.mContactList;
 import static com.example.myapplication.Common.mAdapter;
 import static com.example.myapplication.Common.stack_page;
 
+import android.Manifest;
+import android.content.ContentProviderOperation;
+import android.content.ContentResolver;
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
+import android.widget.ImageView;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,7 +31,8 @@ import com.example.myapplication.R;
 
 import java.util.ArrayList;
 
-public class ContactActivity extends AppCompatActivity {
+public class ContactActivity extends AppCompatActivity implements View.OnClickListener {
+    private ImageView addContactIcon;
     private static RecyclerView mRecyclerView;
     private static ContactAdapter.RecyclerViewClickListener listener;
 
@@ -27,8 +41,11 @@ public class ContactActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact);
 
-        setOnClickListener();
+        addContactIcon = findViewById(R.id.ic_plus);
+        addContactIcon.setOnClickListener(this);
+
         mRecyclerView = findViewById(R.id.contact_rv);
+        setOnClickListener();
 
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
@@ -54,13 +71,12 @@ public class ContactActivity extends AppCompatActivity {
         };
     }
 
-    public void addClick(View view) {
+    @Override
+    public void onClick(View v) {
         if(stack_page.peek() == 4) return;
 
         stack_page.push(4);
-        Intent intent = new Intent(getApplicationContext(), ContactCreateActivity.class);
+        Intent intent = new Intent(this, ContactCreateActivity.class);
         startActivity(intent);
     }
-
-
 }

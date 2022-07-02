@@ -77,7 +77,7 @@ public class ClickedItemActivity extends AppCompatActivity {
                                 finish();
                             }
                         });
-                builder.setNegativeButton(R.string.cancle, new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {}
                 });

@@ -1,6 +1,8 @@
 package com.example.myapplication;
 
 import android.content.Context;
+import android.os.Environment;
+import android.util.TypedValue;
 
 import com.example.myapplication.Contact.Contact;
 import com.example.myapplication.Contact.ContactAdapter;
@@ -19,16 +21,23 @@ import java.util.Stack;
 
 
 public class Common {
+    public static final String[] food_tags = {"한식", "중식", "일식", "양식", "후식", "기타"};
+    public static boolean isAvailable = false;
+    public static boolean isReadable = false;
+    public static boolean isWriteable = false;
+    public static final String root = Environment.getExternalStorageDirectory().getAbsolutePath();
+    public static final String files_path = "/Android/data/com.example.myapplication/files/";
+
     public static final String CONTACT_JSON_FILE_NAME = "contact.json";
     public static Stack<Integer> stack_page;
     public static ArrayList<Contact> mContactList;
     public static ContactAdapter mAdapter;
-    public static int currentTab = 0;
     public static ArrayList<ImageFile> mGalleryList;
     public static GalleryAdapter galleryAdapter;
-    public static int id_num = 12;
 
     // btn: 0: Home, 1: Contact, 2: Gallery, 3:IDK, 4: Contact Create, 5: Contact Detail, 6: Contact Update
+    public static int currentTab = 0;
+    public static int id_num = 12;
 
     public static String getJsonString(Context context, String fileName) {
         String str = "";
@@ -49,31 +58,6 @@ public class Common {
 
         return str;
     }
-
-    public static ArrayList<Contact> parseContact(String json) {
-        try {
-            ArrayList<Contact> newArrayList = new ArrayList<>();
-            JSONObject jsonObject = new JSONObject(json);
-            JSONArray contactArray = jsonObject.getJSONArray("contacts");
-
-            for(int i = 0; i < contactArray.length(); ++i) {
-                JSONObject contactObj = contactArray.getJSONObject(i);
-
-                String name = contactObj.getString("name");
-                String phone = contactObj.getString("phone");
-
-                Contact data = new Contact(name, phone);
-
-                newArrayList.add(data);
-            }
-
-            return newArrayList;
-        } catch(JSONException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
     public static ArrayList<ImageFile> initGallery() {
         ArrayList<ImageFile> items = new ArrayList<>();
         items.add(new ImageFile("칵테일", R.drawable.image1, 4, 180702));

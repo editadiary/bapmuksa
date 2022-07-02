@@ -9,16 +9,17 @@
     <color name="white">#FFFFFFFF</color>
     <color name="transparent">#00000000</color>
 
+    <!-- main color -->
     <color name="color1">#937DC2</color>
     <color name="color2">#C689C6</color>
     <color name="color3">#E8A0BF</color>
     <color name="color4">#FCC5C0</color>
-
-    <color name="korean">#FFE6E6</color>
-    <color name="chinese">#F2D1D1</color>
-    <color name="japanese">#DAEAF1</color>
-    <color name="italian">#C6DCE4</color>
-    <color name="dessert">#C689C6</color>
-    <color name="etc">#E8A0BF</color>
-
+    
+    <!-- food color -->
+    <color name="korean">#FFE6E6</color> <!-- 한식 -->
+    <color name="chinese">#F2D1D1</color> <!-- 중식 -->
+    <color name="japanese">#DAEAF1</color> <!-- 일식 -->
+    <color name="italian">#C6DCE4</color> <!-- 양식 -->
+    <color name="dessert">#C689C6</color> <!-- 후식 -->
+    <color name="etc">#E8A0BF</color> <!-- 기타 -->
 </resources>
