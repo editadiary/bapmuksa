@@ -10,12 +10,14 @@ public class Contact implements Comparable<Contact> {
     private String name;
     private String phone;
     private String tags[];
+    private String profileImage;
 
-    public Contact(String id, String name, String phone, String[] tags) {
+    public Contact(String id, String name, String phone, String[] tags, String profileImage) {
         this.id = id;
         this.name = name;
         this.phone = phone;
         this.tags = tags;
+        this.profileImage = profileImage;
     }
 
     public String getId() { return id;}
@@ -30,6 +32,8 @@ public class Contact implements Comparable<Contact> {
 
     public String[] getTags() { return tags; }
 
+    public String getProfileImage() { return profileImage; }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -40,6 +44,7 @@ public class Contact implements Comparable<Contact> {
 
     public void setTags(String[] tags) { this.tags = tags; }
 
+    public void setProfileImage(String profileImage) { this.profileImage = profileImage; }
     @Override
     public int compareTo(Contact contact) {
         return name.compareTo(contact.getName());

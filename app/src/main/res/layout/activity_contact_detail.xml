@@ -14,97 +14,243 @@
         app:layout_constraintTop_toTopOf="parent"
         />
 
-
-
-    <LinearLayout
-        android:id="@+id/detail_layout"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/EditAndDeleteLinearLayout"
         app:layout_constraintTop_toBottomOf="@id/top_fragment"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" >
-
+        app:layout_constraintRight_toRightOf="parent"
+        >
         <LinearLayout
-            android:id="@+id/detail_name_layout"
+            android:id="@+id/detailLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="15dp"
-            app:layout_constraintTop_toTopOf="parent"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            >
+            app:layout_constraintRight_toRightOf="parent" >
 
-            <TextView
-                android:id="@+id/detail_name_text"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_weight="2"
-                android:gravity="center"
-                android:text="이름"
-                android:textSize="24sp"
-                android:textStyle="bold"
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ic_person"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_person"
+                android:layout_marginTop="15dp"
+                app:civ_border_overlay="true"
+                app:civ_border_width="3dp"
+                app:civ_border_color="#000000"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
                 />
 
-            <TextView
-                android:id="@+id/detail_name"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_weight="3"
-                android:layout_gravity="end"
-                android:text="이성진"
-                android:gravity="center_vertical"
-                android:layout_marginEnd="10dp"
-                android:paddingStart="20dp"
-                android:textSize="24sp"
-                android:background="@drawable/all_border_line"
+            <LinearLayout
+                android:id="@+id/detail_name_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="35dp"
                 app:layout_constraintTop_toTopOf="parent"
+
+                app:layout_constraintLeft_toLeftOf="parent"
+                >
+
+                <TextView
+                    android:id="@+id/detail_name_text"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="@string/Name"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+
+                <TextView
+                    android:id="@+id/detail_name"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="3"
+                    android:layout_gravity="end"
+                    android:text="@string/temp"
+                    android:gravity="center_vertical"
+                    android:layout_marginEnd="10dp"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:textSize="24sp"
+                    android:background="@drawable/all_border_line"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/detail_phone_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@id/detailLinearLayout"
+                app:layout_constraintLeft_toLeftOf="parent"
+                >
+
+                <TextView
+                    android:id="@+id/detail_phone_text"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="@string/phone"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+
+                <TextView
+                    android:id="@+id/detail_phone"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="3"
+                    android:text="@string/temp"
+                    android:gravity="center_vertical"
+                    android:layout_marginEnd="10dp"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:textSize="24sp"
+                    android:background="@drawable/all_border_line"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"/>
+            </LinearLayout>
+            <GridLayout
+                android:id="@+id/tagGridLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="3"
+                android:layout_marginTop="25dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:useDefaultMargins="true"
+                app:layout_constraintTop_toBottomOf="@id/detailLinearLayout"
+                app:layout_constraintBottom_toTopOf="@id/EditAndDeleteLinearLayout"
+                app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                />
-        </LinearLayout>
+                app:layout_constraintVertical_bias="0.0">
 
-        <LinearLayout
-            android:id="@+id/detail_phone_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="15dp"
-            app:layout_constraintTop_toBottomOf="@id/detail_layout"
-            app:layout_constraintLeft_toLeftOf="parent"
-            >
+                <TextView
+                    android:id="@+id/tagKorean"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:text="@string/한식"
+                    android:textSize="22sp"
+                    android:background="@drawable/circle"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    />
+
+                <TextView
+                    android:id="@+id/tagChinese"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="10dp"
+                    android:text="@string/중식"
+                    android:gravity="center"
+                    android:background="@drawable/circle"
+                    android:textSize="22sp"
+                    />
+
+                <TextView
+                    android:id="@+id/tagJapanese"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="10dp"
+                    android:text="@string/일식"
+                    android:gravity="center"
+                    android:background="@drawable/circle"
+                    android:textSize="22sp"
+                    />
+
+                <TextView
+                    android:id="@+id/tagItalian"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="10dp"
+                    android:text="@string/양식"
+                    android:gravity="center"
+                    android:background="@drawable/circle"
+                    android:textSize="22sp"
+                    />
+
+                <TextView
+                    android:id="@+id/tagDesert"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="10dp"
+                    android:text="@string/후식"
+                    android:gravity="center"
+                    android:background="@drawable/circle"
+                    android:textSize="22sp"
+                    />
+
+                <TextView
+                    android:id="@+id/tagETC"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="10dp"
+                    android:text="@string/기타"
+                    android:gravity="center"
+                    android:background="@drawable/circle"
+                    android:textSize="22sp"
+                    />
+
+            </GridLayout>
 
             <TextView
-                android:id="@+id/detail_phone_text"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_weight="2"
+                android:id="@+id/lastMeetingFrom"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
                 android:gravity="center"
-                android:text="전화번호"
+                android:text = "마지막으로 만난 날로부터"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tagGridLayout"
                 />
-
             <TextView
-                android:id="@+id/detail_phone"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_weight="3"
-                android:text="010-0000-0000"
-                android:gravity="center_vertical"
-                android:layout_marginEnd="10dp"
-                android:paddingStart="20dp"
+                android:id="@+id/dDay"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:gravity="center_horizontal"
+                android:text = "D-100"
                 android:textSize="24sp"
-                android:background="@drawable/all_border_line"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintRight_toRightOf="parent"/>
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="@id/lastMeetingFrom"
+                />
         </LinearLayout>
-    </LinearLayout>
+
+    </ScrollView>
+
+
+
 
     <LinearLayout
+        android:id="@+id/EditAndDeleteLinearLayout"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="40dp"
         android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toTopOf="@id/TabFragment"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -113,27 +259,22 @@
         <ImageView
             android:id="@+id/ic_edit"
             android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:layout_marginTop="25dp"
-            android:layout_marginRight="60dp"
-            android:onClick="onClick"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintRight_toRightOf="@id/ic_delete"
+            app:layout_constraintLeft_toLeftOf="parent"
             app:srcCompat="@drawable/ic_edit"
-            />
+            android:contentDescription="@string/edit_contact" />
 
         <ImageView
             android:id="@+id/ic_delete"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
-            android:layout_marginTop="25dp"
-            android:layout_marginRight="25dp"
-            android:onClick="onClick"
             app:layout_constraintBottom_toTopOf="@id/TabFragment"
             app:layout_constraintRight_toRightOf="parent"
             app:srcCompat="@drawable/ic_delete"
+            android:contentDescription="@string/delete_contact"
             />
 
     </LinearLayout>

@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 String phone = contactObj.getString("phone");
                 String[] tags = contactObj.getString("tag").split(",");
 
-                Contact data = new Contact(Integer.toString(id_num), name, phone, tags); ++id_num;
+                Contact data = new Contact(Integer.toString(id_num), name, phone, tags, "ic_person"); ++id_num;
 
                 newArrayList.add(data);
             }

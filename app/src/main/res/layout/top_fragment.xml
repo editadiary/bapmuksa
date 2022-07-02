@@ -17,6 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_house" />
 
+    <!--
     <ImageView
         android:id="@+id/ic_left_arrow"
         android:layout_width="40dp"
@@ -28,7 +29,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:srcCompat="@drawable/ic_left_arrow"
         />
-
+        -->
     <!-- Home 구분선 -->
     <View
         android:id="@+id/line1"

@@ -11,7 +11,17 @@
     <string name="temp_name">temp_name</string>
     <string name="temp_phone">temp_phone</string>
     <string name="dash">-</string>
-    <string name="cancle">Cancle</string>
+    <string name="cancel">Cancel</string>
     <string name="toContact" />
     <string name="tag">Tag</string>
+    <string name="한식">한식</string>
+    <string name="edit_contact" />
+    <string name="delete_contact" />
+    <string name="Name">Name</string>
+    <string name="중식">중식</string>
+    <string name="일식">일식</string>
+    <string name="양식">양식</string>
+    <string name="후식">후식</string>
+    <string name="디저트">디저트</string>
+    <string name="기타">기타</string>
 </resources>

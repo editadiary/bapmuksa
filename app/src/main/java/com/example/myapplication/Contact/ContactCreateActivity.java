@@ -1,9 +1,6 @@
 package com.example.myapplication.Contact;
 
-import static com.example.myapplication.Common.id_num;
-import static com.example.myapplication.Common.mAdapter;
-import static com.example.myapplication.Common.mContactList;
-import static com.example.myapplication.Common.stack_page;
+import static com.example.myapplication.Common.*;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -20,15 +17,13 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.myapplication.Common;
 import com.example.myapplication.R;
 
-import java.util.Collection;
 import java.util.Collections;
 
 public class ContactCreateActivity extends AppCompatActivity implements View.OnClickListener {
     private EditText edit_name, edit_phone1, edit_phone2, edit_phone3;
-    private ImageView plusTag;
+    private ImageView addBtn, plusTag;
     private LinearLayout ll;
     int tagCnt = 0;
 
@@ -42,32 +37,12 @@ public class ContactCreateActivity extends AppCompatActivity implements View.OnC
         edit_phone1 = findViewById(R.id.create_phone_edit1);
         edit_phone2 = findViewById(R.id.create_phone_edit2);
         edit_phone3 = findViewById(R.id.create_phone_edit3);
+
+        addBtn = findViewById(R.id.ic_check);
+        addBtn.setOnClickListener(this);
+
         plusTag = findViewById(R.id.addTag);
-
         plusTag.setOnClickListener(this);
-    }
-
-
-    public void addClick(View view) {
-        String id = Integer.toString(id_num); ++id_num;
-        String name = edit_name.getText().toString();
-        String phone = edit_phone1.getText().toString() + "-" + edit_phone2.getText().toString() + "-" + edit_phone3.getText().toString();
-        String[] tags = new String[tagCnt];
-        for(int i = 1; i <= tagCnt; ++i) {
-            int tag_id = getResources().getIdentifier("Tag"+i, "id", getPackageName());
-            tags[tag_id] = ((EditText)findViewById(tag_id)).getText().toString();
-        }
-
-        stack_page.push(1);
-
-        AddContact(new Contact(id, name, phone, tags));
-
-        Intent intent = new Intent(getApplicationContext(), ContactDetailActivity.class);
-        intent.putExtra("name", name)
-                .putExtra("phone", phone)
-                        .putExtra("id", id);
-        setResult(100, intent);
-        finish();
     }
 
     private void AddContact(Contact new_contact) {
@@ -81,7 +56,7 @@ public class ContactCreateActivity extends AppCompatActivity implements View.OnC
         int id = v.getId();
         LinearLayout tll = new LinearLayout(this);
 
-        if(id == R.id.addTag) {
+        if (id == R.id.addTag) {
             String tagName = "Tag" + ++tagCnt;
 
             TextView tv = new TextView(this);
@@ -106,9 +81,33 @@ public class ContactCreateActivity extends AppCompatActivity implements View.OnC
 
             ll.addView(tll);
         }
+
+        if (id == R.id.ic_check) {
+            String id_cnt = Integer.toString(id_num);
+            ++id_num;
+            String name = edit_name.getText().toString();
+            String phone = edit_phone1.getText().toString() + "-" + edit_phone2.getText().toString() + "-" + edit_phone3.getText().toString();
+            String[] tags = new String[tagCnt];
+            for (int i = 1; i <= tagCnt; ++i) {
+                int tag_id = getResources().getIdentifier("Tag" + i, "id", getPackageName());
+                tags[tag_id] = ((EditText) findViewById(tag_id)).getText().toString();
+            }
+
+            stack_page.push(1);
+
+            AddContact(new Contact(id_cnt, name, phone, tags, "ic_person"));
+
+            Intent intent = new Intent(getApplicationContext(), ContactDetailActivity.class);
+            intent.putExtra("name", name)
+                    .putExtra("phone", phone)
+                    .putExtra("id", id);
+            setResult(100, intent);
+            finish();
+        }
     }
 
     public int pxToDp(final int px) {
-        return (int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, px, getResources().getDisplayMetrics());
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, px, getResources().getDisplayMetrics());
     }
+
 }

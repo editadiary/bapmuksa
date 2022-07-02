@@ -17,6 +17,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.View;
+import android.widget.ImageView;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -30,7 +31,8 @@ import com.example.myapplication.R;
 
 import java.util.ArrayList;
 
-public class ContactActivity extends AppCompatActivity {
+public class ContactActivity extends AppCompatActivity implements View.OnClickListener {
+    private ImageView addContactIcon;
     private static RecyclerView mRecyclerView;
     private static ContactAdapter.RecyclerViewClickListener listener;
 
@@ -38,6 +40,9 @@ public class ContactActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact);
+
+        addContactIcon = findViewById(R.id.ic_plus);
+        addContactIcon.setOnClickListener(this);
 
         mRecyclerView = findViewById(R.id.contact_rv);
         setOnClickListener();
@@ -66,13 +71,12 @@ public class ContactActivity extends AppCompatActivity {
         };
     }
 
-    public void addClick(View view) {
+    @Override
+    public void onClick(View v) {
         if(stack_page.peek() == 4) return;
 
         stack_page.push(4);
         Intent intent = new Intent(this, ContactCreateActivity.class);
         startActivity(intent);
     }
-
-
 }

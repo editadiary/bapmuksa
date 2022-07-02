@@ -60,7 +60,7 @@ public class GalleryMainActivity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(), "아이템이 삭제되었습니다", Toast.LENGTH_LONG).show();
                             }
                         });
-                builder.setNegativeButton(R.string.cancle, new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                     }

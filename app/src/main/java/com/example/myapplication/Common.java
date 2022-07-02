@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.content.Context;
 import android.os.Environment;
+import android.util.TypedValue;
 
 import com.example.myapplication.Contact.Contact;
 import com.example.myapplication.Contact.ContactAdapter;
@@ -57,9 +58,6 @@ public class Common {
 
         return str;
     }
-
-
-
     public static ArrayList<ImageFile> initGallery() {
         ArrayList<ImageFile> items = new ArrayList<>();
         items.add(new ImageFile("image1", R.drawable.image1));
