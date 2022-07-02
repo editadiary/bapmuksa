@@ -11,9 +11,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.myapplication.R;
@@ -22,6 +24,8 @@ public class ClickedItemEditActivity extends AppCompatActivity implements View.O
 
     ClickedItemActivity clickedItemActivity = (ClickedItemActivity)ClickedItemActivity.clickedItemActivity;
 
+    private Spinner spinner;
+
     ImageButton CheckBtn;
 
     ImageView imageView;
@@ -29,6 +33,8 @@ public class ClickedItemEditActivity extends AppCompatActivity implements View.O
 
     int selectedImage = -1;
     int idx = -1;
+    int tag = -1;
+    String tagName = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +43,8 @@ public class ClickedItemEditActivity extends AppCompatActivity implements View.O
 
         clickedItemActivity.finish();
 
+        spinner = findViewById(R.id.spinnerTag);
+
         imageView = findViewById(R.id.imageView);
         editName = findViewById(R.id.tvNameEdit);
 
@@ -44,14 +52,26 @@ public class ClickedItemEditActivity extends AppCompatActivity implements View.O
 
         Intent intent = getIntent();
         if(intent.getExtras() != null){
-            selectedName = intent.getStringExtra("name");
-            selectedImage = intent.getIntExtra("image", 0);
             idx = intent.getIntExtra("index", 0);
+            selectedName = mGalleryList.get(idx).getName();
+            selectedImage = mGalleryList.get(idx).getImage();
+            tag = mGalleryList.get(idx).getTag();
 
             imageView.setImageResource(selectedImage);
         }else{
             finish();
         }
+
+        spinner.setSelection(tag);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                tag = i;
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
 
         CheckBtn = findViewById(R.id.ic_check);
         CheckBtn.setOnClickListener(this);
@@ -64,12 +84,13 @@ public class ClickedItemEditActivity extends AppCompatActivity implements View.O
 
         ImageFile image = mGalleryList.get(idx);
         image.setName(name);
+        image.setTag(tag);
 
         mGalleryList.set(idx, image);
         galleryAdapter.notifyDataSetChanged();
 
         startActivity(new Intent(ClickedItemEditActivity.this,
-                ClickedItemActivity.class).putExtra("name", mGalleryList.get(idx).getName()).putExtra("image", mGalleryList.get(idx).getImage()).putExtra("index", idx));
+                ClickedItemActivity.class).putExtra("index", idx));
 
         finish();
 
