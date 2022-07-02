@@ -4,16 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ClickedItemActivity">
+    tools:context=".Gallery.ClickedItemActivity">
+
+    <ImageButton
+        android:id="@+id/ic_edit"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_edit" />
 
     <ImageButton
         android:id="@+id/ic_delete"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_alignParentRight="false"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_alignParentRight="true"
         app:srcCompat="@drawable/ic_delete" />
 
     <ImageView
