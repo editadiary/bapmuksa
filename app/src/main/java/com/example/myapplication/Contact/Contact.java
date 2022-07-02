@@ -5,7 +5,7 @@ import android.database.Cursor;
 
 import com.example.myapplication.Common;
 
-public class Contact {
+public class Contact implements Comparable<Contact> {
     private int id;
     private String name;
     private String phone;
@@ -32,5 +32,10 @@ public class Contact {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    @Override
+    public int compareTo(Contact contact) {
+        return name.compareTo(contact.getName());
     }
 }

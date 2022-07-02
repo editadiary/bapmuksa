@@ -15,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.myapplication.Common;
 import com.example.myapplication.R;
 
+import java.util.Collections;
+
 public class ContactUpdateActivity extends AppCompatActivity implements View.OnClickListener {
     String pos = "-1";
     EditText editName;
@@ -69,6 +71,7 @@ public class ContactUpdateActivity extends AppCompatActivity implements View.OnC
         contact.setPhone(phone);
 
         mContactList.set(position, contact);
+        Collections.sort(mContactList);
         mAdapter.notifyDataSetChanged();
         Common.stack_page.pop();
 
