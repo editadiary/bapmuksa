@@ -15,6 +15,7 @@
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/drawable/ic_person_square.xml" value="0.106" />
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/drawable/ic_picture.xml" value="0.106" />
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/drawable/ic_plus.xml" value="0.1" />
+        <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/font/font.xml" value="0.1" />
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/layout/activity_clicked_item.xml" value="0.18" />
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/layout/activity_clicked_item_edit.xml" value="0.18" />
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/layout/activity_contact.xml" value="0.16" />
@@ -28,6 +29,7 @@
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/layout/recycler_item.xml" value="0.1" />
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/layout/row_items.xml" value="0.1875" />
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/layout/tab_fragment.xml" value="0.22708333333333333" />
+        <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/layout/top_fragment.xml" value="0.21041666666666667" />
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.162" />
       </map>
     </option>

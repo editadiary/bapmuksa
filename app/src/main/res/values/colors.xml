@@ -14,4 +14,11 @@
     <color name="color3">#E8A0BF</color>
     <color name="color4">#FCC5C0</color>
 
+    <color name="korean">#FFE6E6</color>
+    <color name="chinese">#F2D1D1</color>
+    <color name="japanese">#DAEAF1</color>
+    <color name="italian">#C6DCE4</color>
+    <color name="dessert">#C689C6</color>
+    <color name="etc">#E8A0BF</color>
+
 </resources>

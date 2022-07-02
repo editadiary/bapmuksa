@@ -27,7 +27,6 @@ public class GalleryMainActivity extends AppCompatActivity {
 
         gridView = findViewById(R.id.gridView);
 
-
         gridView.setAdapter(galleryAdapter);
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
