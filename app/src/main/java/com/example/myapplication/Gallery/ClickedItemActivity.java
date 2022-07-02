@@ -27,11 +27,13 @@ public class ClickedItemActivity extends AppCompatActivity {
     ImageButton EditBtn;
 
     ImageView imageView;
-    TextView textView;
+    TextView textViewName;
+    TextView textViewTag;
 
     String selectedName = "";
     int selectedImage = -1;
     int idx = -1;
+    String tagName = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,15 +43,18 @@ public class ClickedItemActivity extends AppCompatActivity {
         setContentView(R.layout.activity_clicked_item);
 
         imageView = findViewById(R.id.imageView);
-        textView = findViewById(R.id.tvName);
+        textViewName = findViewById(R.id.tvName);
+        textViewTag = findViewById(R.id.tvTag);
 
         Intent intent = getIntent();
         if(intent.getExtras() != null){
-            selectedName = intent.getStringExtra("name");
-            selectedImage = intent.getIntExtra("image", 0);
             idx = intent.getIntExtra("index", 0);
+            selectedName = mGalleryList.get(idx).getName();
+            selectedImage= mGalleryList.get(idx).getImage();
+            tagName = mGalleryList.get(idx).getTagName();
 
-            textView.setText(selectedName);
+            textViewName.setText(selectedName);
+            textViewTag.setText(tagName);
             imageView.setImageResource(selectedImage);
         }
 
@@ -86,7 +91,7 @@ public class ClickedItemActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(ClickedItemActivity.this,
-                        ClickedItemEditActivity.class).putExtra("name", selectedName).putExtra("image", selectedImage).putExtra("index", idx));
+                        ClickedItemEditActivity.class).putExtra("index", idx));
 
             }
         });

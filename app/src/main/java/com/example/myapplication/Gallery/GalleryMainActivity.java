@@ -37,7 +37,7 @@ public class GalleryMainActivity extends AppCompatActivity {
                 int selectedImage = mGalleryList.get(i).getImage();
 
                 startActivity(new Intent(GalleryMainActivity.this,
-                        ClickedItemActivity.class).putExtra("name", selectedName).putExtra("image", selectedImage).putExtra("index", i));
+                        ClickedItemActivity.class).putExtra("index", i));
 
 
             }
