@@ -1,17 +1,14 @@
 package com.example.myapplication;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Environment;
-import android.util.TypedValue;
+import android.widget.TextView;
 
 import com.example.myapplication.Contact.Contact;
 import com.example.myapplication.Contact.ContactAdapter;
 import com.example.myapplication.Gallery.GalleryAdapter;
 import com.example.myapplication.Gallery.ImageFile;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,14 +18,12 @@ import java.util.Stack;
 
 
 public class Common {
-    public static final String[] food_tags = {"한식", "중식", "일식", "양식", "후식", "기타"};
-    public static boolean isAvailable = false;
-    public static boolean isReadable = false;
-    public static boolean isWriteable = false;
+    public static final String[] food_tags_id = {"tagKorean", "tagChinese", "tagJapanese", "tagItalian", "tagDessert", "tagETC"};
+    public static final int[] food_tags_color = {R.drawable.checked_circle_korean, R.drawable.checked_circle_chinese, R.drawable.checked_circle_japanese, R.drawable.checked_circle_italian, R.drawable.checked_circle_dessert, R.drawable.checked_circle_etc};
     public static final String root = Environment.getExternalStorageDirectory().getAbsolutePath();
     public static final String files_path = "/Android/data/com.example.myapplication/files/";
-
     public static final String CONTACT_JSON_FILE_NAME = "contact.json";
+    public static boolean isAvailable = false, isReadable = false, isWriteable = false;
     public static Stack<Integer> stack_page;
     public static ArrayList<Contact> mContactList;
     public static ContactAdapter mAdapter;
@@ -38,6 +33,12 @@ public class Common {
     // btn: 0: Home, 1: Contact, 2: Gallery, 3:IDK, 4: Contact Create, 5: Contact Detail, 6: Contact Update
     public static int currentTab = 0;
     public static int id_num = 12;
+
+    public static void toPrev(Activity activity) {
+        if(stack_page.empty()) System.exit(0);
+        stack_page.pop();
+        activity.finish();
+    }
 
     public static String getJsonString(Context context, String fileName) {
         String str = "";
@@ -58,6 +59,15 @@ public class Common {
 
         return str;
     }
+
+    public static void setTagsColor(TextView[] views, boolean[] checked) {
+        for(int i = 0; i < 6; i++) {
+            if(checked[i]){
+                views[i].setBackgroundResource(food_tags_color[i]);
+            }
+        }
+    }
+
     public static ArrayList<ImageFile> initGallery() {
         ArrayList<ImageFile> items = new ArrayList<>();
         items.add(new ImageFile("칵테일", R.drawable.image1, 4, 180702));
@@ -78,7 +88,6 @@ public class Common {
         items.add(new ImageFile("파전", R.drawable.image16, 0, 220702));
 
         return items;
-
     }
 
 }

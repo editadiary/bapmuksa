@@ -242,7 +242,7 @@
                 />
 
             <TextView
-                android:id="@+id/tagDesert"
+                android:id="@+id/tagDessert"
                 android:layout_width="0dp"
                 android:layout_height="80dp"
                 android:layout_rowWeight="1"
@@ -266,7 +266,6 @@
                 android:background="@drawable/circle"
                 android:textSize="22sp"
                 />
-
         </GridLayout>
 
 

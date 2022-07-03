@@ -16,6 +16,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -62,10 +63,12 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
             if(stack_page.peek() == 5) return;
 
             stack_page.push(5);
-            Intent intent = new Intent(getApplicationContext(), ContactDetailActivity.class);
+            Intent intent = new Intent(this, ContactDetailActivity.class);
+            Log.d("tags____", mContactList.get(position).getTags().toString());
             intent.putExtra("name", mContactList.get(position).getName())
                     .putExtra("phone", mContactList.get(position).getPhone())
-                            .putExtra("pos", Integer.toString(position));
+                    .putExtra("tags", mContactList.get(position).getTags())
+                    .putExtra("pos", Integer.toString(position));
 
             startActivity(intent);
         };
@@ -79,4 +82,10 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
         Intent intent = new Intent(this, ContactCreateActivity.class);
         startActivity(intent);
     }
+
+    @Override
+    public void onBackPressed() {
+        Common.toPrev(this);
+    }
+
 }

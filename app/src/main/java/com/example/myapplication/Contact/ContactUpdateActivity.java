@@ -19,8 +19,8 @@ import java.util.Collections;
 
 public class ContactUpdateActivity extends AppCompatActivity implements View.OnClickListener {
     String pos = "-1";
-    EditText editName;
-    EditText editPhone1, editPhone2, editPhone3;
+    EditText editName, editPhone1, editPhone2, editPhone3;
+    boolean[] tags;
     ImageView check;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,7 +46,7 @@ public class ContactUpdateActivity extends AppCompatActivity implements View.OnC
             phone1 = split_phone[0];
             phone2 = split_phone[1];
             phone3 = split_phone[2];
-
+            tags = extras.getBooleanArray("tags");
             pos = extras.getString("pos");
         } else {
             finish();
@@ -78,6 +78,7 @@ public class ContactUpdateActivity extends AppCompatActivity implements View.OnC
         Intent intent = new Intent(getApplicationContext(), ContactDetailActivity.class);
         intent.putExtra("name", name)
                 .putExtra("phone", phone)
+                .putExtra("tags", tags)
                 .putExtra("pos", pos);
         setResult(200, intent);
         finish();

@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         getExternalStorage();
-        stack_page = new Stack<Integer>(); stack_page.push(0);
+        stack_page = new Stack<>(); stack_page.push(0);
         getContacts();
         initGallery();
     }
@@ -61,7 +61,12 @@ public class MainActivity extends AppCompatActivity {
 
                 String name = contactObj.getString("name");
                 String phone = contactObj.getString("phone");
-                String[] tags = contactObj.getString("tag").split(",");
+                boolean[] tags = new boolean[6];
+                JSONArray tags_array = contactObj.getJSONArray("tags");
+
+                for(int j = 0; j < 6; ++j) {
+                    tags[j] = tags_array.getBoolean(j);
+                }
 
                 Contact data = new Contact(Integer.toString(id_num), name, phone, tags, "ic_person"); ++id_num;
 
