@@ -42,7 +42,7 @@
                 android:src="@drawable/ic_person"
                 android:layout_marginTop="15dp"
                 app:civ_border_overlay="true"
-                app:civ_border_width="3dp"
+                app:civ_border_width="1dp"
                 app:civ_border_color="#000000"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -117,7 +117,7 @@
                     android:layout_weight="3"
                     android:layout_marginEnd="10dp"
                     android:text="@string/temp"
-                    android:gravity="center"
+                    android:gravity="center_vertical"
                     android:paddingStart="20dp"
                     android:paddingEnd="20dp"
                     android:textSize="20sp"
@@ -195,7 +195,7 @@
                     />
 
                 <TextView
-                    android:id="@+id/tagDesert"
+                    android:id="@+id/tagDessert"
                     android:layout_width="0dp"
                     android:layout_height="80dp"
                     android:layout_rowWeight="1"
@@ -219,7 +219,6 @@
                     android:background="@drawable/circle"
                     android:textSize="22sp"
                     />
-
             </GridLayout>
 
             <TextView
@@ -238,7 +237,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:gravity="center_horizontal"
-                android:text = "D-100"
+                android:text = "100일"
                 android:fontFamily="@font/binggrae"
                 android:textSize="24sp"
                 android:textStyle="bold"

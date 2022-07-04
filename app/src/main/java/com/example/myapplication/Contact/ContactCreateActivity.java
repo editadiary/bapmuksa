@@ -17,22 +17,33 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.Common;
 import com.example.myapplication.R;
 
 import java.util.Collections;
 
 public class ContactCreateActivity extends AppCompatActivity implements View.OnClickListener {
     private EditText edit_name, edit_phone1, edit_phone2, edit_phone3;
-    private ImageView addBtn, plusTag;
-    private LinearLayout ll;
-    int tagCnt = 0;
+    private TextView[] tagTV;
+    private boolean[] tags;
+    private int[] tagsID;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_create);
 
-        ll = findViewById(R.id.create_layout);
+        ImageView addBtn, plusTag;
+
+        tags = new boolean[6];
+        tagTV = new TextView[6];
+        tagsID = new int[6]; getTagId();
+
+        for(int i = 0; i < 6; ++i) {
+            tags[i] = false;
+            tagTV[i] = findViewById(tagsID[i]);
+            tagTV[i].setOnClickListener(this);
+        }
         edit_name = findViewById(R.id.create_name_edit);
         edit_phone1 = findViewById(R.id.create_phone_edit1);
         edit_phone2 = findViewById(R.id.create_phone_edit2);
@@ -45,6 +56,11 @@ public class ContactCreateActivity extends AppCompatActivity implements View.OnC
         plusTag.setOnClickListener(this);
     }
 
+    private void getTagId() {
+        for(int i = 0; i < 6; ++i)
+            tagsID[i] = getResources().getIdentifier(food_tags_id[i], "id", getPackageName());
+    }
+
     private void AddContact(Contact new_contact) {
         mContactList.add(new_contact);
         Collections.sort(mContactList);
@@ -54,60 +70,48 @@ public class ContactCreateActivity extends AppCompatActivity implements View.OnC
     @Override
     public void onClick(View v) {
         int id = v.getId();
-        LinearLayout tll = new LinearLayout(this);
-
-        if (id == R.id.addTag) {
-            String tagName = "Tag" + ++tagCnt;
-
-            TextView tv = new TextView(this);
-            EditText et = new EditText(this);
-
-            tll.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-
-            LinearLayout.LayoutParams tlp = new LinearLayout.LayoutParams(new LinearLayout.LayoutParams(pxToDp(0), pxToDp(50), 2.0f));
-            LinearLayout.LayoutParams elp = new LinearLayout.LayoutParams(new LinearLayout.LayoutParams(pxToDp(0), pxToDp(50), 3.0f));
-
-            tv.setLayoutParams(tlp);
-            tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 24);
-            tv.setText(tagName);
-            tv.setTypeface(null, Typeface.BOLD);
-            tv.setGravity(Gravity.CENTER);
-
-            et.setLayoutParams(elp);
-            et.setId(tagCnt);
-
-            tll.addView(tv);
-            tll.addView(et);
-
-            ll.addView(tll);
-        }
 
         if (id == R.id.ic_check) {
             String id_cnt = Integer.toString(id_num);
             ++id_num;
             String name = edit_name.getText().toString();
             String phone = edit_phone1.getText().toString() + "-" + edit_phone2.getText().toString() + "-" + edit_phone3.getText().toString();
-            String[] tags = new String[tagCnt];
-            for (int i = 1; i <= tagCnt; ++i) {
-                int tag_id = getResources().getIdentifier("Tag" + i, "id", getPackageName());
-                tags[tag_id] = ((EditText) findViewById(tag_id)).getText().toString();
-            }
 
             stack_page.push(1);
 
-            AddContact(new Contact(id_cnt, name, phone, tags, "ic_person"));
+            AddContact(new Contact(id_cnt, name, phone, tags, "ic_person", null));
 
             Intent intent = new Intent(getApplicationContext(), ContactDetailActivity.class);
             intent.putExtra("name", name)
                     .putExtra("phone", phone)
+                    .putExtra("tags", tags)
                     .putExtra("id", id);
             setResult(100, intent);
             finish();
         }
+
+        for(int i = 0; i < 6; ++i) {
+            if(id == tagsID[i]) {
+                if(tags[i]) {
+                    tags[i] = false;
+                    v.setBackgroundResource(R.drawable.circle);
+                }
+                else {
+                    tags[i] = true;
+                    v.setBackgroundResource(food_tags_color[i]);
+                }
+            }
+        }
     }
 
+    /*
     public int pxToDp(final int px) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, px, getResources().getDisplayMetrics());
     }
+     */
 
+    @Override
+    public void onBackPressed() {
+        Common.toPrev(this);
+    }
 }

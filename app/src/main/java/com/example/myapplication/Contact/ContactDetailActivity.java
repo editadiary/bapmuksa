@@ -21,38 +21,38 @@ import com.example.myapplication.Common;
 import com.example.myapplication.R;
 
 public class ContactDetailActivity extends AppCompatActivity implements View.OnClickListener {
-    String pos = "-1";
-    String name = "이름이 없습니다.";
-    String phone = "전화번호가 없습니다.";
-    ImageView editBtn, deleteBtn;
+    String pos = "-1", name = "이름이 없습니다.", phone = "전화번호가 없습니다.";
+    boolean[] tags = new boolean[6];
     ActivityResultLauncher<Intent> activityResultLauncher;
+    ImageView editBtn, deleteBtn;
+    TextView nameTV, phoneTV;
+    TextView[] tagTV = new TextView[6];
     Bundle extras;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_detail);
 
+        // findViewById
         editBtn = findViewById(R.id.ic_edit);
         deleteBtn = findViewById(R.id.ic_delete);
 
+        nameTV = findViewById(R.id.detail_name);
+        phoneTV = findViewById(R.id.detail_phone);
+
         editBtn.setOnClickListener(this);
-        editBtn.setOnClickListener(this);
+        deleteBtn.setOnClickListener(this);
 
-        TextView nameTV = findViewById(R.id.detail_name);
-        TextView phoneTV = findViewById(R.id.detail_phone);
+        for(int i = 0; i < 6; ++i)
+            tagTV[i] = findViewById(getResources().getIdentifier(Common.food_tags_id[i], "id", getPackageName()));
 
-        extras = getIntent().getExtras();
-        if(extras != null) {
-            name = extras.getString("name");
-            phone = extras.getString("phone");
-            pos = extras.getString("pos");
-        }
+        setViews();
 
-        nameTV.setText(name);
-        phoneTV.setText(phone);
+        activityResultLauncher = setResultLauncher();
+    }
 
-
-        activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+    private ActivityResultLauncher<Intent> setResultLauncher() {
+        return registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
             if(result.getResultCode() == 200) {
                 assert result.getData() != null;
                 extras = result.getData().getExtras();
@@ -60,15 +60,35 @@ public class ContactDetailActivity extends AppCompatActivity implements View.OnC
                 if(extras != null) {
                     name = extras.getString("name");
                     phone = extras.getString("phone");
+                    tags = extras.getBooleanArray("tags");
                     pos = extras.getString("pos");
                 }
+                Common.setTagsColor(tagTV, tags);
 
                 nameTV.setText(name);
                 phoneTV.setText(phone);
             }
         });
     }
+    private void setViews() {
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            name = extras.getString("name");
+            phone = extras.getString("phone");
+            tags = extras.getBooleanArray("tags");
+            pos = extras.getString("pos");
+        }
 
+        nameTV.setText(name);
+        phoneTV.setText(phone);
+
+        Common.setTagsColor(tagTV, tags);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Common.toPrev(this);
+    }
 
     @Override
     public void onClick(View v) {
@@ -81,7 +101,8 @@ public class ContactDetailActivity extends AppCompatActivity implements View.OnC
             intent = new Intent(getApplicationContext(), ContactUpdateActivity.class);
             intent.putExtra("name", name)
                     .putExtra("phone", phone)
-                            .putExtra("pos", pos);
+                    .putExtra("tags", tags)
+                    .putExtra("pos", pos);
 
             activityResultLauncher.launch(intent);
         }
@@ -94,12 +115,9 @@ public class ContactDetailActivity extends AppCompatActivity implements View.OnC
             builder.setPositiveButton("Confirm", (dialog, which) -> {
                 mContactList.remove(Integer.parseInt(pos));
                 Toast.makeText(this, "This Contact is deleted.", Toast.LENGTH_LONG).show();
-                mAdapter.notifyDataSetChanged();
                 stack_page.pop(); stack_page.push(1);
                 finish();
-            });
-            builder.setNegativeButton("Cancel", (dialog, which) -> {
-               return;
+                mAdapter.notifyDataSetChanged();
             });
             AlertDialog dlg = builder.create();
             dlg.show();

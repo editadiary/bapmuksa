@@ -20,15 +20,27 @@
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/layout/row_items.xml" value="0.1875" />
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/layout/tab_fragment.xml" value="0.22708333333333333" />
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.162" />
+        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/drawable/all_border_line.xml" value="0.157" />
+        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/drawable/checked_circle.xml" value="0.288" />
+        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/drawable/checked_circle_chinese.xml" value="0.1185" />
+        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/drawable/checked_circle_dessert.xml" value="0.1185" />
+        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/drawable/checked_circle_etc.xml" value="0.1185" />
+        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/drawable/checked_circle_italian.xml" value="0.1185" />
+        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/drawable/checked_circle_japanese.xml" value="0.1185" />
         <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/drawable/circle.xml" value="0.198" />
+        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/drawable/ic_check.xml" value="0.157" />
+        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/drawable/ic_delete.xml" value="0.157" />
         <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/drawable/ic_person.xml" value="0.193" />
         <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/activity_clicked_item.xml" value="0.2296875" />
-        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/activity_clicked_item_edit.xml" value="0.2296875" />
-        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/activity_contact.xml" value="0.1585144927536232" />
-        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/activity_contact_create.xml" value="0.2" />
+        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/activity_clicked_item_edit.xml" value="0.1" />
+        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/activity_contact.xml" value="0.264" />
+        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/activity_contact_create.xml" value="0.1" />
         <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/activity_contact_detail.xml" value="0.152" />
         <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/activity_contact_update.xml" value="0.1585144927536232" />
         <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/activity_home.xml" value="0.2296875" />
+        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/activity_recommend.xml" value="0.4" />
+        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/activity_recommend_firstpage.xml" value="0.264" />
+        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/activity_recommend_secondpage.xml" value="0.536" />
         <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/contact_fragment.xml" value="0.1585144927536232" />
         <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/tab_fragment.xml" value="0.1585144927536232" />
         <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/top_fragment.xml" value="0.264" />
