@@ -50,6 +50,7 @@
         <activity android:name=".Gallery.ClickedItemActivity" />
         <activity android:name=".Recommend.RecommendFirstActivity" />
         <activity android:name=".Recommend.RecommendSecondActivity" />
+        <activity android:name=".Recommend.RecommendThirdActivity" />
     </application>
 
 </manifest>
