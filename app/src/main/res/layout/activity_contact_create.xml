@@ -36,16 +36,8 @@
                 android:layout_height="150dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:srcCompat="@drawable/ic_person"
+                app:srcCompat="@drawable/ic_person_plus"
                 />
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginBottom="20dp"
-                android:layout_gravity="bottom"
-                app:layout_constraintLeft_toRightOf="@id/ic_person"
-                app:srcCompat="@drawable/ic_plus" />
         </LinearLayout>
 
 
@@ -303,17 +295,6 @@
         </LinearLayout>
         -->
     </LinearLayout>
-
-    <ImageView
-        android:id="@+id/addTag"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="20dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/TabFragment"
-        app:srcCompat="@drawable/ic_plus"
-        />
 
     <ImageView
         android:id="@+id/ic_check"
