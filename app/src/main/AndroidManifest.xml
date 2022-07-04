@@ -35,7 +35,8 @@
         <activity android:name=".Contact.ContactUpdateActivity" />
         <activity android:name=".Gallery.GalleryMainActivity" />
         <activity android:name=".Gallery.ClickedItemActivity" />
-
+        <activity android:name=".Recommend.RecommendFirstActivity" />
+        <activity android:name=".Recommend.RecommendSecondActivity" />
     </application>
 
 </manifest>

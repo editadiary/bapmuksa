@@ -32,14 +32,15 @@
         <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/drawable/ic_delete.xml" value="0.157" />
         <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/drawable/ic_person.xml" value="0.193" />
         <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/activity_clicked_item.xml" value="0.2296875" />
-        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/activity_clicked_item_edit.xml" value="0.2296875" />
+        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/activity_clicked_item_edit.xml" value="0.1" />
         <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/activity_contact.xml" value="0.1585144927536232" />
         <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/activity_contact_create.xml" value="0.1" />
         <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/activity_contact_detail.xml" value="0.152" />
         <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/activity_contact_update.xml" value="0.1585144927536232" />
         <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/activity_home.xml" value="0.2296875" />
         <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/activity_recommend.xml" value="0.4" />
-        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/activity_recommend_secondpage.xml" value="0.6" />
+        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/activity_recommend_firstpage.xml" value="0.264" />
+        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/activity_recommend_secondpage.xml" value="0.536" />
         <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/contact_fragment.xml" value="0.1585144927536232" />
         <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/tab_fragment.xml" value="0.1585144927536232" />
         <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/top_fragment.xml" value="0.264" />

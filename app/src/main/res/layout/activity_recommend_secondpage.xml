@@ -48,40 +48,31 @@
                 />
         </LinearLayout>
 
-
-        <LinearLayout
-            android:id="@+id/recommendedNameAndDate"
+        <TextView
+            android:id="@+id/Name"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:layout_marginTop="20dp"
             android:layout_below="@id/recommendedImage"
-            >
+            android:text="이성진"
+            android:fontFamily="@font/binggrae"
+            android:gravity="center"
+            />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="70dp"
-                android:layout_weight="2"
-                android:text="이성진"
-                android:fontFamily="@font/binggrae"
-                android:gravity="center"
-                />
-
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="70dp"
-                android:layout_weight="3"
-                android:fontFamily="@font/binggrae"
-                android:gravity="center"
-                android:text="+100일"
-                />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/Date"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:fontFamily="@font/binggrae"
+            android:gravity="center"
+            android:text="+100일"
+            android:layout_below="@id/Name"
+            />
 
         <LinearLayout
             android:id="@+id/CallAndMessageButtonLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:layout_below="@id/recommendedNameAndDate" >
+            android:layout_below="@id/Date" >
 
             <Button
                 android:layout_width="0dp"
