@@ -1,8 +1,6 @@
 package com.example.myapplication.Contact;
 
-import static com.example.myapplication.Common.mAdapter;
-import static com.example.myapplication.Common.mContactList;
-import static com.example.myapplication.Common.stack_page;
+import static com.example.myapplication.Common.*;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,9 +18,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.myapplication.Common;
 import com.example.myapplication.R;
 
+import org.json.JSONObject;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 public class ContactDetailActivity extends AppCompatActivity implements View.OnClickListener {
     String pos = "-1", name = "이름이 없습니다.", phone = "전화번호가 없습니다.";
-    boolean[] tags = new boolean[6];
+    String tags;
     ActivityResultLauncher<Intent> activityResultLauncher;
     ImageView editBtn, deleteBtn;
     TextView nameTV, phoneTV;
@@ -60,7 +63,7 @@ public class ContactDetailActivity extends AppCompatActivity implements View.OnC
                 if(extras != null) {
                     name = extras.getString("name");
                     phone = extras.getString("phone");
-                    tags = extras.getBooleanArray("tags");
+                    tags = extras.getString("tags");
                     pos = extras.getString("pos");
                 }
                 nameTV.setText(name);
@@ -74,7 +77,7 @@ public class ContactDetailActivity extends AppCompatActivity implements View.OnC
         if(extras != null) {
             name = extras.getString("name");
             phone = extras.getString("phone");
-            tags = extras.getBooleanArray("tags");
+            tags = extras.getString("tags");
             pos = extras.getString("pos");
         }
 
@@ -112,14 +115,38 @@ public class ContactDetailActivity extends AppCompatActivity implements View.OnC
             builder.setTitle("Alert");
             builder.setMessage("Do you really delete this?");
             builder.setPositiveButton("Confirm", (dialog, which) -> {
-                mContactList.remove(Integer.parseInt(pos));
+                int contactId = mContactList.get(Integer.parseInt(pos)).getId();
+                for(int i = 0; i < allContacts.size(); ++i) {
+                    if(allContacts.get(i).getId() == contactId) {
+                        allContacts.remove(i);
+                    }
+                }
+                contactCopy(allContacts, mContactList);
+                contactsWrite();
                 Toast.makeText(this, "This Contact is deleted.", Toast.LENGTH_LONG).show();
                 stack_page.pop(); stack_page.push(1);
                 finish();
                 mAdapter.notifyDataSetChanged();
             });
+            builder.setNegativeButton("Cancel", (dialog, which) -> {
+
+            });
             AlertDialog dlg = builder.create();
             dlg.show();
+        }
+    }
+
+    private void contactsWrite() {
+        try{
+            FileOutputStream os = openFileOutput(CONTACT_JSON_FILE_NAME, MODE_PRIVATE);
+            JSONObject jsonFile = contactsToJson();
+
+            assert jsonFile != null;
+            os.write(jsonFile.toString().getBytes());
+            os.flush();
+            os.close();
+        } catch(IOException e) {
+            e.printStackTrace();
         }
     }
 }

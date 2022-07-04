@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.os.Environment;
+import android.util.Log;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
@@ -13,9 +14,14 @@ import com.example.myapplication.Contact.ContactAdapter;
 import com.example.myapplication.Gallery.GalleryAdapter;
 import com.example.myapplication.Gallery.ImageFile;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Stack;
@@ -23,9 +29,7 @@ import java.util.Stack;
 public class Common {
     public static final String[] food_tags_id = {"tagKorean", "tagChinese", "tagJapanese", "tagItalian", "tagDessert", "tagETC"};
     public static final int[] food_tags_color = {R.drawable.checked_circle_korean, R.drawable.checked_circle_chinese, R.drawable.checked_circle_japanese, R.drawable.checked_circle_italian, R.drawable.checked_circle_dessert, R.drawable.checked_circle_etc};
-    public static final String root = Environment.getDataDirectory().getAbsolutePath();
     public static final String CONTACT_JSON_FILE_NAME = "contact.json";
-    public static boolean isAvailable = false, isReadable = false, isWriteable = false;
     public static Stack<Integer> stack_page;
     public static ArrayList<Contact> allContacts, mContactList;
     public static ContactAdapter mAdapter;
@@ -43,14 +47,17 @@ public class Common {
     }
 
     public static void contactCopy(ArrayList<Contact> src, ArrayList<Contact> dest) {
-        Collections.sort(src);
+        if(src != null) {
+            Collections.sort(src);
 
-        dest.clear();
-        for(Contact contact: src) {
-            dest.add(contact);
+            dest.clear();
+            for(Contact contact: src) {
+                dest.add(contact);
+            }
         }
     }
 
+    /*
     public static String getJsonString(Context context, String fileName) {
         String str = "";
 
@@ -71,9 +78,45 @@ public class Common {
         return str;
     }
 
-    public static void setTagsColor(TextView[] views, boolean[] checked) {
+     */
+
+    public static JSONObject contactsToJson() {
+        try {
+            JSONObject retObject = new JSONObject();
+            JSONArray arr = new JSONArray();
+
+            for(Contact contact: allContacts) {
+                JSONObject content = new JSONObject();
+                SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+
+                content.put("id", Integer.toString(contact.getId()))
+                        .put("name", contact.getName())
+                        .put("phone", contact.getPhone())
+                        .put("tags", contact.getTags())
+                        .put("profileImage", contact.getProfileImage());
+
+                Log.d("qweqwe", contact.getTags().toString());
+                if(contact.getLastMeet() == null) {
+                    content.put("lastMeet", "");
+                } else {
+                    content.put("lastMeet", format.format(contact.getLastMeet()));
+                }
+
+                arr.put(content);
+            }
+            retObject.put("contacts", arr);
+
+            return retObject;
+        } catch(JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static void setTagsColor(TextView[] views, String checked) {
+        String[] tagString = checked.replaceAll("[\\[\\]]", "").split(", ");
         for(int i = 0; i < 6; i++) {
-            if(checked[i]){
+            if(Boolean.parseBoolean(tagString[i])){
                 views[i].setBackgroundResource(food_tags_color[i]);
             }
         }

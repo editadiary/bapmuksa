@@ -16,13 +16,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.myapplication.Common;
 import com.example.myapplication.R;
 
+import org.json.JSONObject;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.Collections;
 
 public class ContactUpdateActivity extends AppCompatActivity implements View.OnClickListener {
     String pos = "-1";
     EditText editName, editPhone1, editPhone2, editPhone3;
     private TextView[] tagTV;
-    private boolean[] tags;
+    private String tagString;
+    private boolean[] tagBoolean = new boolean[6];
     private int[] tagsID;
     ImageView check;
 
@@ -57,13 +63,17 @@ public class ContactUpdateActivity extends AppCompatActivity implements View.OnC
             phone1 = split_phone[0];
             phone2 = split_phone[1];
             phone3 = split_phone[2];
-            tags = extras.getBooleanArray("tags");
+            tagString = extras.getString("tags");
             pos = extras.getString("pos");
         } else {
             finish();
         }
 
-        Common.setTagsColor(tagTV, tags);
+        String[] tagStrArray = tagString.replaceAll("[\\[\\]]", "").split(", ");
+        for(int i = 0; i < 6; ++i) {
+            tagBoolean[i] = Boolean.parseBoolean(tagStrArray[i]);
+        }
+        Common.setTagsColor(tagTV, tagString);
 
         editName.setText(name);
         editPhone1.setText(phone1);
@@ -90,7 +100,7 @@ public class ContactUpdateActivity extends AppCompatActivity implements View.OnC
             int curSize = allContacts.size();
             contact.setName(name);
             contact.setPhone(phone);
-            contact.setTags(tags);
+            contact.setTags(Arrays.toString(tagBoolean));
 
             for(int i = 0; i < curSize; ++i) {
                 if(allContacts.get(i).getId() == contactId) {
@@ -98,12 +108,13 @@ public class ContactUpdateActivity extends AppCompatActivity implements View.OnC
                 }
             }
             contactCopy(allContacts, mContactList);
+            contactsWrite();
             mAdapter.notifyDataSetChanged();
 
             Intent intent = new Intent(getApplicationContext(), ContactDetailActivity.class);
             intent.putExtra("name", name)
                     .putExtra("phone", phone)
-                    .putExtra("tags", tags)
+                    .putExtra("tags", Arrays.toString(tagBoolean))
                     .putExtra("pos", pos);
             setResult(200, intent);
             finish();
@@ -111,15 +122,29 @@ public class ContactUpdateActivity extends AppCompatActivity implements View.OnC
 
         for(int i = 0; i < 6; ++i) {
             if(v.getId() == tagsID[i]) {
-                if(tags[i]) {
-                    tags[i] = false;
+                if(tagBoolean[i]) {
+                    tagBoolean[i] = false;
                     v.setBackgroundResource(R.drawable.circle);
                 }
                 else {
-                    tags[i] = true;
+                    tagBoolean[i] = true;
                     v.setBackgroundResource(food_tags_color[i]);
                 }
             }
+        }
+    }
+
+    private void contactsWrite() {
+        try{
+            FileOutputStream os = openFileOutput(CONTACT_JSON_FILE_NAME, MODE_PRIVATE);
+            JSONObject jsonFile = contactsToJson();
+
+            assert jsonFile != null;
+            os.write(jsonFile.toString().getBytes());
+            os.flush();
+            os.close();
+        } catch(IOException e) {
+            e.printStackTrace();
         }
     }
 }

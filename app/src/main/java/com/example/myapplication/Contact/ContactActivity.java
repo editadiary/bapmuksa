@@ -35,6 +35,8 @@ import com.example.myapplication.Common;
 import com.example.myapplication.R;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class ContactActivity extends AppCompatActivity implements View.OnClickListener {
     private ImageView addContactIcon, searchIcon;
@@ -120,7 +122,9 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
         else {
             for(Contact contact: allContacts) {
                 String parsedPhoneNumber = parsePhoneNumber(contact.getPhone());
-                if(contact.getTags()[tagPosition]) {
+                String[] stringTag = contact.getTags().replaceAll("[\\[\\]]", "").split(", ");
+
+                if(Boolean.parseBoolean(stringTag[tagPosition])) {
                     if(searchString == null || ((contact.getName().contains(searchString) || parsedPhoneNumber.contains(searchString)))){
                         newContact.add(contact);
                     }
