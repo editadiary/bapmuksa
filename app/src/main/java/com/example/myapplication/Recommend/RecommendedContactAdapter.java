@@ -12,7 +12,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.Contact.Contact;
 import com.example.myapplication.R;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class RecommendedContactAdapter extends RecyclerView.Adapter<RecommendedContactAdapter.RecommendViewHolder> {
     private static ArrayList<Contact> mList;
@@ -33,12 +37,13 @@ public class RecommendedContactAdapter extends RecyclerView.Adapter<RecommendedC
     }
 
     public class RecommendViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        protected TextView name;
+        protected TextView name, day;
         // protected TextView phone;
 
         public RecommendViewHolder(View view) {
             super(view);
-            this.name = view.findViewById(R.id.recommendTextName);
+            name = view.findViewById(R.id.recommendTextName);
+            day = view.findViewById(R.id.recommendTextDay);
             // this.phone = view.findViewById(R.id.contact_item_phone);
 
             view.setOnClickListener(this);
@@ -64,10 +69,21 @@ public class RecommendedContactAdapter extends RecyclerView.Adapter<RecommendedC
     @Override
     public void onBindViewHolder(@NonNull RecommendedContactAdapter.RecommendViewHolder holder, final int position) {
         holder.name.setText(mList.get(position).getName());
-        // holder.phone.setText(mList.get(position).getPhone());
-
-        holder.name.setGravity(Gravity.CENTER);
-        // holder.phone.setGravity(Gravity.START);
+        holder.day.setText(getDays(position));
     }
 
+    private String getDays(final int position) {
+        try {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
+            Date current = simpleDateFormat.parse(simpleDateFormat.format(new Date()));
+            Date prev = simpleDateFormat.parse(mList.get(position).getLastMeet());
+
+            long days = (current.getTime() - prev.getTime()) / (24 * 60 * 60 * 1000);
+
+            return days + "일";
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return "-1일";
+        }
+    }
 }

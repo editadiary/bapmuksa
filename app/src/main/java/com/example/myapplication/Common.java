@@ -38,7 +38,7 @@ public class Common {
 
     // btn: 0: Home, 1: Contact, 2: Gallery, 3:IDK, 4: Contact Create, 5: Contact Detail, 6: Contact Update
     public static int currentTab = 0;
-    public static int id_num = 12;
+    public static int id_num = 0;
 
     public static void toPrev(Activity activity) {
         if(stack_page.empty()) System.exit(0);
@@ -47,13 +47,11 @@ public class Common {
     }
 
     public static void contactCopy(ArrayList<Contact> src, ArrayList<Contact> dest) {
-        if(src != null) {
+        if(src != null && dest != null) {
             Collections.sort(src);
 
             dest.clear();
-            for(Contact contact: src) {
-                dest.add(contact);
-            }
+            dest.addAll(src);
         }
     }
 
@@ -95,11 +93,10 @@ public class Common {
                         .put("tags", contact.getTags())
                         .put("profileImage", contact.getProfileImage());
 
-                Log.d("qweqwe", contact.getTags().toString());
                 if(contact.getLastMeet() == null) {
                     content.put("lastMeet", "");
                 } else {
-                    content.put("lastMeet", format.format(contact.getLastMeet()));
+                    content.put("lastMeet", contact.getLastMeet());
                 }
 
                 arr.put(content);
@@ -116,7 +113,7 @@ public class Common {
     public static void setTagsColor(TextView[] views, String checked) {
         String[] tagString = checked.replaceAll("[\\[\\]]", "").split(", ");
         for(int i = 0; i < 6; i++) {
-            if(Boolean.parseBoolean(tagString[i])){
+            if(tagString[i].equals("true")){
                 views[i].setBackgroundResource(food_tags_color[i]);
             }
         }

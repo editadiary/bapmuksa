@@ -1,14 +1,7 @@
 package com.example.myapplication.Contact;
 
-import android.annotation.SuppressLint;
-import android.database.Cursor;
-
-import com.example.myapplication.Common;
-
-import java.util.Date;
-
 public class Contact implements Comparable<Contact> {
-    private int id;
+    private final int id;
     private String name;
     private String phone;
     private String tags;
@@ -38,7 +31,7 @@ public class Contact implements Comparable<Contact> {
 
     public String getProfileImage() { return profileImage; }
 
-    public String getLastMeet() { return lastMeet; };
+    public String getLastMeet() { return lastMeet; }
 
     public void setName(String name) {
         this.name = name;
@@ -49,8 +42,6 @@ public class Contact implements Comparable<Contact> {
     }
 
     public void setTags(String tags) { this.tags = tags; }
-
-    public void setProfileImage(String profileImage) { this.profileImage = profileImage; }
 
     public void setLastMeet(String lastMeet) { this.lastMeet = lastMeet; }
 

@@ -13,12 +13,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.myapplication.R;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class RecommendFirstActivity extends AppCompatActivity implements View.OnClickListener {
     private ArrayList<String> foodTags;
     private Spinner foodSpinner;
     private FoodSpinnerAdapter foodAdapter;
-    private String selectedFood;
+    private int selectedTagPosition;
     Button searchBtn;
 
     @Override
@@ -40,9 +41,7 @@ public class RecommendFirstActivity extends AppCompatActivity implements View.On
         final String[] foods = {"전체", "한식", "중식", "일식", "양식", "후식", "기타"};
         int sz = foods.length;
 
-        for(int i = 0; i < sz; ++i) {
-            foodTags.add(foods[i]);
-        }
+        foodTags.addAll(Arrays.asList(foods).subList(0, sz));
     }
 
     private void initViews() {
@@ -58,7 +57,7 @@ public class RecommendFirstActivity extends AppCompatActivity implements View.On
         foodSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                selectedFood = parent.getItemAtPosition(position).toString();
+                selectedTagPosition = position;
             }
 
             @Override
@@ -76,7 +75,7 @@ public class RecommendFirstActivity extends AppCompatActivity implements View.On
         Intent intent = new Intent(this, RecommendSecondActivity.class);
         intent.putExtra("min", min)
                 .putExtra("max", max)
-                .putExtra("selected", selectedFood);
+                .putExtra("selectedTag", selectedTagPosition-1);
 
         startActivity(intent);
     }

@@ -129,6 +129,7 @@ public class ContactUpdateActivity extends AppCompatActivity implements View.OnC
                 intent.putExtra("name", name)
                         .putExtra("phone", phone)
                         .putExtra("tags", Arrays.toString(tagBoolean))
+                        .putExtra("lastMeet", contact.getLastMeet())
                         .putExtra("pos", pos);
                 setResult(200, intent);
                 finish();
@@ -163,5 +164,10 @@ public class ContactUpdateActivity extends AppCompatActivity implements View.OnC
         } catch(IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        toPrev(this);
     }
 }
