@@ -1,5 +1,6 @@
 package com.example.myapplication.Gallery;
 
+import static com.example.myapplication.Common.goIntent;
 import static com.example.myapplication.Common.mContactList;
 import static com.example.myapplication.Common.mGalleryList;
 import static com.example.myapplication.Common.galleryAdapter;
@@ -19,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myapplication.Common;
 import com.example.myapplication.R;
 
 import java.util.ArrayList;
@@ -139,6 +141,7 @@ public class ClickedItemActivity extends AppCompatActivity {
         EditBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                goIntent(8);
                 startActivity(new Intent(ClickedItemActivity.this,
                         ClickedItemEditActivity.class).putExtra("index", idx));
 
@@ -154,5 +157,10 @@ public class ClickedItemActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Common.toPrev(this);
     }
 }

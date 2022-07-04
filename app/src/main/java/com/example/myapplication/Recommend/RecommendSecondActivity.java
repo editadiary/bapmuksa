@@ -145,13 +145,17 @@ public class RecommendSecondActivity extends AppCompatActivity implements View.O
 
     @SuppressLint("NewApi")
     private ArrayList<Contact> filterByDay(ArrayList<Contact> contacts) {
+        if (contacts == null) return new ArrayList<>();
+
         return (ArrayList<Contact>) contacts.stream().filter(contact -> {
+            if( contact.getLastMeet() == null || contact.getLastMeet().equals("")) return false;
             try {
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
                 Date current = simpleDateFormat.parse(simpleDateFormat.format(new Date()));
                 Date prev = simpleDateFormat.parse(contact.getLastMeet());
 
                 assert current != null;
+                assert prev != null;
                 long days = (current.getTime() - prev.getTime()) / (24 * 60 * 60 * 1000);
 
                 if(min <= days && days <= max) {
@@ -173,6 +177,7 @@ public class RecommendSecondActivity extends AppCompatActivity implements View.O
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.searchBtn) {
+            goIntent(11);
             Intent intent = new Intent(this, RecommendThirdActivity.class);
             intent.putExtra("selectedTagPosition", selectedTagPosition);
             startActivity(intent);

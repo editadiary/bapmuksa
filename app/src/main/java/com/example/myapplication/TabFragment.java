@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import static com.example.myapplication.Common.goIntent;
 import static com.example.myapplication.Common.stack_page;
 import static com.example.myapplication.Common.currentTab;
 
@@ -51,18 +52,19 @@ public class TabFragment extends Fragment implements View.OnClickListener {
 
         if(id == R.id.ic_person_square && stack_page.peek() != 1) {
             currentTab = 1;
-            stack_page.push(1); flag = false;
+            goIntent(1); flag = false;
             intent = new Intent(activity, ContactActivity.class);
         }
-        else if (id == R.id.ic_gallery && stack_page.peek() != 2) {
+
+        if (id == R.id.ic_gallery && stack_page.peek() != 2) {
             currentTab = 2;
-            stack_page.push(2); flag = false;
+            goIntent(2); flag = false;
             intent = new Intent(activity, GalleryMainActivity.class);
         }
 
         if(id == R.id.ic_heart && stack_page.peek() != 3) {
             currentTab = 3;
-            stack_page.push(3); flag = false;
+            goIntent(3); flag = false;
             intent = new Intent(activity, RecommendSecondActivity.class);
         }
 

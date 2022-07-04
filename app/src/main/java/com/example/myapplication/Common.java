@@ -36,9 +36,14 @@ public class Common {
     public static ArrayList<ImageFile> mGalleryList;
     public static GalleryAdapter galleryAdapter;
 
-    // btn: 0: Home, 1: Contact, 2: Gallery, 3:IDK, 4: Contact Create, 5: Contact Detail, 6: Contact Update
+    // btn: 0: Home, 1: Contact, 2: Gallery, 3:Recommend, 4: ContactCreate, 5: ContactDetail, 6: ContactUpdate,
+    // btn: 7: ClickedItem, 8: ClickedItemEdit, 9: FindFriends,  11:RecommendThird
     public static int currentTab = 0;
     public static int id_num = 0;
+
+    public static void goIntent(int next_activity) {
+        stack_page.push(next_activity);
+    }
 
     public static void toPrev(Activity activity) {
         if(stack_page.empty()) System.exit(0);

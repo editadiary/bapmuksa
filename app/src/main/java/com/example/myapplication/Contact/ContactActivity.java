@@ -75,7 +75,7 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
         return (v, position) -> {
             if(stack_page.peek() == 5) return;
 
-            stack_page.push(5);
+            goIntent(5);
             Intent intent = new Intent(this, ContactDetailActivity.class);
 
             intent.putExtra("name", mContactList.get(position).getName())
@@ -200,7 +200,7 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
         if(v.getId() == R.id.ic_plus) {
             if(stack_page.peek() == 4) return;
 
-            stack_page.push(4);
+            goIntent(4);
             Intent intent = new Intent(this, ContactCreateActivity.class);
             startActivity(intent);
         }

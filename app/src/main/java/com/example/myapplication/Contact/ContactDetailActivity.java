@@ -99,7 +99,7 @@ public class ContactDetailActivity extends AppCompatActivity implements View.OnC
             pos = extras.getString("pos");
         }
 
-        String day = getDays() + "일";
+        String day = lastMeet == null || lastMeet.equals("") ? "? 일" : getDays() + "일";
 
         nameTV.setText(name);
         phoneTV.setText(phone);
@@ -144,7 +144,7 @@ public class ContactDetailActivity extends AppCompatActivity implements View.OnC
         Intent intent;
 
         if(id == R.id.ic_edit){
-            stack_page.pop(); stack_page.push(6);
+            goIntent(6);
 
             intent = new Intent(getApplicationContext(), ContactUpdateActivity.class);
             intent.putExtra("name", name)
@@ -170,7 +170,7 @@ public class ContactDetailActivity extends AppCompatActivity implements View.OnC
                 contactCopy(allContacts, mContactList);
                 contactsWrite();
                 Toast.makeText(this, "This Contact is deleted.", Toast.LENGTH_LONG).show();
-                stack_page.pop(); stack_page.push(1);
+                toPrev(this);
                 finish();
                 mAdapter.notifyDataSetChanged();
             });

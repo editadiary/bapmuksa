@@ -116,7 +116,7 @@ public class ContactCreateActivity extends AppCompatActivity implements View.OnC
 
                 stack_page.pop(); stack_page.push(1);
 
-                AddContact(new Contact(id_num++, name, phone, Arrays.toString(tags), "ic_person", "20220701"));
+                AddContact(new Contact(id_num++, name, phone, Arrays.toString(tags), "ic_person", null));
                 Intent intent = new Intent(getApplicationContext(), ContactDetailActivity.class);
                 intent.putExtra("name", name)
                         .putExtra("phone", phone)
