@@ -3,6 +3,7 @@ package com.example.myapplication.Gallery;
 import com.example.myapplication.Contact.Contact;
 import com.example.myapplication.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ImageFile {
@@ -10,15 +11,15 @@ public class ImageFile {
     private int image;
     private int tag; //0: 한식, 1:중식, 2:일식, 3:양식, 4:후식, 5:기타
     private String date;
-    private int friend;
+    private ArrayList<Integer> friends;
 
     public ImageFile(String name, int image, int tag, String date,
-                     int fid){
+                     ArrayList<Integer> fids){
         this.name = name;
         this.image = image;
         this.tag = tag;
         this.date = date;
-        this.friend = fid;
+        this.friends = fids;
 
     }
 
@@ -33,7 +34,8 @@ public class ImageFile {
     public int getTag() {return tag;}
 
     public String getDate() {return date;}
-    public int getFriend() {return friend;}
+
+    public ArrayList<Integer> getFriends() {return friends;}
 
     public String getTagName() {
         switch (tag) {
@@ -50,12 +52,10 @@ public class ImageFile {
         this.name = name;
     }
 
-    public void setFriends(int pos) {this.friend = pos;}
+    public void addFriend(int pos) {this.friends.add(pos);}
 
     public void setTag(int tag) {
         this.tag = tag;
     }
-
-
 
 }

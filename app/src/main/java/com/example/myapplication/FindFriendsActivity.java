@@ -34,12 +34,13 @@ import com.example.myapplication.Contact.ContactCreateActivity;
 import com.example.myapplication.Contact.ContactDetailActivity;
 import com.example.myapplication.Gallery.ClickedItemActivity;
 import com.example.myapplication.Gallery.ClickedItemEditActivity;
+import com.example.myapplication.Gallery.GalleryMainActivity;
 import com.example.myapplication.Gallery.ImageFile;
 
 
 public class FindFriendsActivity extends AppCompatActivity implements View.OnClickListener{
 
-//    ClickedItemEditActivity clickedItemEditActivity = (ClickedItemEditActivity) ClickedItemEditActivity.clickedItemEditActivity;
+    ClickedItemEditActivity clickedItemEditActivity = (ClickedItemEditActivity) ClickedItemEditActivity.clickedItemEditActivity;
 
     private ImageView searchIcon;
     private LinearLayout searchLinearLayout;
@@ -147,13 +148,12 @@ public class FindFriendsActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void setOnClickListener() {
-        listener = (v, position) -> {
-//            if(stack_page.peek() == 5) return;
 
-//            clickedItemEditActivity.finish();
+        listener = (v, position) -> {
+            clickedItemEditActivity.finish();
 
             ImageFile image = mGalleryList.get(idx);
-            image.setFriends(position);
+            image.addFriend(position);
 
             mGalleryList.set(idx, image);
             galleryAdapter.notifyDataSetChanged();
@@ -163,9 +163,11 @@ public class FindFriendsActivity extends AppCompatActivity implements View.OnCli
             mContactList.set(position, contact);
             mAdapter.notifyDataSetChanged();
 
+            startActivity(new Intent(FindFriendsActivity.this,
+                    ClickedItemEditActivity.class).putExtra("index", idx));
+
             finish();
 
-//            stack_page.push(5);
         };
     }
 
