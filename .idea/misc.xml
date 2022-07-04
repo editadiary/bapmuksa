@@ -39,9 +39,12 @@
         <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/activity_contact_detail.xml" value="0.16893115942028986" />
         <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/activity_recommend_firstpage.xml" value="0.1" />
         <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/activity_recommend_secondpage.xml" value="0.16893115942028986" />
+        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/activity_recommend_thirdpage.xml" value="0.1" />
+        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/activity_recommended_third.xml" value="0.17553191489361702" />
         <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/contact_food_spinner_item.xml" value="0.17553191489361702" />
         <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/contact_fragment.xml" value="0.18489583333333334" />
         <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/food_spinner_item.xml" value="0.25625" />
+        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/recommened_third_contact_fragment.xml" value="0.17553191489361702" />
       </map>
     </option>
   </component>

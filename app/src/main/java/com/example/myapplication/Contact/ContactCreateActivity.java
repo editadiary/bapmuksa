@@ -51,7 +51,7 @@ public class ContactCreateActivity extends AppCompatActivity implements View.OnC
         tags = new boolean[6];
         tagTV = new TextView[6];
         tagsID = new int[6]; getTagId();
-
+// R.id.id_name
         for(int i = 0; i < 6; ++i) {
             tags[i] = false;
             tagTV[i] = findViewById(tagsID[i]);

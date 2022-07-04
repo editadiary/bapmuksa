@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/top_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:name="com.example.myapplication.TopFragment"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout="@layout/top_fragment"
+        />
+
+    <TextView
+        android:id="@+id/recommendText"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:gravity="center"
+        android:text="이 사람들은 어때요?"
+        android:textSize="28sp"
+        android:fontFamily="@font/binggrae"
+        app:layout_constraintTop_toBottomOf="@id/top_fragment"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recommenedContacts"
+        android:fontFamily="@font/binggrae"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintTop_toBottomOf="@id/recommendText"
+        app:layout_constraintBottom_toTopOf="@id/TabFragment"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/TabFragment"
+        android:name="com.example.myapplication.TabFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout="@layout/tab_fragment"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

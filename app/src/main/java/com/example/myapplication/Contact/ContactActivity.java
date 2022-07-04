@@ -50,7 +50,7 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
     private LinearLayoutManager mLinearLayoutManager;
     private LinearLayout searchLinearLayout;
     private EditText searchET;
-    private boolean searchVisible = false;
+    private boolean searchVisible;
     private static RecyclerView mRecyclerView;
     private static ContactAdapter.RecyclerViewClickListener listener;
     private int tagPosition;
@@ -69,16 +69,8 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
         initDecoration();
     }
 
-    private void initTags() {
-        final String[] foods = {"전체", "한식", "중식", "일식", "양식", "후식", "기타"};
-        int sz = foods.length;
-
-        for(int i = 0; i < sz; ++i) {
-            foodTags.add(foods[i]);
-        }
-    }
-
     private void initVariables() {
+        searchVisible = false;
         foodTags = new ArrayList<>();
         foodAdapter = new SearchFoodSpinnerAdapter(this, foodTags);
         mLinearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
@@ -88,6 +80,16 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
 
         mAdapter = new ContactAdapter(mContactList, listener);
     }
+
+    private void initTags() {
+        final String[] foods = {"전체", "한식", "중식", "일식", "양식", "후식", "기타"};
+        int sz = foods.length;
+
+        for(int i = 0; i < sz; ++i) {
+            foodTags.add(foods[i]);
+        }
+    }
+
 
     private void initRecyclerViewListener() {
         listener = (v, position) -> {
@@ -223,16 +225,15 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
         }
 
         if(v.getId() == R.id.searchBtn) {
-            if(searchVisible == false) {
-                tagPosition = 0;
+            tagPosition = 0;
+
+            if(!searchVisible) {
                 searchVisible = true;
                 searchLinearLayout.setVisibility(View.VISIBLE);
             }
             else {
-                Log.d("1231231231", allContacts.toString());
                 contactCopy(allContacts, mContactList);
                 searchString=null;
-                tagPosition = -1;
                 searchET.setText("");
                 foodSpinner.setSelection(0);
                 searchVisible = false;
