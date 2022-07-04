@@ -22,13 +22,16 @@ import org.json.JSONObject;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class ContactDetailActivity extends AppCompatActivity implements View.OnClickListener {
-    String pos = "-1", name = "이름이 없습니다.", phone = "전화번호가 없습니다.";
-    String tags;
+    String pos, name, phone, tags, lastMeet;
     ActivityResultLauncher<Intent> activityResultLauncher;
     ImageView editBtn, deleteBtn;
-    TextView nameTV, phoneTV;
+    TextView nameTV, phoneTV, dayTV;
     TextView[] tagTV = new TextView[6];
     Bundle extras;
 
@@ -37,21 +40,32 @@ public class ContactDetailActivity extends AppCompatActivity implements View.OnC
         setContentView(R.layout.activity_contact_detail);
 
         // findViewById
+        initViews();
+        initListeners();
+        setViews();
+        initLauncher();
+    }
+
+    private void initLauncher(){
+        activityResultLauncher = setResultLauncher();
+    }
+
+    private void initViews() {
         editBtn = findViewById(R.id.ic_edit);
         deleteBtn = findViewById(R.id.ic_delete);
 
         nameTV = findViewById(R.id.detail_name);
         phoneTV = findViewById(R.id.detail_phone);
-
-        editBtn.setOnClickListener(this);
-        deleteBtn.setOnClickListener(this);
+        dayTV = findViewById(R.id.dDay);
 
         for(int i = 0; i < 6; ++i)
             tagTV[i] = findViewById(getResources().getIdentifier(Common.food_tags_id[i], "id", getPackageName()));
 
-        setViews();
+    }
 
-        activityResultLauncher = setResultLauncher();
+    private void initListeners() {
+        editBtn.setOnClickListener(this);
+        deleteBtn.setOnClickListener(this);
     }
 
     private ActivityResultLauncher<Intent> setResultLauncher() {
@@ -64,33 +78,64 @@ public class ContactDetailActivity extends AppCompatActivity implements View.OnC
                     name = extras.getString("name");
                     phone = extras.getString("phone");
                     tags = extras.getString("tags");
+                    lastMeet = extras.getString("lastMeet");
                     pos = extras.getString("pos");
-
                 }
+
                 nameTV.setText(name);
                 phoneTV.setText(phone);
                 Common.setTagsColor(tagTV, tags);
             }
         });
     }
+
     private void setViews() {
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
             name = extras.getString("name");
             phone = extras.getString("phone");
             tags = extras.getString("tags");
+            lastMeet = extras.getString("lastMeet");
             pos = extras.getString("pos");
         }
 
+        String day = getDays() + "일";
+
         nameTV.setText(name);
         phoneTV.setText(phone);
+        dayTV.setText(day);
 
         Common.setTagsColor(tagTV, tags);
     }
 
-    @Override
-    public void onBackPressed() {
-        Common.toPrev(this);
+    private String getDays() {
+        try {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
+            Date current = simpleDateFormat.parse(simpleDateFormat.format(new Date()));
+            Date prev = simpleDateFormat.parse(lastMeet);
+
+            assert current != null;
+            long days = (current.getTime() - prev.getTime()) / (24 * 60 * 60 * 1000);
+            return Long.toString(days);
+        } catch (ParseException e) {
+            e.printStackTrace();
+
+            return null;
+        }
+    }
+
+    private void contactsWrite() {
+        try{
+            FileOutputStream os = openFileOutput(CONTACT_JSON_FILE_NAME, MODE_PRIVATE);
+            JSONObject jsonFile = contactsToJson();
+
+            assert jsonFile != null;
+            os.write(jsonFile.toString().getBytes());
+            os.flush();
+            os.close();
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -137,17 +182,8 @@ public class ContactDetailActivity extends AppCompatActivity implements View.OnC
         }
     }
 
-    private void contactsWrite() {
-        try{
-            FileOutputStream os = openFileOutput(CONTACT_JSON_FILE_NAME, MODE_PRIVATE);
-            JSONObject jsonFile = contactsToJson();
-
-            assert jsonFile != null;
-            os.write(jsonFile.toString().getBytes());
-            os.flush();
-            os.close();
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
+    @Override
+    public void onBackPressed() {
+        Common.toPrev(this);
     }
 }

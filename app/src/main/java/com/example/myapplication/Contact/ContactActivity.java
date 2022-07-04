@@ -2,19 +2,9 @@ package com.example.myapplication.Contact;
 
 import static com.example.myapplication.Common.*;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
-import android.content.ContentProviderOperation;
-import android.content.ContentResolver;
-import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -25,8 +15,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -34,12 +22,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.Common;
 import com.example.myapplication.R;
-import com.example.myapplication.Recommend.FoodSpinnerAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class ContactActivity extends AppCompatActivity implements View.OnClickListener {
@@ -74,33 +59,29 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
         foodTags = new ArrayList<>();
         foodAdapter = new SearchFoodSpinnerAdapter(this, foodTags);
         mLinearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-
-        initRecyclerViewListener();
+        listener = initRecyclerViewListener();
         contactCopy(allContacts, mContactList);
-
         mAdapter = new ContactAdapter(mContactList, listener);
     }
 
     private void initTags() {
         final String[] foods = {"전체", "한식", "중식", "일식", "양식", "후식", "기타"};
-        int sz = foods.length;
 
-        for(int i = 0; i < sz; ++i) {
-            foodTags.add(foods[i]);
-        }
+        foodTags.addAll(Arrays.asList(foods));
     }
 
 
-    private void initRecyclerViewListener() {
-        listener = (v, position) -> {
+    private ContactAdapter.RecyclerViewClickListener initRecyclerViewListener() {
+        return (v, position) -> {
             if(stack_page.peek() == 5) return;
 
             stack_page.push(5);
             Intent intent = new Intent(this, ContactDetailActivity.class);
-            Log.d("tags____", mContactList.get(position).getTags().toString());
+
             intent.putExtra("name", mContactList.get(position).getName())
                     .putExtra("phone", mContactList.get(position).getPhone())
                     .putExtra("tags", mContactList.get(position).getTags())
+                    .putExtra("lastMeet", mContactList.get(position).getLastMeet())
                     .putExtra("pos", Integer.toString(position));
 
             startActivity(intent);

@@ -3,6 +3,7 @@ package com.example.myapplication.Recommend;
 import static com.example.myapplication.Common.allContacts;
 import static com.example.myapplication.Common.stack_page;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +20,7 @@ import com.example.myapplication.R;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.stream.Collectors;
 
 public class RecommendThirdActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
@@ -27,6 +29,7 @@ public class RecommendThirdActivity extends AppCompatActivity {
     private LinearLayoutManager mLinearLayoutManager;
     private ArrayList<Contact> filteredContact;
     private Date currentDate;
+    private int tagPosition;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,11 +43,29 @@ public class RecommendThirdActivity extends AppCompatActivity {
     }
 
     private void initVariables() {
+        getExtras();
         currentDate = new Date();
         initRecyclerViewListener();
-        filteredContact = filterByDate(currentDate);
+        filteredContact = filterByTag(allContacts);
         contactAdapter = new RecommendedContactAdapter(allContacts, listener);
         mLinearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+    }
+
+    private void getExtras() {
+        Bundle extra = getIntent().getExtras();
+        if(extra != null) {
+            tagPosition = extra.getInt("selectedTagPosition");
+        }
+    }
+
+    @SuppressLint("NewApi")
+    private ArrayList<Contact> filterByTag(ArrayList<Contact> contacts) {
+        if(tagPosition == 0) return contacts;
+
+        return (ArrayList<Contact>) contacts.stream().filter(contact -> {
+            String[] tagString = contact.getTags().replaceAll("[\\[\\]]", "").split(", ");
+            return tagString[tagPosition - 1].equals("true");
+        }).collect(Collectors.toList());
     }
 
     private ArrayList<Contact> filterByDate(Date currentDate) {
@@ -61,6 +82,7 @@ public class RecommendThirdActivity extends AppCompatActivity {
             intent.putExtra("name", filteredContact.get(position).getName())
                     .putExtra("phone", filteredContact.get(position).getPhone())
                     .putExtra("tags", filteredContact.get(position).getTags())
+                    .putExtra("lastMeet", filteredContact.get(position).getLastMeet())
                     .putExtra("pos", Integer.toString(position));
 
             startActivity(intent);

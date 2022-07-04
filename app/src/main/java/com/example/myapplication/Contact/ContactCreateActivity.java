@@ -37,7 +37,6 @@ import java.util.Collections;
 
 public class ContactCreateActivity extends AppCompatActivity implements View.OnClickListener {
     private EditText edit_name, edit_phone1, edit_phone2, edit_phone3;
-    private TextView[] tagTV;
     private boolean[] tags;
     private int[] tagsID;
 
@@ -46,14 +45,13 @@ public class ContactCreateActivity extends AppCompatActivity implements View.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_create);
 
-        ImageView addBtn, plusTag;
+        ImageView addBtn;
 
-        tags = new boolean[6];
-        tagTV = new TextView[6];
-        tagsID = new int[6]; getTagId();
-// R.id.id_name
+        TextView[] tagTV = new TextView[6];
+        tags = new boolean[] {false, false, false, false, false, false};
+        tagsID = getTagId();
+
         for(int i = 0; i < 6; ++i) {
-            tags[i] = false;
             tagTV[i] = findViewById(tagsID[i]);
             tagTV[i].setOnClickListener(this);
         }
@@ -66,15 +64,18 @@ public class ContactCreateActivity extends AppCompatActivity implements View.OnC
         addBtn.setOnClickListener(this);
     }
 
-    private void getTagId() {
+    private int[] getTagId() {
+        int[] retTagIDs = new int[6];
         for(int i = 0; i < 6; ++i)
-            tagsID[i] = getResources().getIdentifier(food_tags_id[i], "id", getPackageName());
+            retTagIDs[i] = getResources().getIdentifier(food_tags_id[i], "id", getPackageName());
+
+        return retTagIDs;
     }
 
     private void AddContact(Contact new_contact) {
         allContacts.add(new_contact);
-        contactsWrite();
         contactCopy(allContacts, mContactList);
+        contactsWrite();
         mAdapter.notifyDataSetChanged();
     }
 
@@ -91,7 +92,6 @@ public class ContactCreateActivity extends AppCompatActivity implements View.OnC
             e.printStackTrace();
         }
     }
-
 
     @Override
     public void onClick(View v) {
@@ -114,10 +114,9 @@ public class ContactCreateActivity extends AppCompatActivity implements View.OnC
             else{
                 String phone = phone1 + "-" + phone2 + "-" + phone3;
 
-                stack_page.push(1);
+                stack_page.pop(); stack_page.push(1);
 
-                Log.d("tags__", Arrays.toString(tags));
-                AddContact(new Contact(id_num++, name, phone, Arrays.toString(tags), "ic_person", null));
+                AddContact(new Contact(id_num++, name, phone, Arrays.toString(tags), "ic_person", "20220701"));
                 Intent intent = new Intent(getApplicationContext(), ContactDetailActivity.class);
                 intent.putExtra("name", name)
                         .putExtra("phone", phone)

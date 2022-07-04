@@ -15,7 +15,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.example.myapplication.Contact.ContactActivity;
 import com.example.myapplication.Gallery.GalleryMainActivity;
-import com.example.myapplication.Recommend.RecommendFirstActivity;
+import com.example.myapplication.Recommend.RecommendSecondActivity;
 
 public class TabFragment extends Fragment implements View.OnClickListener {
     private ImageView ContactBtn, GalleryBtn, HeartBtn;
@@ -63,7 +63,7 @@ public class TabFragment extends Fragment implements View.OnClickListener {
         if(id == R.id.ic_heart && stack_page.peek() != 3) {
             currentTab = 3;
             stack_page.push(3); flag = false;
-            intent = new Intent(activity, RecommendFirstActivity.class);
+            intent = new Intent(activity, RecommendSecondActivity.class);
         }
 
         if(!flag){
