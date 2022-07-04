@@ -36,18 +36,6 @@ public class RecommendFirstActivity extends AppCompatActivity implements View.On
         searchBtn = findViewById(R.id.searchBtn);
 
         searchBtn.setOnClickListener(this);
-
-        tagSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                tagIdx = i;
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                tagIdx = 0;
-            }
-        });
-
     }
 
     @Override

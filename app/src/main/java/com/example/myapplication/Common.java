@@ -2,8 +2,11 @@ package com.example.myapplication;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Build;
 import android.os.Environment;
 import android.widget.TextView;
+
+import androidx.annotation.RequiresApi;
 
 import com.example.myapplication.Contact.Contact;
 import com.example.myapplication.Contact.ContactAdapter;
@@ -14,18 +17,17 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Stack;
-
 
 public class Common {
     public static final String[] food_tags_id = {"tagKorean", "tagChinese", "tagJapanese", "tagItalian", "tagDessert", "tagETC"};
     public static final int[] food_tags_color = {R.drawable.checked_circle_korean, R.drawable.checked_circle_chinese, R.drawable.checked_circle_japanese, R.drawable.checked_circle_italian, R.drawable.checked_circle_dessert, R.drawable.checked_circle_etc};
-    public static final String root = Environment.getExternalStorageDirectory().getAbsolutePath();
-    public static final String files_path = "/Android/data/com.example.myapplication/files/";
+    public static final String root = Environment.getDataDirectory().getAbsolutePath();
     public static final String CONTACT_JSON_FILE_NAME = "contact.json";
     public static boolean isAvailable = false, isReadable = false, isWriteable = false;
     public static Stack<Integer> stack_page;
-    public static ArrayList<Contact> mContactList;
+    public static ArrayList<Contact> allContacts, mContactList;
     public static ContactAdapter mAdapter;
     public static ArrayList<ImageFile> mGalleryList;
     public static GalleryAdapter galleryAdapter;
@@ -38,6 +40,15 @@ public class Common {
         if(stack_page.empty()) System.exit(0);
         stack_page.pop();
         activity.finish();
+    }
+
+    public static void contactCopy(ArrayList<Contact> src, ArrayList<Contact> dest) {
+        Collections.sort(src);
+
+        dest.clear();
+        for(Contact contact: src) {
+            dest.add(contact);
+        }
     }
 
     public static String getJsonString(Context context, String fileName) {

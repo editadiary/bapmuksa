@@ -63,10 +63,9 @@ public class ContactDetailActivity extends AppCompatActivity implements View.OnC
                     tags = extras.getBooleanArray("tags");
                     pos = extras.getString("pos");
                 }
-                Common.setTagsColor(tagTV, tags);
-
                 nameTV.setText(name);
                 phoneTV.setText(phone);
+                Common.setTagsColor(tagTV, tags);
             }
         });
     }

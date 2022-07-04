@@ -28,13 +28,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        getExternalStorage();
+        // getExternalStorage();
+        mContactList = new ArrayList<>();
         stack_page = new Stack<>(); stack_page.push(0);
         getContacts();
         initGallery();
     }
 
-    private void getExternalStorage() {
+    private void getDataStorage() {
         String state = Environment.getExternalStorageState();
         if(state.equals(Environment.MEDIA_MOUNTED)) {
             isAvailable = true;
@@ -44,10 +45,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getContacts() {
-        String contact_JSON_str = getJsonString(this, CONTACT_JSON_FILE_NAME);
-        mContactList = parseContact(contact_JSON_str);
-
-        Collections.sort(mContactList);
+        String contactsJsonString = getJsonString(this, CONTACT_JSON_FILE_NAME);
+        allContacts = parseContact(contactsJsonString);
+        contactCopy(allContacts, mContactList);
     }
 
     private ArrayList<Contact> parseContact(String json) {
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                     tags[j] = tags_array.getBoolean(j);
                 }
 
-                Contact data = new Contact(Integer.toString(id_num), name, phone, tags, "ic_person", null); ++id_num;
+                Contact data = new Contact(id_num++, name, phone, tags, "ic_person", null);
 
                 newArrayList.add(data);
             }
