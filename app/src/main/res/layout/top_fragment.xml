@@ -6,7 +6,7 @@
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:background="@color/color4"
@@ -17,7 +17,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:contentDescription="@string/tohome"
             android:onClick="toHome"
             app:layout_constraintStart_toStartOf="parent"
