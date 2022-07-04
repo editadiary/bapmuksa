@@ -13,8 +13,10 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.myapplication.Common;
 import com.example.myapplication.R;
 
+import static com.example.myapplication.Common.goIntent;
 import static com.example.myapplication.Common.mGalleryList;
 import static com.example.myapplication.Common.galleryAdapter;
 
@@ -35,6 +37,7 @@ public class GalleryMainActivity extends AppCompatActivity {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                goIntent(7);
                 startActivity(new Intent(GalleryMainActivity.this,
                         ClickedItemActivity.class).putExtra("index", i));
 
@@ -77,6 +80,10 @@ public class GalleryMainActivity extends AppCompatActivity {
                 // Not implemented yet
             }
         });
+    }
+    @Override
+    public void onBackPressed() {
+        Common.toPrev(this);
     }
 }
 

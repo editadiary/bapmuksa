@@ -1,12 +1,15 @@
 package com.example.myapplication;
 
+import static com.example.myapplication.Common.CONTACT_JSON_FILE_NAME;
 import static com.example.myapplication.Common.allContacts;
 import static com.example.myapplication.Common.contactCopy;
+import static com.example.myapplication.Common.contactsToJson;
 import static com.example.myapplication.Common.galleryAdapter;
 import static com.example.myapplication.Common.mAdapter;
 import static com.example.myapplication.Common.mContactList;
 import static com.example.myapplication.Common.mGalleryList;
 import static com.example.myapplication.Common.stack_page;
+import static com.example.myapplication.Common.toPrev;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -28,6 +31,8 @@ import android.widget.Spinner;
 import com.example.myapplication.Contact.Contact;
 import com.example.myapplication.Contact.ContactAdapter;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import com.example.myapplication.Common;
 import com.example.myapplication.Contact.ContactCreateActivity;
@@ -36,6 +41,8 @@ import com.example.myapplication.Gallery.ClickedItemActivity;
 import com.example.myapplication.Gallery.ClickedItemEditActivity;
 import com.example.myapplication.Gallery.GalleryMainActivity;
 import com.example.myapplication.Gallery.ImageFile;
+
+import org.json.JSONObject;
 
 
 public class FindFriendsActivity extends AppCompatActivity implements View.OnClickListener{
@@ -160,7 +167,14 @@ public class FindFriendsActivity extends AppCompatActivity implements View.OnCli
 
             Contact contact = mContactList.get(position);
             contact.setLastMeet(image.getDate());
-            mContactList.set(position, contact);
+            for(int i = 0; i < allContacts.size(); ++i) {
+                if(allContacts.get(i).getId() == contact.getId()) {
+                    allContacts.set(i, contact);
+                    break;
+                }
+            }
+            contactCopy(allContacts, mContactList);
+            contactsWrite();
             mAdapter.notifyDataSetChanged();
 
             startActivity(new Intent(FindFriendsActivity.this,
@@ -169,6 +183,20 @@ public class FindFriendsActivity extends AppCompatActivity implements View.OnCli
             finish();
 
         };
+    }
+
+    private void contactsWrite() {
+        try{
+            FileOutputStream os = openFileOutput(CONTACT_JSON_FILE_NAME, MODE_PRIVATE);
+            JSONObject jsonFile = contactsToJson();
+
+            assert jsonFile != null;
+            os.write(jsonFile.toString().getBytes());
+            os.flush();
+            os.close();
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -181,7 +209,6 @@ public class FindFriendsActivity extends AppCompatActivity implements View.OnCli
                 searchLinearLayout.setVisibility(View.VISIBLE);
             }
             else {
-                Log.d("1231231231", allContacts.toString());
                 contactCopy(allContacts, mContactList);
                 searchString=null;
                 tagPosition = -1;
@@ -190,6 +217,7 @@ public class FindFriendsActivity extends AppCompatActivity implements View.OnCli
                 searchVisible = false;
                 searchLinearLayout.setVisibility(View.GONE);
                 mAdapter.notifyDataSetChanged();
+                toPrev(this);
             }
         }
     }
@@ -198,6 +226,4 @@ public class FindFriendsActivity extends AppCompatActivity implements View.OnCli
     public void onBackPressed() {
         Common.toPrev(this);
     }
-
-
 }

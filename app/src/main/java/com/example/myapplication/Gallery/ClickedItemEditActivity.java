@@ -1,8 +1,10 @@
 package com.example.myapplication.Gallery;
 
 import static com.example.myapplication.Common.galleryAdapter;
+import static com.example.myapplication.Common.goIntent;
 import static com.example.myapplication.Common.mContactList;
 import static com.example.myapplication.Common.mGalleryList;
+import static com.example.myapplication.Common.toPrev;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AlertDialog;
@@ -22,6 +24,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myapplication.Common;
 import com.example.myapplication.FindFriendsActivity;
 import com.example.myapplication.R;
 
@@ -154,28 +157,38 @@ public class ClickedItemEditActivity extends AppCompatActivity implements View.O
             startActivity(new Intent(ClickedItemEditActivity.this,
                     ClickedItemActivity.class).putExtra("index", idx));
 
-            finish();
+            toPrev(this);
         }
 
         if(v.getId() == R.id.friend1) {
+            goIntent(9);
             startActivity(new Intent(ClickedItemEditActivity.this,
                     FindFriendsActivity.class).putExtra("index", idx));
 
         }
         if(v.getId() == R.id.friend2) {
+            goIntent(9);
             startActivity(new Intent(ClickedItemEditActivity.this,
                     FindFriendsActivity.class).putExtra("index", idx));
 
 
         }
         if(v.getId() == R.id.friend3) {
+            goIntent(9);
             startActivity(new Intent(ClickedItemEditActivity.this,
                     FindFriendsActivity.class).putExtra("index", idx));
 
         }
         if(v.getId() == R.id.friend4) {
-
+            goIntent(9);
+            startActivity(new Intent(ClickedItemEditActivity.this,
+                    FindFriendsActivity.class).putExtra("index", idx));
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Common.toPrev(this);
     }
 }

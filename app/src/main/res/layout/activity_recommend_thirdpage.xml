@@ -14,30 +14,58 @@
         tools:layout="@layout/top_fragment"
         />
 
+
+
     <TextView
-        android:id="@+id/recommendText"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:gravity="center"
-        android:text="이 사람들은 어때요?"
-        android:textSize="28sp"
+        android:id="@+id/cannotFind"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:text="조건에 맞는 친구가 없어요..."
+        android:textSize="22sp"
         android:fontFamily="@font/binggrae"
+        android:visibility="gone"
+        android:gravity="center"
         app:layout_constraintTop_toBottomOf="@id/top_fragment"
+        app:layout_constraintBottom_toTopOf="@id/TabFragment"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recommenedContacts"
-        android:fontFamily="@font/binggrae"
+    <RelativeLayout
+        android:id="@+id/recommendRelativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="vertical"
-        app:layout_constrainedHeight="true"
-        app:layout_constraintTop_toBottomOf="@id/recommendText"
+        app:layout_constraintTop_toBottomOf="@id/top_fragment"
         app:layout_constraintBottom_toTopOf="@id/TabFragment"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        />
+        app:layout_constraintVertical_bias="0"
+        >
+
+        <TextView
+            android:id="@+id/recommendText"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:gravity="center"
+            android:text="이 사람들은 어때요?"
+            android:textSize="28sp"
+            android:fontFamily="@font/binggrae"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recommenedContacts"
+            android:fontFamily="@font/binggrae"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/recommendText"
+            android:scrollbars="vertical"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintTop_toBottomOf="@id/recommendText"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            />
+    </RelativeLayout>
+
+
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/TabFragment"
