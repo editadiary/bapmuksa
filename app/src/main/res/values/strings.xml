@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">밥머글사람</string>
     <string name="phone">Phone</string>
     <string name="gallery">Gallery</string>
     <string name="idk">IDK</string>
@@ -24,4 +24,7 @@
     <string name="후식">후식</string>
     <string name="디저트">디저트</string>
     <string name="기타">기타</string>
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

@@ -22,7 +22,7 @@
             android:onClick="toHome"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_home" />
+            app:srcCompat="@mipmap/ic_main_icon_round" />
 
         <!--
         <ImageView
