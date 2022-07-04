@@ -5,6 +5,7 @@ import static com.example.myapplication.Common.*;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -20,6 +21,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.myapplication.Common;
 import com.example.myapplication.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Collections;
 
 public class ContactCreateActivity extends AppCompatActivity implements View.OnClickListener {
@@ -62,29 +74,43 @@ public class ContactCreateActivity extends AppCompatActivity implements View.OnC
     }
 
     private void AddContact(Contact new_contact) {
-        mContactList.add(new_contact);
-        Collections.sort(mContactList);
+        allContacts.add(new_contact);
+        contactsWrite();
+        contactCopy(allContacts, mContactList);
         mAdapter.notifyDataSetChanged();
     }
+
+    private void contactsWrite() {
+        try{
+            FileOutputStream os = openFileOutput(CONTACT_JSON_FILE_NAME, MODE_PRIVATE);
+            JSONObject jsonFile = contactsToJson();
+
+            assert jsonFile != null;
+            os.write(jsonFile.toString().getBytes());
+            os.flush();
+            os.close();
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @Override
     public void onClick(View v) {
         int id = v.getId();
 
         if (id == R.id.ic_check) {
-            String id_cnt = Integer.toString(id_num);
-            ++id_num;
             String name = edit_name.getText().toString();
             String phone = edit_phone1.getText().toString() + "-" + edit_phone2.getText().toString() + "-" + edit_phone3.getText().toString();
 
             stack_page.push(1);
 
-            AddContact(new Contact(id_cnt, name, phone, tags, "ic_person", null));
-
+            Log.d("tags__", Arrays.toString(tags));
+            AddContact(new Contact(id_num++, name, phone, Arrays.toString(tags), "ic_person", null));
             Intent intent = new Intent(getApplicationContext(), ContactDetailActivity.class);
             intent.putExtra("name", name)
                     .putExtra("phone", phone)
-                    .putExtra("tags", tags)
+                    .putExtra("tags", Arrays.toString(tags))
                     .putExtra("id", id);
             setResult(100, intent);
             finish();

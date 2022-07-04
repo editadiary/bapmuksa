@@ -1,5 +1,6 @@
 package com.example.myapplication.Gallery;
 
+import static com.example.myapplication.Common.mContactList;
 import static com.example.myapplication.Common.mGalleryList;
 import static com.example.myapplication.Common.galleryAdapter;
 import static com.example.myapplication.Common.stack_page;
@@ -28,13 +29,22 @@ public class ClickedItemActivity extends AppCompatActivity {
     ImageButton CheckBtn;
 
     ImageView imageView;
+    TextView textViewDate;
     TextView textViewName;
     TextView textViewTag;
 
+    TextView textFriends;
+    TextView Friend1;
+    TextView Friend2;
+    TextView Friend3;
+    TextView Friend4;
+
+    String selectedDate = "";
     String selectedName = "";
     int selectedImage = -1;
     int idx = -1;
     String tagName = "";
+    String friend1 = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,16 +54,30 @@ public class ClickedItemActivity extends AppCompatActivity {
         setContentView(R.layout.activity_clicked_item);
 
         imageView = findViewById(R.id.imageView);
+        textViewDate = findViewById(R.id.tvDate);
         textViewName = findViewById(R.id.tvName);
         textViewTag = findViewById(R.id.tvTag);
+
+        textFriends = findViewById(R.id.friends);
+        Friend1 = findViewById(R.id.friend1);
+        Friend2 = findViewById(R.id.friend2);
+        Friend3 = findViewById(R.id.friend3);
+        Friend4 = findViewById(R.id.friend4);
 
         Intent intent = getIntent();
         if(intent.getExtras() != null){
             idx = intent.getIntExtra("index", 0);
+            selectedDate = mGalleryList.get(idx).getDate();
             selectedName = mGalleryList.get(idx).getName();
             selectedImage= mGalleryList.get(idx).getImage();
             tagName = mGalleryList.get(idx).getTagName();
+            int pos = mGalleryList.get(idx).getFriend();
+            if(pos != -1){
+                friend1 = mContactList.get(pos).getName();
+            }
 
+            Friend1.setText(friend1);
+            textViewDate.setText(selectedDate);
             textViewName.setText(selectedName);
             textViewTag.setText(tagName);
             imageView.setImageResource(selectedImage);
