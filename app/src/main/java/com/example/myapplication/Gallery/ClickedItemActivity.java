@@ -12,6 +12,7 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -19,6 +20,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.R;
+
+import java.util.ArrayList;
 
 public class ClickedItemActivity extends AppCompatActivity {
 
@@ -45,6 +48,9 @@ public class ClickedItemActivity extends AppCompatActivity {
     int idx = -1;
     String tagName = "";
     String friend1 = "";
+    String friend2 = "";
+    String friend3 = "";
+    String friend4 = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,12 +77,30 @@ public class ClickedItemActivity extends AppCompatActivity {
             selectedName = mGalleryList.get(idx).getName();
             selectedImage= mGalleryList.get(idx).getImage();
             tagName = mGalleryList.get(idx).getTagName();
-            int pos = mGalleryList.get(idx).getFriend();
-            if(pos != -1){
-                friend1 = mContactList.get(pos).getName();
+
+            ArrayList<Integer> fids = mGalleryList.get(idx).getFriends();
+            int numFriends = fids.size();
+
+            if (numFriends>0) {
+                friend1 = mContactList.get(fids.get(0)).getName();
+                Friend1.setText(friend1);
+            }
+            if (numFriends>1) {
+                friend2 = mContactList.get(fids.get(1)).getName();
+                Friend2.setText(friend2);
+                Friend2.setVisibility(View.VISIBLE);
+            }
+            if (numFriends>2) {
+                friend3 = mContactList.get(fids.get(2)).getName();
+                Friend3.setText(friend3);
+                Friend3.setVisibility(View.VISIBLE);
+            }
+            if (numFriends>3) {
+                friend4 = mContactList.get(fids.get(3)).getName();
+                Friend4.setText(friend4);
+                Friend4.setVisibility(View.VISIBLE);
             }
 
-            Friend1.setText(friend1);
             textViewDate.setText(selectedDate);
             textViewName.setText(selectedName);
             textViewTag.setText(tagName);

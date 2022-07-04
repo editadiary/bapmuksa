@@ -1,8 +1,10 @@
 package com.example.myapplication.Gallery;
 
 import static com.example.myapplication.Common.galleryAdapter;
+import static com.example.myapplication.Common.mContactList;
 import static com.example.myapplication.Common.mGalleryList;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,6 +24,8 @@ import android.widget.Toast;
 
 import com.example.myapplication.FindFriendsActivity;
 import com.example.myapplication.R;
+
+import java.util.ArrayList;
 
 public class ClickedItemEditActivity extends AppCompatActivity implements View.OnClickListener{
     public static Activity clickedItemEditActivity;
@@ -47,10 +51,14 @@ public class ClickedItemEditActivity extends AppCompatActivity implements View.O
     int selectedImage = -1;
     int idx = -1;
     int tag = -1;
+    String friend1 = "";
+    String friend2 = "";
+    String friend3 = "";
+    String friend4 = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        clickedItemEditActivity = ClickedItemEditActivity.this;
+        clickedItemEditActivity = ClickedItemEditActivity.this;
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clicked_item_edit);
@@ -80,6 +88,30 @@ public class ClickedItemEditActivity extends AppCompatActivity implements View.O
             selectedName = mGalleryList.get(idx).getName();
             selectedImage = mGalleryList.get(idx).getImage();
             tag = mGalleryList.get(idx).getTag();
+
+            ArrayList<Integer> fids = mGalleryList.get(idx).getFriends();
+            int numFriends = fids.size();
+
+            if (numFriends>0) {
+                friend1 = mContactList.get(fids.get(0)).getName();
+                Friend1.setText(friend1);
+                Friend2.setVisibility(View.VISIBLE);
+            }
+            if (numFriends>1) {
+                friend2 = mContactList.get(fids.get(1)).getName();
+                Friend2.setText(friend2);
+                Friend3.setVisibility(View.VISIBLE);
+
+            }
+            if (numFriends>2) {
+                friend3 = mContactList.get(fids.get(2)).getName();
+                Friend3.setText(friend3);
+                Friend4.setVisibility(View.VISIBLE);
+            }
+            if (numFriends>3) {
+                friend4 = mContactList.get(fids.get(3)).getName();
+                Friend4.setText(friend4);
+            }
 
             textViewDate.setText(selectedDate);
             imageView.setImageResource(selectedImage);
@@ -126,20 +158,19 @@ public class ClickedItemEditActivity extends AppCompatActivity implements View.O
         }
 
         if(v.getId() == R.id.friend1) {
-            Friend2.setVisibility(View.VISIBLE);
+            startActivity(new Intent(ClickedItemEditActivity.this,
+                    FindFriendsActivity.class).putExtra("index", idx));
+
+        }
+        if(v.getId() == R.id.friend2) {
             startActivity(new Intent(ClickedItemEditActivity.this,
                     FindFriendsActivity.class).putExtra("index", idx));
 
 
-
-        }
-        if(v.getId() == R.id.friend2) {
-            Friend3.setVisibility(View.VISIBLE);
-
-
         }
         if(v.getId() == R.id.friend3) {
-            Friend4.setVisibility(View.VISIBLE);
+            startActivity(new Intent(ClickedItemEditActivity.this,
+                    FindFriendsActivity.class).putExtra("index", idx));
 
         }
         if(v.getId() == R.id.friend4) {

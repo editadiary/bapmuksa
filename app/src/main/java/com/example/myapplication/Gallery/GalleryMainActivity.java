@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -34,10 +35,6 @@ public class GalleryMainActivity extends AppCompatActivity {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                String selectedName = mGalleryList.get(i).getName();
-                int selectedImage = mGalleryList.get(i).getImage();
-
                 startActivity(new Intent(GalleryMainActivity.this,
                         ClickedItemActivity.class).putExtra("index", i));
 
@@ -77,7 +74,7 @@ public class GalleryMainActivity extends AppCompatActivity {
         addImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                // Not implemented yet
             }
         });
     }
