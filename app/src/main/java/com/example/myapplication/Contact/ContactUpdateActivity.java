@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -94,30 +95,46 @@ public class ContactUpdateActivity extends AppCompatActivity implements View.OnC
             stack_page.pop();
 
             String name = editName.getText().toString();
-            String phone = editPhone1.getText().toString() + "-" + editPhone2.getText().toString() + "-" + editPhone3.getText().toString();
-            Contact contact = mContactList.get(position);
-            int contactId = contact.getId();
-            int curSize = allContacts.size();
-            contact.setName(name);
-            contact.setPhone(phone);
-            contact.setTags(Arrays.toString(tagBoolean));
+            String phone1 = editPhone1.getText().toString();
+            String phone2 = editPhone2.getText().toString();
+            String phone3 = editPhone3.getText().toString();
 
-            for(int i = 0; i < curSize; ++i) {
-                if(allContacts.get(i).getId() == contactId) {
-                    allContacts.set(i, contact);
-                }
+            if(name.equals("")){
+                Toast.makeText(this, "이름을 입력해주세요.", Toast.LENGTH_SHORT).show();
             }
-            contactCopy(allContacts, mContactList);
-            contactsWrite();
-            mAdapter.notifyDataSetChanged();
 
-            Intent intent = new Intent(getApplicationContext(), ContactDetailActivity.class);
-            intent.putExtra("name", name)
-                    .putExtra("phone", phone)
-                    .putExtra("tags", Arrays.toString(tagBoolean))
-                    .putExtra("pos", pos);
-            setResult(200, intent);
-            finish();
+            else if(!phone1.equals("010") || phone2.length() != 4 || phone3.length() != 4) {
+                Toast.makeText(this, "전화번호를 입력해주세요.", Toast.LENGTH_LONG).show();
+            }
+
+            else {
+                String phone = phone1 + "-" + phone2 + "-" + phone3;
+                Contact contact = mContactList.get(position);
+                int contactId = contact.getId();
+                int curSize = allContacts.size();
+                contact.setName(name);
+                contact.setPhone(phone);
+                contact.setTags(Arrays.toString(tagBoolean));
+
+                for(int i = 0; i < curSize; ++i) {
+                    if(allContacts.get(i).getId() == contactId) {
+                        allContacts.set(i, contact);
+                    }
+                }
+                contactCopy(allContacts, mContactList);
+                contactsWrite();
+                mAdapter.notifyDataSetChanged();
+
+                Intent intent = new Intent(getApplicationContext(), ContactDetailActivity.class);
+                intent.putExtra("name", name)
+                        .putExtra("phone", phone)
+                        .putExtra("tags", Arrays.toString(tagBoolean))
+                        .putExtra("pos", pos);
+                setResult(200, intent);
+                finish();
+            }
+
+
         }
 
         for(int i = 0; i < 6; ++i) {

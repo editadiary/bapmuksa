@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -63,9 +64,6 @@ public class ContactCreateActivity extends AppCompatActivity implements View.OnC
 
         addBtn = findViewById(R.id.ic_check);
         addBtn.setOnClickListener(this);
-
-        plusTag = findViewById(R.id.addTag);
-        plusTag.setOnClickListener(this);
     }
 
     private void getTagId() {
@@ -101,19 +99,33 @@ public class ContactCreateActivity extends AppCompatActivity implements View.OnC
 
         if (id == R.id.ic_check) {
             String name = edit_name.getText().toString();
-            String phone = edit_phone1.getText().toString() + "-" + edit_phone2.getText().toString() + "-" + edit_phone3.getText().toString();
+            String phone1 = edit_phone1.getText().toString();
+            String phone2 = edit_phone2.getText().toString();
+            String phone3 = edit_phone3.getText().toString();
 
-            stack_page.push(1);
+            if(name.equals("")){
+                Toast.makeText(this, "이름을 입력해주세요.", Toast.LENGTH_SHORT).show();
+            }
 
-            Log.d("tags__", Arrays.toString(tags));
-            AddContact(new Contact(id_num++, name, phone, Arrays.toString(tags), "ic_person", null));
-            Intent intent = new Intent(getApplicationContext(), ContactDetailActivity.class);
-            intent.putExtra("name", name)
-                    .putExtra("phone", phone)
-                    .putExtra("tags", Arrays.toString(tags))
-                    .putExtra("id", id);
-            setResult(100, intent);
-            finish();
+            else if(!phone1.equals("010") || phone2.length() != 4 || phone3.length() != 4) {
+                Toast.makeText(this, "전화번호를 입력해주세요.", Toast.LENGTH_LONG).show();
+            }
+            
+            else{
+                String phone = phone1 + "-" + phone2 + "-" + phone3;
+
+                stack_page.push(1);
+
+                Log.d("tags__", Arrays.toString(tags));
+                AddContact(new Contact(id_num++, name, phone, Arrays.toString(tags), "ic_person", null));
+                Intent intent = new Intent(getApplicationContext(), ContactDetailActivity.class);
+                intent.putExtra("name", name)
+                        .putExtra("phone", phone)
+                        .putExtra("tags", Arrays.toString(tags))
+                        .putExtra("id", id);
+                setResult(100, intent);
+                finish();
+            }
         }
 
         for(int i = 0; i < 6; ++i) {
