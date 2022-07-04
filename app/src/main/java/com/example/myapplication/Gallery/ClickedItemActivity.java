@@ -25,6 +25,7 @@ public class ClickedItemActivity extends AppCompatActivity {
 
     ImageButton TrashBtn;
     ImageButton EditBtn;
+    ImageButton CheckBtn;
 
     ImageView imageView;
     TextView textViewName;
@@ -92,6 +93,15 @@ public class ClickedItemActivity extends AppCompatActivity {
             public void onClick(View view) {
                 startActivity(new Intent(ClickedItemActivity.this,
                         ClickedItemEditActivity.class).putExtra("index", idx));
+
+            }
+        });
+
+        CheckBtn = findViewById(R.id.ic_check);
+        CheckBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
 
             }
         });

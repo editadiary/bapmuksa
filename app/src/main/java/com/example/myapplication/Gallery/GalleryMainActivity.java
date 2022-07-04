@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.myapplication.R;
@@ -19,6 +20,7 @@ import static com.example.myapplication.Common.galleryAdapter;
 public class GalleryMainActivity extends AppCompatActivity {
 
     GridView gridView;
+    ImageView addImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +70,14 @@ public class GalleryMainActivity extends AppCompatActivity {
                 dialog.show();
 
                 return true;
+            }
+        });
+
+        addImage = findViewById(R.id.ic_plus);
+        addImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
             }
         });
     }
