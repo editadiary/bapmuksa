@@ -11,11 +11,11 @@ public class Contact implements Comparable<Contact> {
     private int id;
     private String name;
     private String phone;
-    private boolean tags[];
+    private String tags;
     private String profileImage;
     private Date lastMeet;
 
-    public Contact(int id, String name, String phone, boolean[] tags, String profileImage, Date lastMeet) {
+    public Contact(int id, String name, String phone, String tags, String profileImage, Date lastMeet) {
         this.id = id;
         this.name = name;
         this.phone = phone;
@@ -34,7 +34,7 @@ public class Contact implements Comparable<Contact> {
         return phone;
     }
 
-    public boolean[] getTags() { return tags; }
+    public String getTags() { return tags; }
 
     public String getProfileImage() { return profileImage; }
 
@@ -48,7 +48,7 @@ public class Contact implements Comparable<Contact> {
         this.phone = phone;
     }
 
-    public void setTags(boolean[] tags) { this.tags = tags; }
+    public void setTags(String tags) { this.tags = tags; }
 
     public void setProfileImage(String profileImage) { this.profileImage = profileImage; }
 
