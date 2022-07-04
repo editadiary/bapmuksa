@@ -124,22 +124,22 @@ public class Common {
 
     public static ArrayList<ImageFile> initGallery() {
         ArrayList<ImageFile> items = new ArrayList<>();
-        items.add(new ImageFile("칵테일", R.drawable.image1, 4, 180702));
-        items.add(new ImageFile("휘낭시에", R.drawable.image2, 4, 190701));
-        items.add(new ImageFile("특등심까스", R.drawable.image3, 2, 200627));
-        items.add(new ImageFile("냉모밀", R.drawable.image4, 2, 210404));
-        items.add(new ImageFile("감자탕", R.drawable.image5, 0, 211111));
-        items.add(new ImageFile("감바스", R.drawable.image6, 3, 211201));
-        items.add(new ImageFile("고르곤졸라", R.drawable.image7, 3, 211203));
-        items.add(new ImageFile("샐러드", R.drawable.image8, 3, 220110));
-        items.add(new ImageFile("대한곱창", R.drawable.image9, 0, 220212));
-        items.add(new ImageFile("김치말이국수", R.drawable.image10, 0, 220330));
-        items.add(new ImageFile("라면", R.drawable.image11, 0, 220524));
-        items.add(new ImageFile("홍대카페", R.drawable.image12, 4, 220611));
-        items.add(new ImageFile("야끼소바", R.drawable.image13, 2, 220615));
-        items.add(new ImageFile("계란후라이", R.drawable.image14, 0, 220629));
-        items.add(new ImageFile("고등어구이", R.drawable.image15, 0, 220701));
-        items.add(new ImageFile("파전", R.drawable.image16, 0, 220702));
+        items.add(new ImageFile("칵테일", R.drawable.image1, 4, "20180702", -1));
+        items.add(new ImageFile("휘낭시에", R.drawable.image2, 4, "20190701", -1));
+        items.add(new ImageFile("특등심까스", R.drawable.image3, 2, "20200627", -1));
+        items.add(new ImageFile("냉모밀", R.drawable.image4, 2, "20210404", -1));
+        items.add(new ImageFile("감자탕", R.drawable.image5, 0, "20211111", -1));
+        items.add(new ImageFile("감바스", R.drawable.image6, 3, "20211201", -1));
+        items.add(new ImageFile("고르곤졸라", R.drawable.image7, 3, "20211203", -1));
+        items.add(new ImageFile("샐러드", R.drawable.image8, 3, "20220110", -1));
+        items.add(new ImageFile("대한곱창", R.drawable.image9, 0, "20220212", -1));
+        items.add(new ImageFile("김치말이국수", R.drawable.image10, 0, "20220330", -1));
+        items.add(new ImageFile("라면", R.drawable.image11, 0, "20220524", -1));
+        items.add(new ImageFile("홍대카페", R.drawable.image12, 4, "20220611", -1));
+        items.add(new ImageFile("야끼소바", R.drawable.image13, 2, "20220615", -1));
+        items.add(new ImageFile("계란후라이", R.drawable.image14, 0, "20220629", -1));
+        items.add(new ImageFile("고등어구이", R.drawable.image15, 0, "20220701", -1));
+        items.add(new ImageFile("파전", R.drawable.image16, 0, "20220702", -1));
 
         return items;
     }

@@ -98,7 +98,8 @@ public class MainActivity extends AppCompatActivity {
 
                 Contact data;
                 if(lastMeet == null || lastMeet.equals("")) data = new Contact(id_num++, name, phone, tags, profileImage, null);
-                else data = new Contact(id_num++, name, phone, tags, profileImage, new Date(Long.parseLong(lastMeet)));
+//                else data = new Contact(id_num++, name, phone, tags, profileImage, new Date(Long.parseLong(lastMeet)));
+                else data = new Contact(id_num++, name, phone, tags, profileImage, null);
 
                 newArrayList.add(data);
             }

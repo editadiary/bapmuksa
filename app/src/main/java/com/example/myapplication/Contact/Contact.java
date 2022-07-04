@@ -13,9 +13,9 @@ public class Contact implements Comparable<Contact> {
     private String phone;
     private String tags;
     private String profileImage;
-    private Date lastMeet;
+    private String lastMeet;
 
-    public Contact(int id, String name, String phone, String tags, String profileImage, Date lastMeet) {
+    public Contact(int id, String name, String phone, String tags, String profileImage, String lastMeet) {
         this.id = id;
         this.name = name;
         this.phone = phone;
@@ -38,7 +38,7 @@ public class Contact implements Comparable<Contact> {
 
     public String getProfileImage() { return profileImage; }
 
-    public Date getLastMeet() { return lastMeet; };
+    public String getLastMeet() { return lastMeet; };
 
     public void setName(String name) {
         this.name = name;
@@ -52,7 +52,7 @@ public class Contact implements Comparable<Contact> {
 
     public void setProfileImage(String profileImage) { this.profileImage = profileImage; }
 
-    public void setLastMeet(Date lastMeet) { this.lastMeet = lastMeet; }
+    public void setLastMeet(String lastMeet) { this.lastMeet = lastMeet; }
 
     @Override
     public int compareTo(Contact contact) {

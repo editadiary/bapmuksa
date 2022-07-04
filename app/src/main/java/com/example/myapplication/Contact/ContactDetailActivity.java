@@ -65,6 +65,7 @@ public class ContactDetailActivity extends AppCompatActivity implements View.OnC
                     phone = extras.getString("phone");
                     tags = extras.getString("tags");
                     pos = extras.getString("pos");
+
                 }
                 nameTV.setText(name);
                 phoneTV.setText(phone);
