@@ -28,12 +28,12 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
 
     public class ContactViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         protected TextView name;
-        protected TextView phone;
+        // protected TextView phone;
 
         public ContactViewHolder(View view) {
             super(view);
             this.name = view.findViewById(R.id.contact_item_name);
-            this.phone = view.findViewById(R.id.contact_item_phone);
+            // this.phone = view.findViewById(R.id.contact_item_phone);
 
             view.setOnClickListener(this);
         }
@@ -56,10 +56,10 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ContactV
     @Override
     public void onBindViewHolder(@NonNull ContactViewHolder holder, final int position) {
         holder.name.setText(mList.get(position).getName());
-        holder.phone.setText(mList.get(position).getPhone());
+        // holder.phone.setText(mList.get(position).getPhone());
 
         holder.name.setGravity(Gravity.CENTER);
-        holder.phone.setGravity(Gravity.START);
+        // holder.phone.setGravity(Gravity.START);
     }
 
     @Override
