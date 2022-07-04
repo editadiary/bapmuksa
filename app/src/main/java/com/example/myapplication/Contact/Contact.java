@@ -8,14 +8,14 @@ import com.example.myapplication.Common;
 import java.util.Date;
 
 public class Contact implements Comparable<Contact> {
-    private String id;
+    private int id;
     private String name;
     private String phone;
     private boolean tags[];
     private String profileImage;
     private Date lastMeet;
 
-    public Contact(String id, String name, String phone, boolean[] tags, String profileImage, Date lastMeet) {
+    public Contact(int id, String name, String phone, boolean[] tags, String profileImage, Date lastMeet) {
         this.id = id;
         this.name = name;
         this.phone = phone;
@@ -24,7 +24,7 @@ public class Contact implements Comparable<Contact> {
         this.lastMeet = lastMeet;
     }
 
-    public String getId() { return id;}
+    public int getId() { return id;}
 
     public String getName() {
         return name;

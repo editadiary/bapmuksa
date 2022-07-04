@@ -20,6 +20,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.myapplication.Common;
 import com.example.myapplication.R;
 
+import java.io.DataOutputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.Collections;
 
 public class ContactCreateActivity extends AppCompatActivity implements View.OnClickListener {
@@ -62,9 +65,22 @@ public class ContactCreateActivity extends AppCompatActivity implements View.OnC
     }
 
     private void AddContact(Contact new_contact) {
-        mContactList.add(new_contact);
-        Collections.sort(mContactList);
+        allContacts.add(new_contact);
+        contactCopy(allContacts, mContactList);
         mAdapter.notifyDataSetChanged();
+    }
+
+    private void contactsWrite() {
+
+        try {
+
+            FileOutputStream FOS = openFileOutput(CONTACT_JSON_FILE_NAME, MODE_PRIVATE);
+            DataOutputStream DOS = new DataOutputStream(FOS);
+
+        } catch(FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
@@ -72,14 +88,12 @@ public class ContactCreateActivity extends AppCompatActivity implements View.OnC
         int id = v.getId();
 
         if (id == R.id.ic_check) {
-            String id_cnt = Integer.toString(id_num);
-            ++id_num;
             String name = edit_name.getText().toString();
             String phone = edit_phone1.getText().toString() + "-" + edit_phone2.getText().toString() + "-" + edit_phone3.getText().toString();
 
             stack_page.push(1);
 
-            AddContact(new Contact(id_cnt, name, phone, tags, "ic_person", null));
+            AddContact(new Contact(id_num++, name, phone, tags, "ic_person", null));
 
             Intent intent = new Intent(getApplicationContext(), ContactDetailActivity.class);
             intent.putExtra("name", name)

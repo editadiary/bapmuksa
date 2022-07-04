@@ -1,8 +1,6 @@
 package com.example.myapplication.Contact;
 
-import static com.example.myapplication.Common.mContactList;
-import static com.example.myapplication.Common.mAdapter;
-import static com.example.myapplication.Common.stack_page;
+import static com.example.myapplication.Common.*;
 
 import android.Manifest;
 import android.content.ContentProviderOperation;
@@ -20,6 +18,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -42,6 +41,8 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
     private LinearLayout searchLinearLayout;
     private EditText searchET;
     private Spinner tagSpinner;
+    private String searchString = null;
+    private int tagPosition = -1;
     private boolean searchVisible = false;
     private static RecyclerView mRecyclerView;
     private static ContactAdapter.RecyclerViewClickListener listener;
@@ -59,6 +60,7 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
 
         searchLinearLayout = findViewById(R.id.searchBar);
 
+        contactCopy(allContacts, mContactList);
         searchET = findViewById(R.id.searchEditText);
         searchET.addTextChangedListener(new TextWatcher() {
             @Override
@@ -68,7 +70,10 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                searchContact(s);
+                searchString = s.toString();
+                ArrayList<Contact> found = getFoundContacts();
+                contactCopy(found, mContactList);
+                mAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -79,6 +84,20 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
 
         tagSpinner = findViewById(R.id.spinnerTag);
 
+        tagSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                tagPosition = position;
+                ArrayList<Contact> found = getFoundContacts();
+                contactCopy(found, mContactList);
+                mAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         mRecyclerView = findViewById(R.id.contact_rv);
         setOnClickListener();
 
@@ -92,6 +111,28 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
         mRecyclerView.addItemDecoration(dividerItemDecoration);
     }
 
+    private ArrayList<Contact> getFoundContacts() {
+        ArrayList<Contact> newContact = new ArrayList<>();
+
+        if(tagPosition == -1) {
+            return allContacts;
+        }
+        else {
+            for(Contact contact: allContacts) {
+                String parsedPhoneNumber = parsePhoneNumber(contact.getPhone());
+                if(contact.getTags()[tagPosition]) {
+                    if(searchString == null || ((contact.getName().contains(searchString) || parsedPhoneNumber.contains(searchString)))){
+                        newContact.add(contact);
+                    }
+                }
+            }
+            return newContact;
+        }
+    }
+
+    private String parsePhoneNumber(String phoneNumber) {
+        return phoneNumber.replaceAll("^([0-9]{3})-([0-9]{4})-([0-9]{4})$", "$1$2$3");
+    }
     private void setOnClickListener() {
         listener = (v, position) -> {
             if(stack_page.peek() == 5) return;
@@ -120,17 +161,22 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
 
         if(v.getId() == R.id.searchBtn) {
             if(searchVisible == false) {
+                tagPosition = 0;
+                searchVisible = true;
                 searchLinearLayout.setVisibility(View.VISIBLE);
             }
             else {
+                Log.d("1231231231", allContacts.toString());
+                contactCopy(allContacts, mContactList);
+                searchString=null;
+                tagPosition = -1;
+                searchET.setText("");
+                tagSpinner.setSelection(0);
+                searchVisible = false;
                 searchLinearLayout.setVisibility(View.GONE);
+                mAdapter.notifyDataSetChanged();
             }
         }
-    }
-
-    private void searchContact(CharSequence s) {
-        String searchText = s.toString();
-
     }
 
     @Override
