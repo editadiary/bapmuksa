@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                     tags[j] = tags_array.getBoolean(j);
                 }
 
-                Contact data = new Contact(Integer.toString(id_num), name, phone, tags, "ic_person"); ++id_num;
+                Contact data = new Contact(Integer.toString(id_num), name, phone, tags, "ic_person", null); ++id_num;
 
                 newArrayList.add(data);
             }

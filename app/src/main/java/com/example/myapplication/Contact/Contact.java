@@ -5,19 +5,23 @@ import android.database.Cursor;
 
 import com.example.myapplication.Common;
 
+import java.util.Date;
+
 public class Contact implements Comparable<Contact> {
     private String id;
     private String name;
     private String phone;
     private boolean tags[];
     private String profileImage;
+    private Date lastMeet;
 
-    public Contact(String id, String name, String phone, boolean[] tags, String profileImage) {
+    public Contact(String id, String name, String phone, boolean[] tags, String profileImage, Date lastMeet) {
         this.id = id;
         this.name = name;
         this.phone = phone;
         this.tags = tags;
         this.profileImage = profileImage;
+        this.lastMeet = lastMeet;
     }
 
     public String getId() { return id;}
@@ -34,6 +38,8 @@ public class Contact implements Comparable<Contact> {
 
     public String getProfileImage() { return profileImage; }
 
+    public Date getLastMeet() { return lastMeet; };
+
     public void setName(String name) {
         this.name = name;
     }
@@ -45,6 +51,9 @@ public class Contact implements Comparable<Contact> {
     public void setTags(boolean[] tags) { this.tags = tags; }
 
     public void setProfileImage(String profileImage) { this.profileImage = profileImage; }
+
+    public void setLastMeet(Date lastMeet) { this.lastMeet = lastMeet; }
+
     @Override
     public int compareTo(Contact contact) {
         return name.compareTo(contact.getName());
