@@ -47,6 +47,6 @@ public class Contact implements Comparable<Contact> {
 
     @Override
     public int compareTo(Contact contact) {
-        return name.compareTo(contact.getName());
+        return name.compareToIgnoreCase(contact.getName());
     }
 }
