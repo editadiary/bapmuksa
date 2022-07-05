@@ -177,7 +177,7 @@ public class RecommendSecondActivity extends AppCompatActivity implements View.O
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.searchBtn) {
-            goIntent(11);
+            goIntent(10);
             Intent intent = new Intent(this, RecommendThirdActivity.class);
             intent.putExtra("selectedTagPosition", selectedTagPosition);
             startActivity(intent);
