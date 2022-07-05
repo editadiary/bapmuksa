@@ -31,7 +31,7 @@ public class Common {
     public static final int[] food_tags_color = {R.drawable.checked_circle_korean, R.drawable.checked_circle_chinese, R.drawable.checked_circle_japanese, R.drawable.checked_circle_italian, R.drawable.checked_circle_dessert, R.drawable.checked_circle_etc};
     public static final String CONTACT_JSON_FILE_NAME = "contact.json";
     public static Stack<Integer> stack_page;
-    public static ArrayList<Contact> allContacts, mContactList;
+    public static ArrayList<Contact> allContacts, mContactList, starContacts;
     public static ContactAdapter mAdapter;
     public static ArrayList<ImageFile> mGalleryList;
     public static GalleryAdapter galleryAdapter;
@@ -99,13 +99,13 @@ public class Common {
 
             for(Contact contact: allContacts) {
                 JSONObject content = new JSONObject();
-                SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
 
                 content.put("id", Integer.toString(contact.getId()))
                         .put("name", contact.getName())
                         .put("phone", contact.getPhone())
                         .put("tags", contact.getTags())
-                        .put("profileImage", contact.getProfileImage());
+                        .put("profileImage", contact.getProfileImage())
+                        .put("isStar", Boolean.toString(contact.getIsStar()));
 
                 if(contact.getLastMeet() == null) {
                     content.put("lastMeet", "");

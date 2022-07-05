@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.Gallery;
 
 import static com.example.myapplication.Common.CONTACT_JSON_FILE_NAME;
 import static com.example.myapplication.Common.allContacts;
@@ -8,7 +8,6 @@ import static com.example.myapplication.Common.galleryAdapter;
 import static com.example.myapplication.Common.mAdapter;
 import static com.example.myapplication.Common.mContactList;
 import static com.example.myapplication.Common.mGalleryList;
-import static com.example.myapplication.Common.stack_page;
 import static com.example.myapplication.Common.toPrev;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,7 +19,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -35,12 +33,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import com.example.myapplication.Common;
-import com.example.myapplication.Contact.ContactCreateActivity;
-import com.example.myapplication.Contact.ContactDetailActivity;
-import com.example.myapplication.Gallery.ClickedItemActivity;
-import com.example.myapplication.Gallery.ClickedItemEditActivity;
-import com.example.myapplication.Gallery.GalleryMainActivity;
-import com.example.myapplication.Gallery.ImageFile;
+import com.example.myapplication.R;
 
 import org.json.JSONObject;
 
