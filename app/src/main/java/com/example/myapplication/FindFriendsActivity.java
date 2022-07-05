@@ -1,10 +1,12 @@
 package com.example.myapplication;
 
 import static com.example.myapplication.Common.CONTACT_JSON_FILE_NAME;
+import static com.example.myapplication.Common.GALLERY_JSON_FILE_NAME;
 import static com.example.myapplication.Common.allContacts;
 import static com.example.myapplication.Common.contactCopy;
 import static com.example.myapplication.Common.contactsToJson;
 import static com.example.myapplication.Common.galleryAdapter;
+import static com.example.myapplication.Common.galleryToJson;
 import static com.example.myapplication.Common.mAdapter;
 import static com.example.myapplication.Common.mContactList;
 import static com.example.myapplication.Common.mGalleryList;
@@ -163,6 +165,7 @@ public class FindFriendsActivity extends AppCompatActivity implements View.OnCli
             image.addFriend(position);
 
             mGalleryList.set(idx, image);
+            galleryWrite();
             galleryAdapter.notifyDataSetChanged();
 
             Contact contact = mContactList.get(position);
@@ -194,6 +197,19 @@ public class FindFriendsActivity extends AppCompatActivity implements View.OnCli
             finish();
 
         };
+    }
+    private void galleryWrite() {
+        try{
+            FileOutputStream os = openFileOutput(GALLERY_JSON_FILE_NAME, MODE_PRIVATE);
+            JSONObject jsonFile = galleryToJson();
+
+            assert jsonFile != null;
+            os.write(jsonFile.toString().getBytes());
+            os.flush();
+            os.close();
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void contactsWrite() {

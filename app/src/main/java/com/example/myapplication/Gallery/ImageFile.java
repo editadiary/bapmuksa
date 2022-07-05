@@ -4,24 +4,32 @@ import com.example.myapplication.Contact.Contact;
 import com.example.myapplication.R;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ImageFile {
+    private final int id;
     private String name;
     private int image;
     private int tag; //0: 한식, 1:중식, 2:일식, 3:양식, 4:후식, 5:기타
     private String date;
-    private ArrayList<Integer> friends;
+    private int f1, f2, f3, f4;
 
-    public ImageFile(String name, int image, int tag, String date,
-                     ArrayList<Integer> fids){
+    public ImageFile(int id, String name, int image, int tag, String date,
+                     int f1, int f2, int f3, int f4){
+        this.id = id;
         this.name = name;
         this.image = image;
         this.tag = tag;
         this.date = date;
-        this.friends = fids;
+        this.f1 = f1;
+        this.f2 = f2;
+        this.f3 = f3;
+        this.f4 = f4;
 
     }
+
+    public int getId() { return id;}
 
     public String getName() {
         return name;
@@ -35,7 +43,22 @@ public class ImageFile {
 
     public String getDate() {return date;}
 
-    public ArrayList<Integer> getFriends() {return friends;}
+    public int getF1() {return f1;}
+    public int getF2() {return f2;}
+    public int getF3() {return f3;}
+    public int getF4() {return f4;}
+
+    public ArrayList<Integer> getFriends() {
+        ArrayList<Integer> friends= new ArrayList<Integer>(Arrays.asList(f1, f2, f3, f4));
+        return friends;
+    }
+
+    public int getFriendsSize() {
+        if(f1==-1) return 0;
+        else if(f2==-1) return 1;
+        else if(f3==-1) return 2;
+        else return 3;
+    }
 
     public String getTagName() {
         switch (tag) {
@@ -52,7 +75,12 @@ public class ImageFile {
         this.name = name;
     }
 
-    public void addFriend(int pos) {this.friends.add(pos);}
+    public void addFriend(int pos) {
+        if(f1==-1) f1 = pos;
+        else if(f2==-1) f2 = pos;
+        else if(f3==-1) f3 = pos;
+        else f4 = pos;
+    }
 
     public void setTag(int tag) {
         this.tag = tag;
