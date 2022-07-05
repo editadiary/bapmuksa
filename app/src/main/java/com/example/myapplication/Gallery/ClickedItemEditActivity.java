@@ -1,6 +1,8 @@
 package com.example.myapplication.Gallery;
 
+import static com.example.myapplication.Common.GALLERY_JSON_FILE_NAME;
 import static com.example.myapplication.Common.galleryAdapter;
+import static com.example.myapplication.Common.galleryToJson;
 import static com.example.myapplication.Common.goIntent;
 import static com.example.myapplication.Common.mContactList;
 import static com.example.myapplication.Common.mGalleryList;
@@ -22,6 +24,10 @@ import android.widget.TextView;
 import com.example.myapplication.Common;
 import com.example.myapplication.R;
 
+import org.json.JSONObject;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ClickedItemEditActivity extends AppCompatActivity implements View.OnClickListener{
@@ -87,7 +93,7 @@ public class ClickedItemEditActivity extends AppCompatActivity implements View.O
             tag = mGalleryList.get(idx).getTag();
 
             ArrayList<Integer> fids = mGalleryList.get(idx).getFriends();
-            int numFriends = fids.size();
+            int numFriends = mGalleryList.get(idx).getFriendsSize();
 
             if (numFriends>0) {
                 friend1 = mContactList.get(fids.get(0)).getName();
@@ -146,6 +152,7 @@ public class ClickedItemEditActivity extends AppCompatActivity implements View.O
             image.setTag(tag);
 
             mGalleryList.set(idx, image);
+            galleryWrite();
             galleryAdapter.notifyDataSetChanged();
 
             startActivity(new Intent(ClickedItemEditActivity.this,
@@ -184,5 +191,18 @@ public class ClickedItemEditActivity extends AppCompatActivity implements View.O
     @Override
     public void onBackPressed() {
         Common.toPrev(this);
+    }
+    private void galleryWrite() {
+        try{
+            FileOutputStream os = openFileOutput(GALLERY_JSON_FILE_NAME, MODE_PRIVATE);
+            JSONObject jsonFile = galleryToJson();
+
+            assert jsonFile != null;
+            os.write(jsonFile.toString().getBytes());
+            os.flush();
+            os.close();
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
     }
 }
