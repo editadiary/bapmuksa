@@ -7,6 +7,8 @@
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/drawable/ic_check.xml" value="0.106" />
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/drawable/ic_delete.xml" value="0.1" />
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/drawable/ic_edit.xml" value="0.1" />
+        <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/drawable/ic_gallery.xml" value="0.1" />
+        <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/drawable/ic_heart.xml" value="0.1" />
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/drawable/ic_house.xml" value="0.1" />
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/drawable/ic_left_arrow.xml" value="0.1" />
@@ -15,18 +17,22 @@
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/drawable/ic_person_square.xml" value="0.106" />
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/drawable/ic_picture.xml" value="0.106" />
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/drawable/ic_plus.xml" value="0.1" />
+        <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/drawable/ic_search.xml" value="0.1" />
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/font/font.xml" value="0.1" />
+        <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/layout/activity_add_memory.xml" value="0.19947916666666668" />
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/layout/activity_clicked_item.xml" value="0.18" />
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/layout/activity_clicked_item_edit.xml" value="0.18" />
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/layout/activity_contact.xml" value="0.16" />
-        <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/layout/activity_contact_create.xml" value="0.20625" />
+        <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/layout/activity_contact_create.xml" value="0.1210762331838565" />
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/layout/activity_contact_detail.xml" value="0.20625" />
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/layout/activity_contact_update.xml" value="0.20625" />
+        <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/layout/activity_find_friends.xml" value="0.209375" />
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/layout/activity_gallery_main.xml" value="0.18" />
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/layout/activity_home.xml" value="0.1" />
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/layout/activity_intro.xml" value="0.18489583333333334" />
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/layout/activity_loading.xml" value="0.22760416666666666" />
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/layout/activity_recommend_firstpage.xml" value="0.1" />
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/layout/contact_fragment.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/layout/intro.xml" value="0.19947916666666668" />
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/layout/recycler_item.xml" value="0.1" />
@@ -34,20 +40,6 @@
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/layout/tab_fragment.xml" value="0.22708333333333333" />
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/layout/top_fragment.xml" value="0.21041666666666667" />
         <entry key="..\:/Users/bless/AndroidStudioProjects/cs496_proj1_jysj/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.162" />
-        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/activity_contact.xml" value="0.4100346020761246" />
-        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/activity_contact_create.xml" value="0.16893115942028986" />
-        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/activity_contact_detail.xml" value="0.16893115942028986" />
-        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/activity_contact_update.xml" value="0.11626139817629179" />
-        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/activity_recommend_firstpage.xml" value="0.1" />
-        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/activity_recommend_secondpage.xml" value="0.2" />
-        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/activity_recommend_thirdpage.xml" value="0.1" />
-        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/activity_recommended_third.xml" value="0.17553191489361702" />
-        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/contact_food_spinner_item.xml" value="0.17553191489361702" />
-        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/contact_fragment.xml" value="0.18489583333333334" />
-        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/food_spinner_item.xml" value="0.25625" />
-        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/recommend_food_spinner_item.xml" value="0.11626139817629179" />
-        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/recommend_tag_fragment.xml" value="0.4" />
-        <entry key="..\:/Users/mobius/Desktop/Study/cs496_proj1_jysj/app/src/main/res/layout/recommened_third_contact_fragment.xml" value="0.17553191489361702" />
       </map>
     </option>
   </component>
