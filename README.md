@@ -28,7 +28,7 @@
 - Edit by clicking single contact
 - 처음 저장하면 만난 일 수 unknown -> 사진에 등록되면 Update
 
-<img width="20%" src="https://user-images.githubusercontent.com/52152015/177315870-7fa8f097-2980-4adc-aeae-3a054efd8aae.jpg" /><img width="20%" src="https://user-images.githubusercontent.com/52152015/177315895-0b9a31d4-d5c9-4ddb-9dff-468850337d7e.jpg" /><img width="20%" src="https://user-images.githubusercontent.com/52152015/177315907-d2e7ba68-5c20-4ce2-8d34-1a69c7e69070.jpg" /><img width="20%" src="https://user-images.githubusercontent.com/52152015/177315920-1bd2d538-f2bb-47e1-bfd9-410fab268bc5.jpg" />
+<img width="20%" src="https://user-images.githubusercontent.com/52152015/177315870-7fa8f097-2980-4adc-aeae-3a054efd8aae.jpg" />  <img width="20%" src="https://user-images.githubusercontent.com/52152015/177315895-0b9a31d4-d5c9-4ddb-9dff-468850337d7e.jpg" />  <img width="20%" src="https://user-images.githubusercontent.com/52152015/177315907-d2e7ba68-5c20-4ce2-8d34-1a69c7e69070.jpg" />  <img width="20%" src="https://user-images.githubusercontent.com/52152015/177315920-1bd2d538-f2bb-47e1-bfd9-410fab268bc5.jpg" />
 
 ## Food Gallery
 
@@ -40,17 +40,17 @@
 - Edit by clicking single image
 - Edit Name/Tag/Friends
 
-<img width="20%" src="https://user-images.githubusercontent.com/52152015/177315928-b68b9616-2776-4074-a776-46f6fb0d6494.jpg" /><img width="20%" src="https://user-images.githubusercontent.com/52152015/177315937-09b01a52-e84d-4552-b993-02922d442272.jpg" /><img width="20%" src="https://user-images.githubusercontent.com/52152015/177315951-816d5d5b-c548-44a9-9849-7096068cb34c.jpg" />
+<img width="20%" src="https://user-images.githubusercontent.com/52152015/177315928-b68b9616-2776-4074-a776-46f6fb0d6494.jpg" />  <img width="20%" src="https://user-images.githubusercontent.com/52152015/177315937-09b01a52-e84d-4552-b993-02922d442272.jpg" />  <img width="20%" src="https://user-images.githubusercontent.com/52152015/177315951-816d5d5b-c548-44a9-9849-7096068cb34c.jpg" />
 
 ## Friend Recommendation
 
 중앙의 ♡탭을 누르면 오늘 당신이 먹고 싶은 음식과 친구와 만난 기간을 고려하여 오늘의 식사메이트를 추천해줍니다. 만약 친구가, 또는 음식이 마음에 안 든다면 걱정하지 마세요! 더 많은 추천 리스트도 볼 수 있습니다. 전화하기와 메세지 보내기 버튼을 통해 빠른 식사 약속도 잡을 수 있을 것입니다.
 
-<img width="20%" src="https://user-images.githubusercontent.com/52152015/177315966-cfcbf819-74d0-4f0a-9f78-f740b04ab514.jpg" /><img width="20%" src="https://user-images.githubusercontent.com/52152015/177315975-18511001-b94a-4e73-818b-68965d233def.jpg" />]
+<img width="20%" src="https://user-images.githubusercontent.com/52152015/177315966-cfcbf819-74d0-4f0a-9f78-f740b04ab514.jpg" />  <img width="20%" src="https://user-images.githubusercontent.com/52152015/177315975-18511001-b94a-4e73-818b-68965d233def.jpg" />]
 
 ## UI
 
-<img width="25%" src="https://user-images.githubusercontent.com/56427889/177277384-f3244097-6f57-4e6c-8d31-7e19f24d708d.png"/> <img width="10%" src="https://user-images.githubusercontent.com/56427889/177277031-e675e6ba-a44e-4eb0-b126-dfde1649f3f1.png"/>
+<img width="25%" src="https://user-images.githubusercontent.com/56427889/177277384-f3244097-6f57-4e6c-8d31-7e19f24d708d.png"/>  <img width="10%" src="https://user-images.githubusercontent.com/56427889/177277031-e675e6ba-a44e-4eb0-b126-dfde1649f3f1.png"/>
 
 <밥머글사람>의 스플래시 화면, 로고, 전체적인 UI입니다.
 
