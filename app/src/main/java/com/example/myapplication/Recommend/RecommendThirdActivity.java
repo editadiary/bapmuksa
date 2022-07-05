@@ -103,11 +103,7 @@ public class RecommendThirdActivity extends AppCompatActivity {
             goIntent(5);
             Intent intent = new Intent(this, ContactDetailActivity.class);
 
-            intent.putExtra("name", filteredContacts.get(position).getName())
-                    .putExtra("phone", filteredContacts.get(position).getPhone())
-                    .putExtra("tags", filteredContacts.get(position).getTags())
-                    .putExtra("lastMeet", filteredContacts.get(position).getLastMeet())
-                    .putExtra("pos", Integer.toString(position));
+            intent.putExtra("id", filteredContacts.get(position).getId());
 
             startActivity(intent);
         };
