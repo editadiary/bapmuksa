@@ -94,9 +94,6 @@ public class ContactUpdateActivity extends AppCompatActivity implements View.OnC
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.ic_check) {
-            int position = Integer.parseInt(pos);
-            stack_page.pop();
-
             String name = editName.getText().toString();
             String phone1 = editPhone1.getText().toString();
             String phone2 = editPhone2.getText().toString();
@@ -124,7 +121,7 @@ public class ContactUpdateActivity extends AppCompatActivity implements View.OnC
                 Intent intent = new Intent(getApplicationContext(), ContactDetailActivity.class);
                 intent.putExtra("id", contactId);
                 setResult(200, intent);
-                finish();
+                toPrev(this);
                 contactsWrite();
             }
 
