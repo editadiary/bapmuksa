@@ -14,7 +14,7 @@
 연락처 상세 페이지에 들어가 오른쪽 위의 별을 눌러보세요. 별이 켜지면 홈 탭에 그 친구가 나타날 것입니다.
 홈 탭에 나타난 친구를 클릭하면 바로 그 친구의 상세 연락처 페이지로 들어갈 수 있어요.
 자주 연락하는 친구를 찾을 번거로움이 줄어듭니다.
-
+<img width="20%" src="https://user-images.githubusercontent.com/52152015/177315841-9ccd08da-2dfd-48ca-b97d-267d42bdb0b4.jpg" />
 ## Friend List
 
 이 탭에서 당신은 친구 목록을 관리할 수 있습니다.
@@ -26,6 +26,8 @@
 - Edit by clicking single contact
 - 처음 저장하면 만난 일 수 unknown -> 사진에 등록되면 Update
 
+<img width="20%" src="https://user-images.githubusercontent.com/52152015/177315870-7fa8f097-2980-4adc-aeae-3a054efd8aae.jpg" /><img width="20%" src="https://user-images.githubusercontent.com/52152015/177315895-0b9a31d4-d5c9-4ddb-9dff-468850337d7e.jpg" /><img width="20%" src="https://user-images.githubusercontent.com/52152015/177315907-d2e7ba68-5c20-4ce2-8d34-1a69c7e69070.jpg" /><img width="20%" src="https://user-images.githubusercontent.com/52152015/177315920-1bd2d538-f2bb-47e1-bfd9-410fab268bc5.jpg" />
+
 ## Food Gallery
 
 갤러리 탭에서는 당신의 식사 일지를 관리할 수 있습니다.
@@ -36,9 +38,13 @@
 - Edit by clicking single image
 - Edit Name/Tag/Friends
 
+<img width="20%" src="https://user-images.githubusercontent.com/52152015/177315928-b68b9616-2776-4074-a776-46f6fb0d6494.jpg" /><img width="20%" src="https://user-images.githubusercontent.com/52152015/177315937-09b01a52-e84d-4552-b993-02922d442272.jpg" /><img width="20%" src="https://user-images.githubusercontent.com/52152015/177315951-816d5d5b-c548-44a9-9849-7096068cb34c.jpg" />
+
 ## Friend Recommendation
 
 중앙의 ♡탭을 누르면 오늘 당신이 먹고 싶은 음식과 친구와 만난 기간을 고려하여 오늘의 식사메이트를 추천해줍니다. 만약 친구가, 또는 음식이 마음에 안 든다면 걱정하지 마세요! 더 많은 추천 리스트도 볼 수 있습니다. 전화하기와 메세지 보내기 버튼을 통해 빠른 식사 약속도 잡을 수 있을 것입니다.
+
+<img width="20%" src="https://user-images.githubusercontent.com/52152015/177315966-cfcbf819-74d0-4f0a-9f78-f740b04ab514.jpg" /><img width="20%" src="https://user-images.githubusercontent.com/52152015/177315975-18511001-b94a-4e73-818b-68965d233def.jpg" />]
 
 ## UI
 
