@@ -1,5 +1,7 @@
 package com.example.myapplication.Contact;
 
+import androidx.annotation.NonNull;
+
 public class Contact implements Comparable<Contact> {
     private final int id;
     private String name;
@@ -60,4 +62,9 @@ public class Contact implements Comparable<Contact> {
         return name.compareToIgnoreCase(contact.getName());
     }
 
+    @NonNull
+    @Override
+    public String toString() {
+        return "id: " + id + ", name: " + name;
+    }
 }
