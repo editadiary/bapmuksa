@@ -166,7 +166,18 @@ public class FindFriendsActivity extends AppCompatActivity implements View.OnCli
             galleryAdapter.notifyDataSetChanged();
 
             Contact contact = mContactList.get(position);
-            contact.setLastMeet(image.getDate());
+            String curLastMeetString = contact.getLastMeet();
+            if(curLastMeetString == null || curLastMeetString.equals(""))
+                contact.setLastMeet(image.getDate());
+
+            else {
+                long curLastMeet = Long.parseLong(curLastMeetString);
+                long imageLastMeet = Long.parseLong(image.getDate());
+
+                if(imageLastMeet - curLastMeet > 0)
+                    contact.setLastMeet(image.getDate());
+            }
+
             for(int i = 0; i < allContacts.size(); ++i) {
                 if(allContacts.get(i).getId() == contact.getId()) {
                     allContacts.set(i, contact);
@@ -203,7 +214,7 @@ public class FindFriendsActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View v) {
 
         if(v.getId() == R.id.searchBtn) {
-            if(searchVisible == false) {
+            if(!searchVisible) {
                 tagPosition = 0;
                 searchVisible = true;
                 searchLinearLayout.setVisibility(View.VISIBLE);

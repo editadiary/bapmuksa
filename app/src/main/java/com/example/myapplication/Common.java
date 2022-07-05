@@ -46,8 +46,17 @@ public class Common {
     }
 
     public static void toPrev(Activity activity) {
-        if(stack_page.empty()) System.exit(0);
+        if(stack_page.size() <= 1) System.exit(0);
         stack_page.pop();
+
+        int top = stack_page.peek();
+
+        if(top == 0) currentTab = 0;
+
+        if(top == 1 || top == 4 || top == 5 || top == 6) currentTab = 1;
+        if(top == 2 || top == 7 || top == 8 || top == 9) currentTab = 2;
+        if(top == 3 || top == 11) currentTab = 3;
+
         activity.finish();
     }
 
