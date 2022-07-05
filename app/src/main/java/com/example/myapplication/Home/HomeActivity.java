@@ -24,7 +24,9 @@ import com.example.myapplication.Contact.ContactAdapter;
 import com.example.myapplication.Contact.ContactDetailActivity;
 import com.example.myapplication.R;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public class HomeActivity extends AppCompatActivity {
@@ -44,6 +46,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private void initVar() {
         getStarContacts();
+        Log.d("contacts", starContacts.toString());
         setAdapter();
     }
 
@@ -68,7 +71,7 @@ public class HomeActivity extends AppCompatActivity {
             goIntent(5);
             Intent intent = new Intent(this, ContactDetailActivity.class);
 
-            intent.putExtra("id", mContactList.get(position).getId());
+            intent.putExtra("id", starContacts.get(position).getId());
 
             startActivity(intent);
         });
