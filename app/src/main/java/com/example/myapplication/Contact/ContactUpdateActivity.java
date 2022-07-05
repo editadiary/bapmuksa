@@ -25,11 +25,11 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public class ContactUpdateActivity extends AppCompatActivity implements View.OnClickListener {
+    int contactId, allPosition;
+    Contact contact;
     String pos = "-1";
     EditText editName, editPhone1, editPhone2, editPhone3;
-    private TextView[] tagTV;
-    private String tagString;
-    private boolean[] tagBoolean = new boolean[6];
+    private boolean[] tag = new boolean[6];
     private int[] tagsID;
     ImageView check;
 
@@ -43,7 +43,7 @@ public class ContactUpdateActivity extends AppCompatActivity implements View.OnC
         editPhone3 = findViewById(R.id.update_phone_edit3);
         check = findViewById(R.id.ic_check);
 
-        tagTV = new TextView[6];
+        TextView[] tagTV = new TextView[6];
         tagsID = new int[6]; getTagId();
 
         for(int i = 0; i < 6; ++i) {
@@ -53,33 +53,36 @@ public class ContactUpdateActivity extends AppCompatActivity implements View.OnC
 
         check.setOnClickListener(this);
 
-        String name = "";
-        String phone1 = "", phone2 = "", phone3 = "";
-
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
-            name = extras.getString("name");
-
-            String[] split_phone = extras.getString("phone").split("-");
-            phone1 = split_phone[0];
-            phone2 = split_phone[1];
-            phone3 = split_phone[2];
-            tagString = extras.getString("tags");
+            contactId = extras.getInt("id");
             pos = extras.getString("pos");
         } else {
             finish();
         }
 
-        String[] tagStrArray = tagString.replaceAll("[\\[\\]]", "").split(", ");
-        for(int i = 0; i < 6; ++i) {
-            tagBoolean[i] = Boolean.parseBoolean(tagStrArray[i]);
+        for(int i = 0; i < allContacts.size(); ++i) {
+            Contact c = allContacts.get(i);
+            if(c.getId() == contactId) {
+                allPosition = i;
+                contact = c;
+                break;
+            }
         }
-        Common.setTagsColor(tagTV, tagString);
+
+        String name = contact.getName();
+        String[] phone = contact.getPhone().split("-");
+        String tags = contact.getTags();
+
+        String[] tagStrArray = tags.replaceAll("[\\[\\]]", "").split(", ");
+        for(int i = 0; i < 6; ++i)
+            tag[i] = Boolean.parseBoolean(tagStrArray[i]);
 
         editName.setText(name);
-        editPhone1.setText(phone1);
-        editPhone2.setText(phone2);
-        editPhone3.setText(phone3);
+        editPhone1.setText(phone[0]);
+        editPhone2.setText(phone[1]);
+        editPhone3.setText(phone[2]);
+        Common.setTagsColor(tagTV, tags);
     }
 
     private void getTagId() {
@@ -109,30 +112,20 @@ public class ContactUpdateActivity extends AppCompatActivity implements View.OnC
 
             else {
                 String phone = phone1 + "-" + phone2 + "-" + phone3;
-                Contact contact = mContactList.get(position);
-                int contactId = contact.getId();
-                int curSize = allContacts.size();
-                contact.setName(name);
-                contact.setPhone(phone);
-                contact.setTags(Arrays.toString(tagBoolean));
+                Contact c = allContacts.get(allPosition);
+                c.setName(name);
+                c.setPhone(phone);
+                c.setTags(Arrays.toString(tag));
 
-                for(int i = 0; i < curSize; ++i) {
-                    if(allContacts.get(i).getId() == contactId) {
-                        allContacts.set(i, contact);
-                    }
-                }
+                allContacts.set(allPosition, c);
                 contactCopy(allContacts, mContactList);
-                contactsWrite();
                 mAdapter.notifyDataSetChanged();
 
                 Intent intent = new Intent(getApplicationContext(), ContactDetailActivity.class);
-                intent.putExtra("name", name)
-                        .putExtra("phone", phone)
-                        .putExtra("tags", Arrays.toString(tagBoolean))
-                        .putExtra("lastMeet", contact.getLastMeet())
-                        .putExtra("pos", pos);
+                intent.putExtra("id", contactId);
                 setResult(200, intent);
                 finish();
+                contactsWrite();
             }
 
 
@@ -140,12 +133,12 @@ public class ContactUpdateActivity extends AppCompatActivity implements View.OnC
 
         for(int i = 0; i < 6; ++i) {
             if(v.getId() == tagsID[i]) {
-                if(tagBoolean[i]) {
-                    tagBoolean[i] = false;
+                if(tag[i]) {
+                    tag[i] = false;
                     v.setBackgroundResource(R.drawable.circle);
                 }
                 else {
-                    tagBoolean[i] = true;
+                    tag[i] = true;
                     v.setBackgroundResource(food_tags_color[i]);
                 }
             }

@@ -6,15 +6,11 @@ import static com.example.myapplication.Common.mContactList;
 import static com.example.myapplication.Common.mGalleryList;
 import static com.example.myapplication.Common.toPrev;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -22,10 +18,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.myapplication.Common;
-import com.example.myapplication.FindFriendsActivity;
 import com.example.myapplication.R;
 
 import java.util.ArrayList;
