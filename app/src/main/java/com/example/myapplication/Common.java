@@ -1,9 +1,12 @@
 package com.example.myapplication;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.os.Environment;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -18,6 +21,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -30,6 +34,7 @@ public class Common {
     public static final String[] food_tags_id = {"tagKorean", "tagChinese", "tagJapanese", "tagItalian", "tagDessert", "tagETC"};
     public static final int[] food_tags_color = {R.drawable.checked_circle_korean, R.drawable.checked_circle_chinese, R.drawable.checked_circle_japanese, R.drawable.checked_circle_italian, R.drawable.checked_circle_dessert, R.drawable.checked_circle_etc};
     public static final String CONTACT_JSON_FILE_NAME = "contact.json";
+    public static final String GALLERY_JSON_FILE_NAME = "gallery.json";
     public static Stack<Integer> stack_page;
     public static ArrayList<Contact> allContacts, mContactList;
     public static ContactAdapter mAdapter;
@@ -40,6 +45,8 @@ public class Common {
     // btn: 7: ClickedItem, 8: ClickedItemEdit, 9: FindFriends,  11:RecommendThird
     public static int currentTab = 0;
     public static int id_num = 0;
+
+    public static int id_num_img = 0;
 
     public static void goIntent(int next_activity) {
         stack_page.push(next_activity);
@@ -124,6 +131,36 @@ public class Common {
         }
     }
 
+
+    public static JSONObject galleryToJson() {
+        try {
+            JSONObject retObject = new JSONObject();
+            JSONArray arr = new JSONArray();
+
+            for(ImageFile imageFile: mGalleryList) {
+                JSONObject content = new JSONObject();
+
+                content.put("id", Integer.toString(imageFile.getId()))
+                        .put("name", imageFile.getName())
+                        .put("image", imageFile.getImage())
+                        .put("tag", imageFile.getTag())
+                        .put("date", imageFile.getDate())
+                        .put("f1", imageFile.getF1())
+                        .put("f2", imageFile.getF2())
+                        .put("f3", imageFile.getF3())
+                        .put("f4", imageFile.getF4());
+
+                arr.put(content);
+            }
+            retObject.put("gallery", arr);
+
+            return retObject;
+        } catch(JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public static void setTagsColor(TextView[] views, String checked) {
         String[] tagString = checked.replaceAll("[\\[\\]]", "").split(", ");
         for(int i = 0; i < 6; i++) {
@@ -133,27 +170,26 @@ public class Common {
         }
     }
 
-    public static ArrayList<ImageFile> initGallery() {
-        ArrayList<ImageFile> items = new ArrayList<>();
-//        ArrayList<Integer> fids = new ArrayList<Integer>();
-
-        items.add(new ImageFile("칵테일", R.drawable.image1, 4, "20180702", new ArrayList<Integer>()));
-        items.add(new ImageFile("휘낭시에", R.drawable.image2, 4, "20190701", new ArrayList<Integer>()));
-        items.add(new ImageFile("특등심까스", R.drawable.image3, 2, "20200627", new ArrayList<Integer>()));
-        items.add(new ImageFile("냉모밀", R.drawable.image4, 2, "20210404", new ArrayList<Integer>()));
-        items.add(new ImageFile("감자탕", R.drawable.image5, 0, "20211111", new ArrayList<Integer>()));
-        items.add(new ImageFile("감바스", R.drawable.image6, 3, "20211201", new ArrayList<Integer>()));
-        items.add(new ImageFile("고르곤졸라", R.drawable.image7, 3, "20211203", new ArrayList<Integer>()));
-        items.add(new ImageFile("샐러드", R.drawable.image8, 3, "20220110", new ArrayList<Integer>()));
-        items.add(new ImageFile("대한곱창", R.drawable.image9, 0, "20220212", new ArrayList<Integer>()));
-        items.add(new ImageFile("김치말이국수", R.drawable.image10, 0, "20220330", new ArrayList<Integer>()));
-        items.add(new ImageFile("라면", R.drawable.image11, 0, "20220524", new ArrayList<Integer>()));
-        items.add(new ImageFile("홍대카페", R.drawable.image12, 4, "20220611", new ArrayList<Integer>()));
-        items.add(new ImageFile("계란후라이", R.drawable.image14, 0, "20220629", new ArrayList<Integer>()));
-        items.add(new ImageFile("고등어구이", R.drawable.image15, 0, "20220701", new ArrayList<Integer>()));
-        items.add(new ImageFile("파전", R.drawable.image16, 0, "20220702", new ArrayList<Integer>()));
-
-        return items;
-    }
+//    public static ArrayList<ImageFile> initGallery() {
+//        ArrayList<ImageFile> items = new ArrayList<>();
+//
+//        items.add(new ImageFile(0,"칵테일", R.drawable.image1, 4, "20180702", -1, -1, -1, -1));
+//        items.add(new ImageFile(1,"휘낭시에", R.drawable.image2, 4, "20190701", -1, -1, -1, -1));
+//        items.add(new ImageFile(2,"특등심까스", R.drawable.image3, 2, "20200627", -1, -1, -1, -1));
+//        items.add(new ImageFile(3,"냉모밀", R.drawable.image4, 2, "20210404", -1, -1, -1, -1));
+//        items.add(new ImageFile(4,"감자탕", R.drawable.image5, 0, "20211111", -1, -1, -1, -1));
+//        items.add(new ImageFile(5,"감바스", R.drawable.image6, 3, "20211201", -1, -1, -1, -1));
+//        items.add(new ImageFile(6,"고르곤졸라", R.drawable.image7, 3, "20211203", -1, -1, -1, -1));
+//        items.add(new ImageFile(7,"샐러드", R.drawable.image8, 3, "20220110", -1, -1, -1, -1));
+//        items.add(new ImageFile(8,"대한곱창", R.drawable.image9, 0, "20220212", -1, -1, -1, -1));
+//        items.add(new ImageFile(9,"김치말이국수", R.drawable.image10, 0, "20220330", -1, -1, -1, -1));
+//        items.add(new ImageFile(10,"라면", R.drawable.image11, 0, "20220524", -1, -1, -1, -1));
+//        items.add(new ImageFile(11,"홍대카페", R.drawable.image12, 4, "20220611", -1, -1, -1, -1));
+//        items.add(new ImageFile(12,"계란후라이", R.drawable.image14, 0, "20220629", -1, -1, -1, -1));
+//        items.add(new ImageFile(13,"고등어구이", R.drawable.image15, 0, "20220701", -1, -1, -1, -1));
+//        items.add(new ImageFile(14,"파전", R.drawable.image16, 0, "20220702", -1, -1, -1, -1));
+//
+//        return items;
+//    }
 
 }

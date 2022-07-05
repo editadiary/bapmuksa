@@ -11,6 +11,7 @@ import android.util.Log;
 
 import com.example.myapplication.Contact.Contact;
 import com.example.myapplication.Gallery.GalleryAdapter;
+import com.example.myapplication.Gallery.ImageFile;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,9 +39,14 @@ public class MainActivity extends AppCompatActivity {
         currentTab = 0;
         allContacts = new ArrayList<>();
         mContactList = new ArrayList<>();
+
+        mGalleryList = new ArrayList<>();
+
         stack_page = new Stack<>(); stack_page.push(0);
         getContacts();
+        getGallery();
         initGallery();
+
     }
 
     private void findMaxIdNum() {
@@ -117,8 +123,81 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initGallery() {
-        mGalleryList = Common.initGallery();
+//        mGalleryList = Common.initGallery();
         galleryAdapter = new GalleryAdapter(mGalleryList, this);
 
+    }
+
+    private void findMaxIdGallery() {
+        int maxId = -1;
+        for(ImageFile imageFile: mGalleryList) {
+            if(maxId < imageFile.getId())
+                maxId = imageFile.getId();
+        }
+        id_num_img = maxId+1;
+    }
+
+    private void getGallery() {
+        String galleryJsonString = readGalleryJson();
+        if(!galleryJsonString.equals("")) {
+            mGalleryList = parseImageFile(galleryJsonString);
+        }
+        findMaxIdGallery();
+        // String contactsJsonString = getJsonString(this, CONTACT_JSON_FILE_NAME);
+    }
+
+    private String readGalleryJson() {
+        try {
+            File file = getFileStreamPath(GALLERY_JSON_FILE_NAME);
+
+            if(file.exists()) {
+                FileInputStream is = openFileInput(GALLERY_JSON_FILE_NAME);
+                InputStreamReader isr = new InputStreamReader(is);
+                BufferedReader bufferedReader = new BufferedReader(isr);
+                StringBuilder sb = new StringBuilder();
+
+                while(true) {
+                    String line = bufferedReader.readLine();
+                    if(line == null) break;
+                    sb.append(line).append("\n");
+                }
+
+                return sb.toString();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return "";
+    }
+
+    private ArrayList<ImageFile> parseImageFile(String json) {
+        try {
+            ArrayList<ImageFile> newArrayList = new ArrayList<>();
+            JSONObject jsonObject = new JSONObject(json);
+            JSONArray galleryArray = jsonObject.getJSONArray("gallery");
+
+            for(int i = 0; i < galleryArray.length(); ++i) {
+                JSONObject galleryObj = galleryArray.getJSONObject(i);
+
+                String name = galleryObj.getString("name");
+                int image = galleryObj.getInt("image");
+                int tag = galleryObj.getInt("tag");
+                String date = galleryObj.getString("date");
+                int f1 = galleryObj.getInt("f1");
+                int f2 = galleryObj.getInt("f2");
+                int f3 = galleryObj.getInt("f3");
+                int f4 = galleryObj.getInt("f4");
+
+                ImageFile data = new ImageFile(id_num_img++, name, image, tag, date, f1, f2, f3, f4);
+
+                newArrayList.add(data);
+            }
+
+            return newArrayList;
+        } catch(JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }
