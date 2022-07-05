@@ -23,6 +23,7 @@
 또다른 멋진 기능은 검색 기능입니다. 친구의 이름으로 검색하는 것뿐만 아니라, 음식 취향에 따라 검색함으로써 당신은 식사 메이트를 효율적으로 찾을 수 있습니다.
 - Recycler View
 - Sort by Alphabet (ㄱㄴㄷ 정렬)
+- Edit by clicking single contact
 - 처음 저장하면 만난 일 수 unknown -> 사진에 등록되면 Update
 
 ## Food Gallery
@@ -31,6 +32,9 @@
 당신이 먹은 음식 사진을 불러와서 제목과 카테고리, 함께 먹은 친구 리스트를 작성할 수 있습니다.
 이 사진들은 연락처 데이터와 직접 연동되어, 친구와 마지막으로 식사한 날짜가 자동으로 업데이트됩니다. 또한, 음식 카테고리에 따라 색이 다르게 표시되어 나의 음식 취향을 파악하거나, 오늘 먹을 음식을 고르는데 도움을 줍니다.
 - GridView
+- Delete by long click
+- Edit by clicking single image
+- Edit Name/Tag/Friends
 
 ## Friend Recommendation
 
