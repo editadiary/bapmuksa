@@ -16,7 +16,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.Common;
-import com.example.myapplication.Home.HomeActivity;
 import com.example.myapplication.R;
 
 import org.json.JSONObject;
@@ -29,14 +28,12 @@ import java.util.Date;
 import java.util.Locale;
 
 public class ContactDetailActivity extends AppCompatActivity implements View.OnClickListener {
-    int contactId, position;
-    boolean isStar;
-    Contact selectedContact;
     String pos, name, phone, tags, lastMeet;
     ActivityResultLauncher<Intent> activityResultLauncher;
-    ImageView editBtn, deleteBtn, starImage;
+    ImageView editBtn, deleteBtn;
     TextView nameTV, phoneTV, dayTV;
     TextView[] tagTV = new TextView[6];
+    Bundle extras;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +53,6 @@ public class ContactDetailActivity extends AppCompatActivity implements View.OnC
     private void initViews() {
         editBtn = findViewById(R.id.ic_edit);
         deleteBtn = findViewById(R.id.ic_delete);
-        starImage = findViewById(R.id.star);
 
         nameTV = findViewById(R.id.detail_name);
         phoneTV = findViewById(R.id.detail_phone);
@@ -64,62 +60,46 @@ public class ContactDetailActivity extends AppCompatActivity implements View.OnC
 
         for(int i = 0; i < 6; ++i)
             tagTV[i] = findViewById(getResources().getIdentifier(Common.food_tags_id[i], "id", getPackageName()));
+
     }
 
     private void initListeners() {
         editBtn.setOnClickListener(this);
         deleteBtn.setOnClickListener(this);
-        starImage.setOnClickListener(this);
     }
 
     private ActivityResultLauncher<Intent> setResultLauncher() {
         return registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
             if(result.getResultCode() == 200) {
-                Intent data = result.getData();
+                assert result.getData() != null;
+                extras = result.getData().getExtras();
 
-                assert data != null;
-                Bundle extra = data.getExtras();
-
-                contactId = extra.getInt("id");
-                for(int i = 0; i < allContacts.size(); ++i) {
-                    Contact c = allContacts.get(i);
-                    if(c.getId() == contactId) {
-                        selectedContact = c;
-                        position = i;
-                        break;
-                    }
+                if(extras != null) {
+                    name = extras.getString("name");
+                    phone = extras.getString("phone");
+                    tags = extras.getString("tags");
+                    lastMeet = extras.getString("lastMeet");
+                    pos = extras.getString("pos");
                 }
 
-                nameTV.setText(selectedContact.getName());
-                phoneTV.setText(selectedContact.getPhone());
-                Common.setTagsColor(tagTV, selectedContact.getTags());
+                nameTV.setText(name);
+                phoneTV.setText(phone);
+                Common.setTagsColor(tagTV, tags);
             }
         });
     }
 
     private void setViews() {
-        Bundle extra = getIntent().getExtras();
-        if(extra != null)
-            contactId = extra.getInt("id");
-
-        for(int i = 0; i < allContacts.size(); ++i) {
-            if(allContacts.get(i).getId() == contactId) {
-                selectedContact = allContacts.get(i);
-                position = i;
-            }
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            name = extras.getString("name");
+            phone = extras.getString("phone");
+            tags = extras.getString("tags");
+            lastMeet = extras.getString("lastMeet");
+            pos = extras.getString("pos");
         }
 
-        if(selectedContact == null) return;
-
-        name = selectedContact.getName();
-        phone = selectedContact.getPhone();
-        tags = selectedContact.getTags();
-        lastMeet = selectedContact.getLastMeet();
-        isStar = selectedContact.getIsStar();
-
         String day = lastMeet == null || lastMeet.equals("") ? "? 일" : getDays() + "일";
-
-        if(isStar) starImage.setImageResource(R.drawable.ic_star_filled);
 
         nameTV.setText(name);
         phoneTV.setText(phone);
@@ -135,7 +115,6 @@ public class ContactDetailActivity extends AppCompatActivity implements View.OnC
             Date prev = simpleDateFormat.parse(lastMeet);
 
             assert current != null;
-            assert prev != null;
             long days = (current.getTime() - prev.getTime()) / (24 * 60 * 60 * 1000);
             return Long.toString(days);
         } catch (ParseException e) {
@@ -161,12 +140,14 @@ public class ContactDetailActivity extends AppCompatActivity implements View.OnC
 
     @Override
     public void onClick(View v) {
-        if(v.getId() == R.id.ic_edit){
+        int id = v.getId();
+        Intent intent;
+
+        if(id == R.id.ic_edit){
             goIntent(6);
 
-            Intent intent = new Intent(getApplicationContext(), ContactUpdateActivity.class);
-            intent.putExtra("id", contactId)
-                    .putExtra("name", name)
+            intent = new Intent(getApplicationContext(), ContactUpdateActivity.class);
+            intent.putExtra("name", name)
                     .putExtra("phone", phone)
                     .putExtra("tags", tags)
                     .putExtra("pos", pos);
@@ -174,53 +155,30 @@ public class ContactDetailActivity extends AppCompatActivity implements View.OnC
             activityResultLauncher.launch(intent);
         }
 
-        if(v.getId() == R.id.ic_delete) {
+        else if(id == R.id.ic_delete) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setCancelable(true);
             builder.setTitle("Alert");
             builder.setMessage("Do you really delete this?");
             builder.setPositiveButton("Confirm", (dialog, which) -> {
-                allContacts.remove(position);
+                int contactId = mContactList.get(Integer.parseInt(pos)).getId();
+                for(int i = 0; i < allContacts.size(); ++i) {
+                    if(allContacts.get(i).getId() == contactId) {
+                        allContacts.remove(i);
+                    }
+                }
                 contactCopy(allContacts, mContactList);
-                mAdapter.notifyDataSetChanged();
-                HomeActivity.notifyDataSet();
+                contactsWrite();
                 Toast.makeText(this, "This Contact is deleted.", Toast.LENGTH_LONG).show();
                 toPrev(this);
                 finish();
-                contactsWrite();
+                mAdapter.notifyDataSetChanged();
             });
             builder.setNegativeButton("Cancel", (dialog, which) -> {
 
             });
             AlertDialog dlg = builder.create();
             dlg.show();
-        }
-
-        if(v.getId() == R.id.star) {
-            int allPosition = -1;
-            Contact contact = null;
-            for(int i = 0; i < allContacts.size(); ++i) {
-                if(allContacts.get(i).getId() == contactId) {
-                    allPosition = i;
-                    contact = allContacts.get(i);
-                    break;
-                }
-            }
-            if(allPosition == -1 || contact == null) return;
-
-            boolean isStar = contact.getIsStar();
-            contact.setIsStar(!isStar);
-            allContacts.set(allPosition, contact);
-
-            HomeActivity.getStarContacts();
-            HomeActivity.notifyDataSet();
-            if(isStar) {
-                starImage.setImageResource(R.drawable.ic_star_empty);
-            } else {
-                starImage.setImageResource(R.drawable.ic_star_filled);
-            }
-
-            contactsWrite();
         }
     }
 

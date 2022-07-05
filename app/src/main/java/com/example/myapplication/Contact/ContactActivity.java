@@ -32,10 +32,12 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
     private Spinner foodSpinner;
     private SearchFoodSpinnerAdapter foodAdapter;
     private ImageView addContactIcon, searchIcon;
+    private LinearLayoutManager mLinearLayoutManager;
     private LinearLayout searchLinearLayout;
     private EditText searchET;
     private boolean searchVisible;
     private static RecyclerView mRecyclerView;
+    private static ContactAdapter.RecyclerViewClickListener listener;
     private int tagPosition;
     private String searchString;
 
@@ -49,13 +51,15 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
         initViews();
         initSetting();
         initListeners();
+        initDecoration();
     }
 
     private void initVariables() {
         searchVisible = false;
         foodTags = new ArrayList<>();
         foodAdapter = new SearchFoodSpinnerAdapter(this, foodTags);
-        ContactAdapter.RecyclerViewClickListener listener = initRecyclerViewListener();
+        mLinearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        listener = initRecyclerViewListener();
         contactCopy(allContacts, mContactList);
         mAdapter = new ContactAdapter(mContactList, listener);
     }
@@ -69,14 +73,12 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
 
     private ContactAdapter.RecyclerViewClickListener initRecyclerViewListener() {
         return (v, position) -> {
-            Log.d("getId", v.getId() + "");
             if(stack_page.peek() == 5) return;
 
             goIntent(5);
             Intent intent = new Intent(this, ContactDetailActivity.class);
 
-            intent.putExtra("id", mContactList.get(position).getId())
-                    .putExtra("name", mContactList.get(position).getName())
+            intent.putExtra("name", mContactList.get(position).getName())
                     .putExtra("phone", mContactList.get(position).getPhone())
                     .putExtra("tags", mContactList.get(position).getTags())
                     .putExtra("lastMeet", mContactList.get(position).getLastMeet())
@@ -100,13 +102,8 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void initSetting() {
-        LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
-
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mRecyclerView.getContext(), mLinearLayoutManager.getOrientation());
-        mRecyclerView.addItemDecoration(dividerItemDecoration);
     }
 
     private void initListeners() {
@@ -150,6 +147,11 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
 
     }
 
+    private void initDecoration(){
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mRecyclerView.getContext(), mLinearLayoutManager.getOrientation());
+        mRecyclerView.addItemDecoration(dividerItemDecoration);
+    }
+
 
     // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     private ArrayList<Contact> getFoundContacts() {
@@ -157,13 +159,14 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
         contactCopy(allContacts, newContacts);
 
         ArrayList<Contact> filteredByName = filterByName(newContacts);
+        ArrayList<Contact> resContacts = filterByTag(filteredByName);
 
-        return filterByTag(filteredByName);
+        return resContacts;
     }
 
     @SuppressLint("NewApi")
     private ArrayList<Contact> filterByName(ArrayList<Contact> contacts) {
-        if(searchString == null || searchString.equals("")) {
+        if(searchString == null || searchString == "") {
             return contacts;
         }
 
@@ -190,10 +193,6 @@ public class ContactActivity extends AppCompatActivity implements View.OnClickLi
 
     private String parsePhoneNumber(String phoneNumber) {
         return phoneNumber.replaceAll("^([0-9]{3})-([0-9]{4})-([0-9]{4})$", "$1$2$3");
-    }
-
-    public static void notifyDataSet() {
-        mAdapter.notifyDataSetChanged();
     }
 
     @Override

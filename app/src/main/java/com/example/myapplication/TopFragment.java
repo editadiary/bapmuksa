@@ -13,8 +13,6 @@ import android.widget.ImageView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
-import com.example.myapplication.Home.HomeActivity;
-
 public class TopFragment extends Fragment implements View.OnClickListener {
     private ImageView HomeBtn;
     // private ImageView PrevBtn;

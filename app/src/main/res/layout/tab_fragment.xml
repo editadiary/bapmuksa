@@ -5,6 +5,8 @@
     android:layout_height="match_parent"
     android:fontFamily="@font/binggrae"
     >
+
+
     <LinearLayout
         android:id="@+id/tab_fragment_layout"
         android:layout_width="match_parent"
@@ -49,5 +51,7 @@
             android:paddingBottom="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:srcCompat="@drawable/ic_gallery" />
+
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

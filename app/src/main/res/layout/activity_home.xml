@@ -19,16 +19,20 @@
         app:layout_constraintTop_toTopOf="parent"
         />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/starContactsRV"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/textView2"
+        android:fontFamily="@font/binggrae"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:scrollbars="vertical"
-        app:layout_constrainedHeight="true"
+        android:gravity="center"
+        android:scaleX="4"
+        android:scaleY="4"
+        android:text="@string/home"
         app:layout_constraintTop_toBottomOf="@id/top_fragment"
         app:layout_constraintBottom_toTopOf="@id/TabFragment"
-        app:layout_constraintVertical_bias="0"
-        />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:textStyle="bold"/>
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/TabFragment"

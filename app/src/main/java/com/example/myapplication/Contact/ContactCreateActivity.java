@@ -32,7 +32,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -74,7 +73,6 @@ public class ContactCreateActivity extends AppCompatActivity implements View.OnC
     }
 
     private void AddContact(Contact new_contact) {
-        if(allContacts == null) allContacts = new ArrayList<>();
         allContacts.add(new_contact);
         contactCopy(allContacts, mContactList);
         contactsWrite();
@@ -118,9 +116,12 @@ public class ContactCreateActivity extends AppCompatActivity implements View.OnC
 
                 stack_page.pop(); stack_page.push(1);
 
-                AddContact(new Contact(id_num++, name, phone, Arrays.toString(tags), "ic_person", null, false));
+                AddContact(new Contact(id_num++, name, phone, Arrays.toString(tags), "ic_person", null));
                 Intent intent = new Intent(getApplicationContext(), ContactDetailActivity.class);
-                intent.putExtra("id", id);
+                intent.putExtra("name", name)
+                        .putExtra("phone", phone)
+                        .putExtra("tags", Arrays.toString(tags))
+                        .putExtra("id", id);
                 setResult(100, intent);
                 finish();
             }
