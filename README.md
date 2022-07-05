@@ -16,6 +16,7 @@
 자주 연락하는 친구를 찾을 번거로움이 줄어듭니다.
 
 <img width="20%" src="https://user-images.githubusercontent.com/52152015/177315841-9ccd08da-2dfd-48ca-b97d-267d42bdb0b4.jpg" />
+
 ## Friend List
 
 이 탭에서 당신은 친구 목록을 관리할 수 있습니다.
