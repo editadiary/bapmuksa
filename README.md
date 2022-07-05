@@ -30,5 +30,5 @@
 <밥머글사람>의 스플래시 화면, 로고, 전체적인 UI입니다.
 
 ### Author
-[고려대학교 19학번 이성진] (https://github.com/mobius29)
-[KAIST 18학번 김주연] (https://github.com/editadiary)
+[고려대학교 19학번 이성진](https://github.com/mobius29)
+[KAIST 18학번 김주연](https://github.com/editadiary)
