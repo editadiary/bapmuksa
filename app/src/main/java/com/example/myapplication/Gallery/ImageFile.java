@@ -57,7 +57,8 @@ public class ImageFile {
         if(f1==-1) return 0;
         else if(f2==-1) return 1;
         else if(f3==-1) return 2;
-        else return 3;
+        else if(f4==-1) return 3;
+        else return 4;
     }
 
     public String getTagName() {
