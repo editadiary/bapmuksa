@@ -14,6 +14,7 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,7 +28,7 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 public class HomeActivity extends AppCompatActivity {
-    private static ContactAdapter contactAdapter;
+    private static HomeContactAdapter contactAdapter;
     private static RecyclerView starContactsRV;
 
     @Override
@@ -51,18 +52,17 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void initRVSetting() {
-        LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        GridLayoutManager mGridLayoutManager = new GridLayoutManager(this, 2);
 
-        starContactsRV.setLayoutManager(mLinearLayoutManager);
+        starContactsRV.setLayoutManager(mGridLayoutManager);
         starContactsRV.setAdapter(contactAdapter);
 
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(starContactsRV.getContext(), mLinearLayoutManager.getOrientation());
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(starContactsRV.getContext(), mGridLayoutManager.getOrientation());
         starContactsRV.addItemDecoration(dividerItemDecoration);
     }
 
     private void setAdapter() {
-        contactAdapter = new ContactAdapter(starContacts, (v, position) -> {
-            Log.d("getId", v.getId() + "");
+        contactAdapter = new HomeContactAdapter(starContacts, (v, position) -> {
             if(stack_page.peek() == 5) return;
 
             goIntent(5);
