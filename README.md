@@ -59,3 +59,5 @@
 [고려대학교  이성진](https://github.com/mobius29)
 
 [KAIST 전산학부 김주연](https://github.com/editadiary)
+
+2022.06.29.-2022.07.05.
