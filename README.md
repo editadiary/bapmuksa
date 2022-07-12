@@ -56,6 +56,6 @@
 
 ### Author
 
-[고려대학교 19학번 이성진](https://github.com/mobius29)
+[고려대학교  이성진](https://github.com/mobius29)
 
-[KAIST 18학번 김주연](https://github.com/editadiary)
+[KAIST 전산학부 김주연](https://github.com/editadiary)
